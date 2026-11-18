@@ -465,6 +465,306 @@
       transform: translateY(0);
     }
 
+    /* Inspiration Section */
+    .inspo-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
+    .inspo-count {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    .inspo-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .inspo-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      background: var(--surface-subtle);
+      padding: 12px 13px;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      transition: border-color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .inspo-card:hover {
+      border-color: var(--border-strong);
+      background: #fff;
+    }
+
+    .inspo-card.selected {
+      border-color: var(--accent);
+      background: var(--accent-soft);
+      box-shadow: 0 0 0 2px rgba(29, 53, 87, 0.12);
+    }
+
+    .inspo-card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .inspo-name {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.3;
+    }
+
+    .inspo-host {
+      font-size: 11.5px;
+      color: var(--text-soft);
+      word-break: break-all;
+      margin-top: 2px;
+    }
+
+    .inspo-check {
+      width: 20px;
+      height: 20px;
+      border-radius: 6px;
+      border: 1.5px solid var(--border-strong);
+      background: #fff;
+      display: grid;
+      place-items: center;
+      font-size: 12px;
+      font-weight: 700;
+      color: #fff;
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+
+    .inspo-card.selected .inspo-check {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .inspo-actions {
+      display: flex;
+      gap: 6px;
+    }
+
+    .inspo-actions .btn {
+      flex: 1;
+      padding: 6px 9px;
+      font-size: 12px;
+    }
+
+    /* Live Multi-Device Preview Modal */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 20, 30, 0.72);
+      backdrop-filter: blur(4px);
+      z-index: 100;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    .modal-shell {
+      width: min(1400px, 98vw);
+      height: min(92vh, 920px);
+      background: #f3f2ee;
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 24px 64px rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .modal-head {
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .modal-nav-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .modal-select {
+      padding: 7px 10px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-strong);
+      font-family: inherit;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--text);
+      background: #fff;
+      max-width: 260px;
+    }
+
+    .device-tabs {
+      display: inline-flex;
+      background: #efede8;
+      padding: 3px;
+      border-radius: 10px;
+      gap: 2px;
+    }
+
+    .device-tab {
+      border: none;
+      background: transparent;
+      padding: 6px 11px;
+      border-radius: 7px;
+      font-family: inherit;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.12s ease;
+    }
+
+    .device-tab.active {
+      background: #fff;
+      color: var(--accent);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    }
+
+    .modal-right-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .modal-stage {
+      flex: 1;
+      overflow: auto;
+      padding: 20px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 20px;
+      background: radial-gradient(circle at top, #eae8e1 0%, #dedcd3 100%);
+    }
+
+    .modal-stage.mode-all {
+      flex-wrap: wrap;
+      align-items: flex-start;
+    }
+
+    .device-shell {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      max-width: 100%;
+    }
+
+    .device-label {
+      font-size: 11.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #4b5260;
+      background: rgba(255, 255, 255, 0.85);
+      padding: 3px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+    }
+
+    .device-frame {
+      position: relative;
+      background: #fff;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 6px solid #1f242e;
+      box-shadow: 0 16px 36px rgba(15, 23, 42, 0.18);
+    }
+
+    .device-frame.frame-mobile {
+      border-radius: 28px;
+      border-width: 9px;
+    }
+
+    .device-frame.frame-tablet {
+      border-radius: 20px;
+      border-width: 8px;
+    }
+
+    .device-viewport {
+      position: relative;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    .device-viewport iframe {
+      border: 0;
+      transform-origin: top left;
+      display: block;
+      background: #fff;
+    }
+
+    .frame-loader {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: rgba(250, 249, 246, 0.92);
+      color: var(--text-muted);
+      font-size: 13px;
+      font-weight: 500;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+    }
+
+    .frame-loader.hidden {
+      opacity: 0;
+    }
+
+    .modal-foot {
+      background: #fff;
+      border-top: 1px solid var(--border);
+      padding: 9px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .modal-foot a {
+      color: var(--accent);
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .modal-foot a:hover {
+      text-decoration: underline;
+    }
+
     @media (max-width: 980px) {
       .layout {
         grid-template-columns: 1fr;
@@ -486,7 +786,8 @@
       }
 
       .grid-2,
-      .url-row {
+      .url-row,
+      .inspo-grid {
         grid-template-columns: 1fr;
       }
 
@@ -607,7 +908,23 @@
         </div>
       </section>
 
-      <!-- 5. Optional Overrides -->
+      <!-- 5. Optional Layout Inspiration -->
+      <section class="card">
+        <div class="card-head">
+          <h2><span class="step-badge">5</span> Layout Inspiration <span class="tag-opt">Optional</span></h2>
+          <button type="button" class="btn btn-secondary" id="btnOpenGalleryPreview">Live Device Preview</button>
+        </div>
+        <p class="card-sub">Pick one or more example funnels for visual and layout inspiration. All branding, logos, colors, and copy will still come exclusively from the client's website and brochure.</p>
+
+        <div class="inspo-bar">
+          <span class="inspo-count" id="inspoCount">None selected (optional)</span>
+          <button type="button" class="btn btn-ghost" id="btnClearInspo" style="display: none; padding: 4px 8px; font-size: 12px;">Clear selection</button>
+        </div>
+
+        <div class="inspo-grid" id="inspoGrid"></div>
+      </section>
+
+      <!-- 6. Optional Overrides -->
       <details class="optional-card">
         <summary>Optional: Custom CTA Labels or Special Notes</summary>
         <div class="details-body">
@@ -653,6 +970,38 @@
 
   <div class="toast" id="toast">Copied to clipboard!</div>
 
+  <!-- LIVE MULTI-DEVICE PREVIEW MODAL -->
+  <div class="modal-backdrop" id="previewModal" role="dialog" aria-modal="true" aria-label="Layout inspiration live preview">
+    <div class="modal-shell">
+      <div class="modal-head">
+        <div class="modal-nav-group">
+          <button type="button" class="btn btn-secondary" id="btnPrevInspo" title="Previous example (Left arrow)">←</button>
+          <select id="modalInspoSelect" class="modal-select" aria-label="Choose example funnel"></select>
+          <button type="button" class="btn btn-secondary" id="btnNextInspo" title="Next example (Right arrow)">→</button>
+        </div>
+
+        <div class="device-tabs" id="deviceTabs" role="tablist" aria-label="Preview device size">
+          <button type="button" class="device-tab active" data-device="desktop">Desktop</button>
+          <button type="button" class="device-tab" data-device="tablet">Tablet</button>
+          <button type="button" class="device-tab" data-device="mobile">Mobile</button>
+          <button type="button" class="device-tab" data-device="all">Compare All 3</button>
+        </div>
+
+        <div class="modal-right-actions">
+          <button type="button" class="btn btn-primary" id="btnModalSelect">Select as Inspiration</button>
+          <button type="button" class="btn btn-ghost" id="btnCloseModal" aria-label="Close preview">✕ Close</button>
+        </div>
+      </div>
+
+      <div class="modal-stage" id="modalStage"></div>
+
+      <div class="modal-foot">
+        <span>Viewing <strong id="modalUrlText"></strong> — Reference for layout &amp; visual hierarchy only; client branding &amp; colors always take priority.</span>
+        <a id="modalExternalLink" href="#" target="_blank" rel="noopener noreferrer">Open in New Tab ↗</a>
+      </div>
+    </div>
+  </div>
+
   <script>
     (function () {
       const STORAGE_KEY = "venue_brief_urls_v2";
@@ -664,7 +1013,26 @@
         "p1Cta", "p2Cta", "extraNotes"
       ];
 
+      const INSPIRATION_SITES = [
+        { name: "Wilson Creek Wedding", url: "https://wilson-creek-wedding.vibepreview.app/" },
+        { name: "Classic Venue Preview", url: "https://preview-1793768853923533337.vibepreview.app/" },
+        { name: "DiVieste", url: "https://divieste.vibepreview.app/" },
+        { name: "Irish Hills", url: "https://irish-hills.vibepreview.app/" },
+        { name: "Castlebrook", url: "https://castlebrook.vibepreview.app/" },
+        { name: "Ariens Wedding Hub", url: "https://ariens-wedding-hub.vibepreview.app/" },
+        { name: "Venue Pricing Brochure", url: "https://go.venuepricingbrochure.com/" },
+        { name: "Celebration Funnel", url: "https://celebration-funnel.vibepreview.app/" },
+        { name: "McEntire River Estate", url: "https://mcentire-river-est.vibepreview.app/" },
+        { name: "Lakeview Golf Resort", url: "https://lakeviewgolfresort.venuepricingbrochure.com/" },
+        { name: "The Cellar", url: "https://the-cellar-2.vibepreview.app/" },
+        { name: "Saint Patrick Palace", url: "https://saint-patrick-palace.vibepreview.app/" },
+        { name: "Water Valley", url: "https://water-valley.vibepreview.app/" }
+      ];
+
       let extraUrls = [{ label: "", url: "" }];
+      let selectedInspirations = new Set();
+      let activePreviewIdx = 0;
+      let activeDeviceMode = "desktop";
 
       const $ = (id) => document.getElementById(id);
       const val = (id) => ($(id) ? $(id).value.trim() : "");
@@ -768,6 +1136,11 @@
 
         const ogImageText = "[Select the strongest wide landscape hero/cover image URL from the venue's real assets]";
 
+        const selectedInspoList = INSPIRATION_SITES.filter((s) => selectedInspirations.has(s.url));
+        const inspirationBlock = selectedInspoList.length
+          ? `\n---\n\n## Layout & Visual Inspiration (Structure & Composition Only)\n\nReference the following live example page(s) for **layout structure, section pacing, visual hierarchy, spacing, card design, and responsive desktop/mobile composition**:\n${selectedInspoList.map((s) => `- ${s.name}: ${s.url}`).join("\n")}\n\n- **CRITICAL BRANDING RULE:** Use these page(s) ONLY as layout and visual-structure inspiration. Do **NOT** copy their venue name, logo, colors, typography, photography, or copy. All **branding, logo, color palette (semantic tokens), fonts, imagery, and content** MUST come exclusively from the client's original Website, Brochure, and Media URLs in Section 0.\n`
+          : "";
+
         const notesBlock = extraNotes
           ? `\n---\n\n## Additional Client Notes\n\n${extraNotes}\n`
           : "";
@@ -782,7 +1155,7 @@ Build a 3-page lead-capture funnel for a wedding/event venue. No site header/nav
 
 Before building, visit and analyze all provided client URLs below to extract the venue's real brand identity, colors, fonts, spaces, amenities, guest capacity, contact details, and imagery. Do not invent facts or copy details from any other venue.
 
-${sourceLines.join("\n")}
+${sourceLines.join("\n")}${inspirationBlock}
 
 ---
 
@@ -972,7 +1345,14 @@ Follow these rules when choosing and placing imagery across the funnel:
           fields[id] = $(id) ? $(id).value : "";
         });
         try {
-          localStorage.setItem(STORAGE_KEY, JSON.stringify({ fields, extraUrls }));
+          localStorage.setItem(
+            STORAGE_KEY,
+            JSON.stringify({
+              fields,
+              extraUrls,
+              selectedInspirations: Array.from(selectedInspirations)
+            })
+          );
           const t = new Date().toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
           $("saveNote").textContent = `Saved at ${t}`;
         } catch (e) {}
@@ -991,7 +1371,195 @@ Follow these rules when choosing and placing imagery across the funnel:
           if (Array.isArray(data.extraUrls) && data.extraUrls.length) {
             extraUrls = data.extraUrls;
           }
+          if (Array.isArray(data.selectedInspirations)) {
+            selectedInspirations = new Set(data.selectedInspirations);
+          }
         } catch (e) {}
+      }
+
+      function toggleInspiration(url) {
+        if (selectedInspirations.has(url)) {
+          selectedInspirations.delete(url);
+        } else {
+          selectedInspirations.add(url);
+        }
+        renderInspirationGrid();
+        updateModalSelectButton();
+        onUpdate();
+      }
+
+      function renderInspirationGrid() {
+        const grid = $("inspoGrid");
+        grid.innerHTML = "";
+        INSPIRATION_SITES.forEach((site, idx) => {
+          const isSelected = selectedInspirations.has(site.url);
+          const host = site.url.replace(/^https?:\/\//, "").replace(/\/$/, "");
+
+          const card = document.createElement("div");
+          card.className = "inspo-card" + (isSelected ? " selected" : "");
+
+          const top = document.createElement("div");
+          top.className = "inspo-card-top";
+
+          const info = document.createElement("div");
+          const nameEl = document.createElement("div");
+          nameEl.className = "inspo-name";
+          nameEl.textContent = site.name;
+          const hostEl = document.createElement("div");
+          hostEl.className = "inspo-host";
+          hostEl.textContent = host;
+          info.appendChild(nameEl);
+          info.appendChild(hostEl);
+
+          const chk = document.createElement("button");
+          chk.type = "button";
+          chk.className = "inspo-check";
+          chk.setAttribute("aria-label", isSelected ? `Unselect ${site.name}` : `Select ${site.name}`);
+          chk.textContent = isSelected ? "✓" : "";
+          chk.addEventListener("click", () => toggleInspiration(site.url));
+
+          top.appendChild(info);
+          top.appendChild(chk);
+
+          const actions = document.createElement("div");
+          actions.className = "inspo-actions";
+
+          const prevBtn = document.createElement("button");
+          prevBtn.type = "button";
+          prevBtn.className = "btn btn-secondary";
+          prevBtn.textContent = "Preview Devices";
+          prevBtn.addEventListener("click", () => openPreviewModal(idx));
+
+          const selBtn = document.createElement("button");
+          selBtn.type = "button";
+          selBtn.className = isSelected ? "btn btn-primary" : "btn btn-ghost";
+          selBtn.textContent = isSelected ? "Selected" : "Select";
+          selBtn.addEventListener("click", () => toggleInspiration(site.url));
+
+          actions.appendChild(prevBtn);
+          actions.appendChild(selBtn);
+
+          card.appendChild(top);
+          card.appendChild(actions);
+          grid.appendChild(card);
+        });
+
+        const count = selectedInspirations.size;
+        $("inspoCount").textContent = count
+          ? `${count} layout reference${count === 1 ? "" : "s"} selected`
+          : "None selected (optional)";
+        $("btnClearInspo").style.display = count ? "inline-flex" : "none";
+      }
+
+      function populateModalSelect() {
+        const sel = $("modalInspoSelect");
+        sel.innerHTML = "";
+        INSPIRATION_SITES.forEach((site, idx) => {
+          const opt = document.createElement("option");
+          opt.value = String(idx);
+          opt.textContent = `${idx + 1}. ${site.name}`;
+          sel.appendChild(opt);
+        });
+      }
+
+      function updateModalSelectButton() {
+        const site = INSPIRATION_SITES[activePreviewIdx];
+        if (!site) return;
+        const btn = $("btnModalSelect");
+        const isSelected = selectedInspirations.has(site.url);
+        btn.textContent = isSelected ? "✓ Selected for Prompt" : "Select as Inspiration";
+        btn.className = isSelected ? "btn btn-secondary" : "btn btn-primary";
+      }
+
+      function buildDeviceFrame(url, label, vpWidth, vpHeight, maxBoxWidth, maxBoxHeight, frameClass) {
+        const scale = Math.min(1, maxBoxWidth / vpWidth, maxBoxHeight / vpHeight);
+        const scaledW = Math.round(vpWidth * scale);
+        const scaledH = Math.round(vpHeight * scale);
+
+        const shell = document.createElement("div");
+        shell.className = "device-shell";
+
+        const badge = document.createElement("span");
+        badge.className = "device-label";
+        badge.textContent = `${label} (${vpWidth}×${vpHeight})`;
+
+        const frame = document.createElement("div");
+        frame.className = `device-frame ${frameClass}`;
+
+        const viewport = document.createElement("div");
+        viewport.className = "device-viewport";
+        viewport.style.width = `${scaledW}px`;
+        viewport.style.height = `${scaledH}px`;
+
+        const loader = document.createElement("div");
+        loader.className = "frame-loader";
+        loader.textContent = `Loading ${label.toLowerCase()} preview...`;
+
+        const iframe = document.createElement("iframe");
+        iframe.src = url;
+        iframe.title = `${label} preview of ${url}`;
+        iframe.loading = "lazy";
+        iframe.style.width = `${vpWidth}px`;
+        iframe.style.height = `${vpHeight}px`;
+        iframe.style.transform = `scale(${scale})`;
+        iframe.addEventListener("load", () => loader.classList.add("hidden"));
+
+        viewport.appendChild(iframe);
+        viewport.appendChild(loader);
+        frame.appendChild(viewport);
+        shell.appendChild(badge);
+        shell.appendChild(frame);
+        return shell;
+      }
+
+      function renderModalStage() {
+        const site = INSPIRATION_SITES[activePreviewIdx];
+        if (!site) return;
+
+        $("modalInspoSelect").value = String(activePreviewIdx);
+        $("modalUrlText").textContent = site.url;
+        $("modalExternalLink").href = site.url;
+        updateModalSelectButton();
+
+        document.querySelectorAll(".device-tab").forEach((tab) => {
+          tab.classList.toggle("active", tab.dataset.device === activeDeviceMode);
+        });
+
+        const stage = $("modalStage");
+        stage.innerHTML = "";
+        stage.classList.toggle("mode-all", activeDeviceMode === "all");
+
+        const availW = Math.max(320, stage.clientWidth - 48);
+        const availH = Math.max(420, stage.clientHeight - 72);
+
+        if (activeDeviceMode === "desktop") {
+          stage.appendChild(buildDeviceFrame(site.url, "Desktop", 1440, 900, availW, availH, "frame-desktop"));
+        } else if (activeDeviceMode === "tablet") {
+          stage.appendChild(buildDeviceFrame(site.url, "Tablet", 768, 1024, availW, availH, "frame-tablet"));
+        } else if (activeDeviceMode === "mobile") {
+          stage.appendChild(buildDeviceFrame(site.url, "Mobile", 390, 844, availW, availH, "frame-mobile"));
+        } else {
+          // Compare all 3 side-by-side / responsive wrap
+          const deskW = Math.min(620, Math.max(360, availW * 0.48));
+          const tabW = Math.min(340, Math.max(240, availW * 0.27));
+          const mobW = Math.min(220, Math.max(190, availW * 0.19));
+          stage.appendChild(buildDeviceFrame(site.url, "Desktop", 1440, 900, deskW, availH, "frame-desktop"));
+          stage.appendChild(buildDeviceFrame(site.url, "Tablet", 768, 1024, tabW, availH, "frame-tablet"));
+          stage.appendChild(buildDeviceFrame(site.url, "Mobile", 390, 844, mobW, availH, "frame-mobile"));
+        }
+      }
+
+      function openPreviewModal(index) {
+        activePreviewIdx = ((index % INSPIRATION_SITES.length) + INSPIRATION_SITES.length) % INSPIRATION_SITES.length;
+        $("previewModal").classList.add("open");
+        document.body.style.overflow = "hidden";
+        requestAnimationFrame(renderModalStage);
+      }
+
+      function closePreviewModal() {
+        $("previewModal").classList.remove("open");
+        $("modalStage").innerHTML = "";
+        document.body.style.overflow = "";
       }
 
       function onUpdate() {
@@ -1077,9 +1645,54 @@ Follow these rules when choosing and placing imagery across the funnel:
         $("p1Cta").value = "Download Pricing Brochure";
         $("p2Cta").value = "Request a Tour";
         extraUrls = [{ label: "", url: "" }];
+        selectedInspirations = new Set();
         renderExtraUrls();
+        renderInspirationGrid();
         onUpdate();
         showToast("Form cleared");
+      });
+
+      $("btnClearInspo").addEventListener("click", () => {
+        selectedInspirations = new Set();
+        renderInspirationGrid();
+        updateModalSelectButton();
+        onUpdate();
+      });
+
+      $("btnOpenGalleryPreview").addEventListener("click", () => openPreviewModal(activePreviewIdx));
+      $("btnCloseModal").addEventListener("click", closePreviewModal);
+      $("previewModal").addEventListener("click", (e) => {
+        if (e.target === $("previewModal")) closePreviewModal();
+      });
+
+      $("btnPrevInspo").addEventListener("click", () => openPreviewModal(activePreviewIdx - 1));
+      $("btnNextInspo").addEventListener("click", () => openPreviewModal(activePreviewIdx + 1));
+      $("modalInspoSelect").addEventListener("change", (e) => openPreviewModal(Number(e.target.value)));
+
+      $("btnModalSelect").addEventListener("click", () => {
+        const site = INSPIRATION_SITES[activePreviewIdx];
+        if (site) toggleInspiration(site.url);
+      });
+
+      document.querySelectorAll(".device-tab").forEach((tab) => {
+        tab.addEventListener("click", () => {
+          activeDeviceMode = tab.dataset.device;
+          renderModalStage();
+        });
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (!$("previewModal").classList.contains("open")) return;
+        if (e.key === "Escape") closePreviewModal();
+        else if (e.key === "ArrowLeft") openPreviewModal(activePreviewIdx - 1);
+        else if (e.key === "ArrowRight") openPreviewModal(activePreviewIdx + 1);
+      });
+
+      let resizeTimer = null;
+      window.addEventListener("resize", () => {
+        if (!$("previewModal").classList.contains("open")) return;
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(renderModalStage, 150);
       });
 
       $("briefForm").addEventListener("input", onUpdate);
@@ -1087,7 +1700,9 @@ Follow these rules when choosing and placing imagery across the funnel:
 
       // Init
       load();
+      populateModalSelect();
       renderExtraUrls();
+      renderInspirationGrid();
       onUpdate();
     })();
   </script>

@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=DM+Sans:wght@400;500;600&family=Great+Vibes&family=Inter:wght@400;500;600;700&family=Libre+Baskerville:wght@400;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
     rel="stylesheet"
   />
   <style>
@@ -23,18 +23,15 @@
       --accent: #1d3557;
       --accent-hover: #142640;
       --accent-soft: #eef2f8;
-      --gold: #b88b32;
-      --gold-soft: #fdf7eb;
       --success: #1f7a4c;
       --success-soft: #eaf7f0;
       --warning: #b45309;
       --warning-soft: #fef5e7;
-      --danger: #b91c1c;
       --radius-sm: 8px;
       --radius-md: 12px;
       --radius-lg: 16px;
       --shadow-sm: 0 1px 2px rgba(20, 26, 38, 0.04);
-      --shadow-md: 0 8px 24px rgba(20, 26, 38, 0.07);
+      --shadow-md: 0 8px 24px rgba(20, 26, 38, 0.08);
     }
 
     * {
@@ -47,24 +44,24 @@
       background: var(--bg);
       color: var(--text);
       font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      font-size: 15px;
+      font-size: 14.5px;
       line-height: 1.55;
       -webkit-font-smoothing: antialiased;
     }
 
-    /* Top Header */
+    /* Header */
     .topbar {
       position: sticky;
       top: 0;
       z-index: 30;
-      background: rgba(255, 255, 255, 0.92);
+      background: rgba(255, 255, 255, 0.94);
       backdrop-filter: blur(10px);
       border-bottom: 1px solid var(--border);
-      padding: 14px 24px;
+      padding: 13px 24px;
     }
 
     .topbar-inner {
-      max-width: 1240px;
+      max-width: 1320px;
       margin: 0 auto;
       display: flex;
       align-items: center;
@@ -73,13 +70,13 @@
       flex-wrap: wrap;
     }
 
-    .brand-title {
+    .brand {
       display: flex;
       align-items: center;
       gap: 12px;
     }
 
-    .brand-badge {
+    .brand-mark {
       width: 36px;
       height: 36px;
       border-radius: 10px;
@@ -87,20 +84,20 @@
       color: #fff;
       display: grid;
       place-items: center;
-      font-weight: 700;
       font-family: "Cormorant Garamond", Georgia, serif;
-      font-size: 20px;
+      font-size: 21px;
+      font-weight: 700;
       flex-shrink: 0;
     }
 
-    .brand-title h1 {
+    .brand h1 {
       margin: 0;
-      font-size: 17px;
+      font-size: 16.5px;
       font-weight: 700;
       letter-spacing: -0.01em;
     }
 
-    .brand-title p {
+    .brand p {
       margin: 0;
       font-size: 12.5px;
       color: var(--text-muted);
@@ -109,7 +106,7 @@
     .topbar-actions {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       flex-wrap: wrap;
     }
 
@@ -118,16 +115,15 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 7px;
-      padding: 9px 15px;
+      gap: 6px;
+      padding: 8px 14px;
       border-radius: var(--radius-sm);
       font-family: inherit;
-      font-size: 13.5px;
+      font-size: 13px;
       font-weight: 600;
       border: 1px solid transparent;
       cursor: pointer;
       transition: all 0.15s ease;
-      text-decoration: none;
       white-space: nowrap;
     }
 
@@ -161,261 +157,79 @@
       color: var(--text);
     }
 
-    .btn-soft {
-      background: var(--accent-soft);
-      color: var(--accent);
-    }
-
-    .btn-soft:hover {
-      background: #e1e8f3;
-    }
-
-    .btn-sm {
-      padding: 6px 11px;
-      font-size: 12.5px;
-    }
-
-    /* Main Layout */
-    .shell {
-      max-width: 1240px;
+    /* Main 2-column layout */
+    .layout {
+      max-width: 1320px;
       margin: 0 auto;
-      padding: 28px 24px 72px;
+      padding: 24px 24px 64px;
       display: grid;
-      grid-template-columns: 270px minmax(0, 1fr);
-      gap: 28px;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+      gap: 24px;
       align-items: start;
     }
 
-    /* Sidebar */
-    .sidebar {
-      position: sticky;
-      top: 84px;
+    .card {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
-      padding: 18px;
       box-shadow: var(--shadow-sm);
+      padding: 22px 24px;
     }
 
-    .progress-box {
-      padding-bottom: 16px;
-      margin-bottom: 14px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .progress-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      margin-bottom: 8px;
-    }
-
-    .progress-label {
-      font-size: 12.5px;
-      font-weight: 600;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-    }
-
-    .progress-pct {
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--accent);
-    }
-
-    .progress-track {
-      height: 7px;
-      border-radius: 999px;
-      background: #ebe8e0;
-      overflow: hidden;
-    }
-
-    .progress-fill {
-      height: 100%;
-      width: 0%;
-      background: linear-gradient(90deg, var(--accent), #345c91);
-      border-radius: 999px;
-      transition: width 0.25s ease;
-    }
-
-    .step-nav {
+    .form-stack {
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 18px;
     }
 
-    .step-btn {
-      width: 100%;
+    .card-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .card-head h2 {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 700;
       display: flex;
       align-items: center;
-      gap: 11px;
-      padding: 10px 11px;
-      border: 1px solid transparent;
-      border-radius: 10px;
-      background: transparent;
-      color: var(--text);
-      font-family: inherit;
-      font-size: 13.5px;
-      font-weight: 500;
-      text-align: left;
-      cursor: pointer;
-      transition: all 0.14s ease;
+      gap: 9px;
     }
 
-    .step-btn:hover {
-      background: var(--surface-subtle);
-    }
-
-    .step-btn.active {
-      background: var(--accent-soft);
-      border-color: #cbd7ea;
-      color: var(--accent);
-      font-weight: 600;
-    }
-
-    .step-num {
+    .step-badge {
       width: 24px;
       height: 24px;
       border-radius: 50%;
-      background: #efede8;
-      color: var(--text-muted);
-      display: grid;
-      place-items: center;
+      background: var(--accent-soft);
+      color: var(--accent);
       font-size: 12px;
       font-weight: 700;
+      display: inline-grid;
+      place-items: center;
       flex-shrink: 0;
     }
 
-    .step-btn.active .step-num {
-      background: var(--accent);
-      color: #fff;
-    }
-
-    .step-btn.done .step-num {
-      background: var(--success-soft);
-      color: var(--success);
-    }
-
-    .step-meta {
-      flex: 1;
-      min-width: 0;
-    }
-
-    .step-meta span {
-      display: block;
-      font-size: 11.5px;
-      color: var(--text-soft);
-      font-weight: 400;
-    }
-
-    .sidebar-footer {
-      margin-top: 16px;
-      padding-top: 14px;
-      border-top: 1px solid var(--border);
-      font-size: 12px;
-      color: var(--text-soft);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    /* Main Panel */
-    .main-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-sm);
-      overflow: hidden;
-    }
-
-    .step-panel {
-      display: none;
-      padding: 30px 32px 28px;
-    }
-
-    .step-panel.active {
-      display: block;
-    }
-
-    .step-header {
-      margin-bottom: 24px;
-      padding-bottom: 18px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .step-kicker {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 12px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: var(--gold);
-      background: var(--gold-soft);
-      padding: 4px 10px;
-      border-radius: 999px;
-      margin-bottom: 10px;
-    }
-
-    .step-header h2 {
-      margin: 0 0 6px;
-      font-size: 24px;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-    }
-
-    .step-header p {
-      margin: 0;
-      color: var(--text-muted);
-      font-size: 14.5px;
-      max-width: 720px;
-    }
-
-    /* Form layout */
-    .section-group {
-      margin-bottom: 28px;
-    }
-
-    .section-group:last-child {
-      margin-bottom: 0;
-    }
-
-    .section-title {
-      font-size: 15px;
-      font-weight: 700;
-      margin: 0 0 4px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-    }
-
-    .section-desc {
-      margin: 0 0 14px;
-      font-size: 13.5px;
+    .card-sub {
+      margin: -8px 0 16px;
+      font-size: 13px;
       color: var(--text-muted);
     }
 
     .grid-2 {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 16px;
-    }
-
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 14px;
     }
 
     .field {
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
 
-    .grid-2 .field,
-    .grid-3 .field {
+    .field:last-child,
+    .grid-2 .field {
       margin-bottom: 0;
     }
 
@@ -423,9 +237,9 @@
       display: flex;
       align-items: center;
       gap: 6px;
-      font-size: 13.5px;
+      font-size: 13px;
       font-weight: 600;
-      margin-bottom: 6px;
+      margin-bottom: 5px;
       color: var(--text);
     }
 
@@ -440,24 +254,20 @@
 
     .help {
       display: block;
-      font-size: 12.5px;
+      font-size: 12px;
       color: var(--text-muted);
-      margin-top: 5px;
-      line-height: 1.45;
+      margin-top: 4px;
     }
 
     input[type="text"],
-    input[type="email"],
-    input[type="tel"],
     input[type="url"],
-    select,
     textarea {
       width: 100%;
-      padding: 10px 12px;
+      padding: 9px 12px;
       border: 1px solid var(--border-strong);
       border-radius: var(--radius-sm);
       font-family: inherit;
-      font-size: 14px;
+      font-size: 13.5px;
       color: var(--text);
       background: #fff;
       transition: border-color 0.15s ease, box-shadow 0.15s ease;
@@ -465,259 +275,136 @@
 
     textarea {
       resize: vertical;
-      min-height: 82px;
-      line-height: 1.5;
+      min-height: 76px;
+      line-height: 1.48;
     }
 
     textarea.code-input {
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-      font-size: 12.5px;
+      font-size: 12px;
       background: #fbfbfa;
-      min-height: 110px;
+      min-height: 86px;
     }
 
     input:focus,
-    select:focus,
     textarea:focus {
       outline: none;
       border-color: var(--accent);
       box-shadow: 0 0 0 3px rgba(29, 53, 87, 0.12);
     }
 
-    /* Callout / Tips */
-    .callout {
-      background: var(--surface-subtle);
-      border: 1px solid var(--border);
-      border-left: 3px solid var(--accent);
-      border-radius: var(--radius-sm);
-      padding: 12px 15px;
-      font-size: 13.5px;
-      color: var(--text-muted);
-      margin-bottom: 20px;
-    }
-
-    .callout strong {
-      color: var(--text);
-    }
-
-    .callout-warn {
-      background: var(--warning-soft);
-      border-color: #f4d7aa;
-      border-left-color: var(--warning);
-      color: #7c3b07;
-    }
-
-    /* Color Picker Cards */
-    .color-card {
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 14px;
-      background: var(--surface-subtle);
-    }
-
-    .color-card-top {
+    /* Dynamic URL rows */
+    .url-list {
       display: flex;
-      align-items: center;
-      gap: 10px;
+      flex-direction: column;
+      gap: 8px;
       margin-bottom: 10px;
     }
 
-    .color-swatch-input {
-      width: 40px;
-      height: 40px;
-      padding: 0;
+    .url-row {
+      display: grid;
+      grid-template-columns: 145px minmax(0, 1fr) auto;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .icon-btn {
+      width: 34px;
+      height: 34px;
+      border-radius: var(--radius-sm);
       border: 1px solid var(--border-strong);
-      border-radius: 8px;
-      background: none;
-      cursor: pointer;
-      flex-shrink: 0;
-    }
-
-    .color-card-title {
-      font-size: 13.5px;
-      font-weight: 700;
-    }
-
-    .color-card-sub {
-      font-size: 11.5px;
+      background: #fff;
       color: var(--text-muted);
-    }
-
-    .color-inputs {
+      font-size: 16px;
+      cursor: pointer;
       display: grid;
-      grid-template-columns: 1fr 94px;
-      gap: 8px;
+      place-items: center;
     }
 
-    /* Live Brand Preview */
-    .brand-preview {
-      margin-top: 16px;
-      border-radius: var(--radius-md);
-      overflow: hidden;
+    .icon-btn:hover {
+      background: #fef2f2;
+      border-color: #f5c2c2;
+      color: #b91c1c;
+    }
+
+    /* Optional details accordion */
+    details.optional-card {
+      background: var(--surface);
       border: 1px solid var(--border);
-      display: grid;
-      grid-template-columns: 1.2fr 1fr;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      padding: 16px 24px;
     }
 
-    .preview-dark {
-      padding: 22px 24px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 6px;
-    }
-
-    .preview-light {
-      padding: 22px 24px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 8px;
-    }
-
-    .preview-eyebrow {
-      font-size: 11px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      font-weight: 600;
-      opacity: 0.88;
-    }
-
-    .preview-script {
-      font-family: "Great Vibes", cursive;
-      font-size: 23px;
-      line-height: 1.1;
-    }
-
-    .preview-h1 {
-      font-size: 26px;
-      line-height: 1.15;
-      font-weight: 600;
-    }
-
-    .preview-btn {
-      display: inline-block;
-      align-self: flex-start;
-      padding: 8px 16px;
-      border-radius: 6px;
-      font-size: 12.5px;
+    details.optional-card summary {
+      cursor: pointer;
+      font-size: 14px;
       font-weight: 700;
-      margin-top: 4px;
+      color: var(--text);
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
 
-    /* Checklist chips */
-    .chip-grid {
+    details.optional-card summary::-webkit-details-marker {
+      display: none;
+    }
+
+    details.optional-card summary::after {
+      content: "+";
+      font-size: 18px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    details.optional-card[open] summary::after {
+      content: "−";
+    }
+
+    .details-body {
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+    }
+
+    /* Sticky Preview Column */
+    .preview-col {
+      position: sticky;
+      top: 78px;
+    }
+
+    .preview-header {
       display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
       flex-wrap: wrap;
-      gap: 8px;
       margin-bottom: 12px;
     }
 
-    .chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      padding: 7px 12px;
-      border-radius: 999px;
-      border: 1px solid var(--border-strong);
-      background: #fff;
-      font-size: 13px;
-      cursor: pointer;
-      user-select: none;
-      transition: all 0.12s ease;
-    }
-
-    .chip input {
-      accent-color: var(--accent);
+    .preview-header h2 {
       margin: 0;
-      cursor: pointer;
-    }
-
-    .chip.checked {
-      background: var(--accent-soft);
-      border-color: var(--accent);
-      color: var(--accent);
-      font-weight: 600;
-    }
-
-    .inline-add {
-      display: flex;
-      gap: 8px;
-      max-width: 440px;
-    }
-
-    /* Page Sub-cards */
-    .subcard {
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 18px 20px;
-      background: var(--surface-subtle);
-      margin-bottom: 16px;
-    }
-
-    .subcard-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 14px;
-      gap: 10px;
-    }
-
-    .subcard-title {
-      font-size: 15px;
+      font-size: 15.5px;
       font-weight: 700;
-      display: flex;
-      align-items: center;
-      gap: 8px;
     }
 
-    .route-pill {
-      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-      font-size: 12px;
-      padding: 2px 8px;
-      border-radius: 6px;
-      background: #e9ecf2;
-      color: var(--accent);
-      font-weight: 600;
-    }
-
-    /* Gallery rows */
-    .gallery-list {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .gallery-row {
-      display: grid;
-      grid-template-columns: 120px 1fr 1fr;
-      gap: 10px;
-      align-items: center;
-    }
-
-    .gallery-slot-label {
-      font-size: 12.5px;
-      font-weight: 600;
-      color: var(--text-muted);
-    }
-
-    /* Output Step */
-    .output-toolbar {
+    .status-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
+      gap: 10px;
       flex-wrap: wrap;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
 
     .status-pill {
       display: inline-flex;
       align-items: center;
-      gap: 7px;
-      padding: 6px 12px;
+      gap: 6px;
+      padding: 4px 10px;
       border-radius: 999px;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 600;
     }
 
@@ -726,63 +413,44 @@
       color: var(--success);
     }
 
-    .status-pill.incomplete {
+    .status-pill.pending {
       background: var(--warning-soft);
       color: var(--warning);
     }
 
-    .missing-list {
-      background: var(--warning-soft);
-      border: 1px solid #f4d7aa;
-      border-radius: var(--radius-md);
-      padding: 14px 16px;
-      margin-bottom: 18px;
-      font-size: 13px;
-      color: #7c3b07;
-    }
-
-    .missing-list ul {
-      margin: 8px 0 0;
-      padding-left: 18px;
-      columns: 2;
+    .save-note {
+      font-size: 12px;
+      color: var(--text-soft);
     }
 
     .prompt-output {
       width: 100%;
-      min-height: 480px;
+      height: calc(100vh - 225px);
+      min-height: 440px;
+      max-height: 760px;
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-      font-size: 12.8px;
-      line-height: 1.6;
-      padding: 18px 20px;
+      font-size: 12.2px;
+      line-height: 1.58;
+      padding: 16px 18px;
       border-radius: var(--radius-md);
       border: 1px solid var(--border-strong);
       background: #141820;
       color: #edf1f7;
       white-space: pre-wrap;
       word-break: break-word;
-    }
-
-    /* Footer Step Controls */
-    .panel-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 18px 32px;
-      background: var(--surface-subtle);
-      border-top: 1px solid var(--border);
-      gap: 12px;
+      resize: vertical;
     }
 
     /* Toast */
     .toast {
       position: fixed;
-      bottom: 24px;
-      right: 24px;
+      bottom: 22px;
+      right: 22px;
       background: #18202c;
       color: #fff;
-      padding: 11px 16px;
+      padding: 10px 16px;
       border-radius: 10px;
-      font-size: 13.5px;
+      font-size: 13px;
       font-weight: 600;
       box-shadow: var(--shadow-md);
       opacity: 0;
@@ -797,43 +465,33 @@
       transform: translateY(0);
     }
 
-    @media (max-width: 960px) {
-      .shell {
+    @media (max-width: 980px) {
+      .layout {
         grid-template-columns: 1fr;
-        padding: 18px 14px 60px;
+        padding: 18px 14px 56px;
       }
 
-      .sidebar {
+      .preview-col {
         position: static;
       }
 
-      .step-nav {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      }
-
-      .brand-preview {
-        grid-template-columns: 1fr;
+      .prompt-output {
+        height: 440px;
       }
     }
 
-    @media (max-width: 680px) {
-      .step-panel {
-        padding: 22px 18px;
-      }
-
-      .panel-footer {
-        padding: 16px 18px;
+    @media (max-width: 600px) {
+      .card {
+        padding: 18px 16px;
       }
 
       .grid-2,
-      .grid-3,
-      .gallery-row {
+      .url-row {
         grid-template-columns: 1fr;
       }
 
-      .missing-list ul {
-        columns: 1;
+      .icon-btn {
+        width: 100%;
       }
     }
   </style>
@@ -841,1073 +499,351 @@
 <body>
   <header class="topbar">
     <div class="topbar-inner">
-      <div class="brand-title">
-        <div class="brand-badge">B</div>
+      <div class="brand">
+        <div class="brand-mark">B</div>
         <div>
-          <h1>Venue Funnel Build Brief Form</h1>
-          <p>Fill in your venue details step by step to generate a ready-to-use 3-page funnel prompt.</p>
+          <h1>Venue Funnel Brief Builder</h1>
+          <p>Paste the client's resource URLs &amp; form embeds — the prompt instructs the AI to extract everything automatically.</p>
         </div>
       </div>
       <div class="topbar-actions">
-        <button type="button" class="btn btn-secondary btn-sm" id="btnLoadExample">Fill Example Venue</button>
-        <button type="button" class="btn btn-ghost btn-sm" id="btnReset">Clear All</button>
-        <button type="button" class="btn btn-primary btn-sm" id="btnJumpOutput">View &amp; Copy Prompt</button>
+        <button type="button" class="btn btn-secondary" id="btnExample">Fill Example</button>
+        <button type="button" class="btn btn-ghost" id="btnClear">Clear</button>
+        <button type="button" class="btn btn-primary" id="btnTopCopy">Copy Prompt</button>
       </div>
     </div>
   </header>
 
-  <div class="shell">
-    <!-- Sidebar Navigation -->
-    <aside class="sidebar">
-      <div class="progress-box">
-        <div class="progress-header">
-          <span class="progress-label">Completion</span>
-          <span class="progress-pct" id="progressPct">0%</span>
-        </div>
-        <div class="progress-track">
-          <div class="progress-fill" id="progressFill"></div>
-        </div>
-      </div>
+  <main class="layout">
+    <!-- LEFT COLUMN: SHORT ASSET-URL FORM -->
+    <form id="briefForm" class="form-stack" autocomplete="off">
 
-      <nav class="step-nav" id="stepNav" aria-label="Form steps">
-        <button type="button" class="step-btn active" data-step="0">
-          <span class="step-num">1</span>
-          <span class="step-meta">Brand &amp; Style<span>Name, logo, colors, fonts</span></span>
-        </button>
-        <button type="button" class="step-btn" data-step="1">
-          <span class="step-num">2</span>
-          <span class="step-meta">Venue &amp; Brochure<span>Spaces, amenities, contact</span></span>
-        </button>
-        <button type="button" class="step-btn" data-step="2">
-          <span class="step-num">3</span>
-          <span class="step-meta">Page 1: Opt-in<span>Hero, stats, CTA buttons</span></span>
-        </button>
-        <button type="button" class="step-btn" data-step="3">
-          <span class="step-num">4</span>
-          <span class="step-meta">Pages 2 &amp; 3<span>Tour &amp; Thank You copy</span></span>
-        </button>
-        <button type="button" class="step-btn" data-step="4">
-          <span class="step-num">5</span>
-          <span class="step-meta">Embedded Forms<span>Iframe codes for P1 &amp; P2</span></span>
-        </button>
-        <button type="button" class="step-btn" data-step="5">
-          <span class="step-num">6</span>
-          <span class="step-meta">SEO &amp; Photos<span>Google previews &amp; images</span></span>
-        </button>
-        <button type="button" class="step-btn" data-step="6">
-          <span class="step-num">7</span>
-          <span class="step-meta">Generate Prompt<span>Review, copy &amp; download</span></span>
-        </button>
-      </nav>
+      <!-- 1. Venue Name -->
+      <section class="card">
+        <div class="card-head">
+          <h2><span class="step-badge">1</span> Venue Basics</h2>
+        </div>
+        <div class="grid-2">
+          <div class="field">
+            <label for="venueName">Venue Name</label>
+            <input type="text" id="venueName" placeholder="e.g. Doko Manor" />
+          </div>
+          <div class="field">
+            <label for="venueLocation">City, State <span class="tag-opt">Optional</span></label>
+            <input type="text" id="venueLocation" placeholder="Leave blank to extract from website" />
+          </div>
+        </div>
+      </section>
 
-      <div class="sidebar-footer">
-        <span id="saveIndicator">Auto-saved locally in your browser</span>
+      <!-- 2. Client Resource URLs -->
+      <section class="card">
+        <div class="card-head">
+          <h2><span class="step-badge">2</span> Client Resource URLs</h2>
+        </div>
+        <p class="card-sub">Share links to the venue's website and brochure. The AI will read these to pull brand colors, fonts, spaces, amenities, capacity, contact info, and SEO metadata.</p>
+
+        <div class="field">
+          <label for="websiteUrl">Venue Website URL</label>
+          <input type="url" id="websiteUrl" placeholder="https://www.venuewebsite.com" />
+          <span class="help">Used to extract brand identity, palette, typography, logo inspiration, location, and contact details.</span>
+        </div>
+
+        <div class="field">
+          <label for="brochureUrl">Brochure / Packages URL <span class="tag-opt">PDF or Webpage</span></label>
+          <input type="url" id="brochureUrl" placeholder="https://www.venuewebsite.com/wedding-brochure.pdf" />
+          <span class="help">Used to extract ceremony &amp; reception spaces, kitchen/suites, capacity, and package inclusions (no pricing will be shown).</span>
+        </div>
+
+        <div class="field">
+          <label>Other Reference Links <span class="tag-opt">Optional</span></label>
+          <div class="url-list" id="extraUrlsList"></div>
+          <button type="button" class="btn btn-secondary" id="btnAddExtraUrl">+ Add Another Link</button>
+          <span class="help">e.g. Instagram, The Knot / WeddingWire, About page, FAQ page, or a Google Drive / Dropbox asset folder.</span>
+        </div>
+      </section>
+
+      <!-- 3. Venue Image / Media URLs -->
+      <section class="card">
+        <div class="card-head">
+          <h2><span class="step-badge">3</span> Venue Photos &amp; Media URLs</h2>
+        </div>
+        <p class="card-sub">Paste direct image links (or a media gallery / folder URL) so the funnel uses the venue's real photography.</p>
+
+        <div class="field">
+          <label for="mediaFolderUrl">Media Library / Photo Gallery Page URL <span class="tag-opt">Optional</span></label>
+          <input type="url" id="mediaFolderUrl" placeholder="https://www.venuewebsite.com/gallery or Drive folder URL" />
+          <span class="help">If all photos live on one gallery page or shared folder, paste that link here.</span>
+        </div>
+
+        <div class="grid-2" style="margin-bottom: 14px;">
+          <div class="field">
+            <label for="heroImageUrl">Hero / Cover Image URL <span class="tag-opt">Also og:image</span></label>
+            <input type="url" id="heroImageUrl" placeholder="https://.../hero.jpg" />
+          </div>
+          <div class="field">
+            <label for="ceremonyImageUrl">Outdoor Ceremony Image URL <span class="tag-opt">Optional</span></label>
+            <input type="url" id="ceremonyImageUrl" placeholder="https://.../ceremony.jpg" />
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="receptionImageUrl">Indoor Reception Hall Image URL <span class="tag-opt">Optional</span></label>
+          <input type="url" id="receptionImageUrl" placeholder="https://.../reception.jpg" />
+        </div>
+
+        <div class="field">
+          <label for="galleryUrls">Additional Gallery Image URLs <span class="tag-opt">Up to 6 — one per line</span></label>
+          <textarea id="galleryUrls" rows="3" placeholder="https://.../photo-1.jpg&#10;https://.../photo-2.jpg&#10;https://.../photo-3.jpg"></textarea>
+          <span class="help">Paste up to 6 direct image URLs (one per line) for the 6-image gallery grid.</span>
+        </div>
+      </section>
+
+      <!-- 4. Embedded Forms (GHL Iframes) -->
+      <section class="card">
+        <div class="card-head">
+          <h2><span class="step-badge">4</span> Embedded Form Codes (Iframes)</h2>
+        </div>
+        <p class="card-sub">Paste the iframe embed snippets from GoHighLevel (or your form builder) for Page 1 and Page 2.</p>
+
+        <div class="field">
+          <label for="p1Iframe">Page 1 Form Embed Code (Brochure Opt-in)</label>
+          <textarea id="p1Iframe" class="code-input" placeholder='<iframe src="https://..." id="inline-..." data-form-name="..." data-height="540"></iframe>&#10;<script src="https://..."></script>'></textarea>
+        </div>
+
+        <div class="field">
+          <label for="p2Iframe">Page 2 Form Embed Code (Tour Request)</label>
+          <textarea id="p2Iframe" class="code-input" placeholder='<iframe src="https://..." id="inline-..." data-form-name="..." data-height="680"></iframe>&#10;<script src="https://..."></script>'></textarea>
+        </div>
+      </section>
+
+      <!-- 5. Optional Overrides -->
+      <details class="optional-card">
+        <summary>Optional: Custom CTA Labels or Special Notes</summary>
+        <div class="details-body">
+          <div class="grid-2" style="margin-bottom: 14px;">
+            <div class="field">
+              <label for="p1Cta">Page 1 Primary CTA Label</label>
+              <input type="text" id="p1Cta" value="Download Pricing Brochure" />
+            </div>
+            <div class="field">
+              <label for="p2Cta">Page 2 Tour CTA Label</label>
+              <input type="text" id="p2Cta" value="Request a Tour" />
+            </div>
+          </div>
+          <div class="field">
+            <label for="extraNotes">Special Instructions for the AI <span class="tag-opt">Optional</span></label>
+            <textarea id="extraNotes" rows="2" placeholder="e.g. Match the deep navy &amp; gold palette from their logo; highlight the lakeside pergola; ignore corporate pricing."></textarea>
+          </div>
+        </div>
+      </details>
+
+    </form>
+
+    <!-- RIGHT COLUMN: LIVE GENERATED PROMPT -->
+    <aside class="preview-col">
+      <div class="card">
+        <div class="preview-header">
+          <h2>Generated Build Brief Prompt</h2>
+          <div style="display: flex; gap: 8px;">
+            <button type="button" class="btn btn-secondary" id="btnDownload">Download .md</button>
+            <button type="button" class="btn btn-primary" id="btnCopy">Copy Prompt</button>
+          </div>
+        </div>
+
+        <div class="status-row">
+          <span class="status-pill pending" id="statusPill">Paste venue URLs &amp; iframes</span>
+          <span class="save-note" id="saveNote">Auto-saved in browser</span>
+        </div>
+
+        <textarea id="promptOutput" class="prompt-output" readonly aria-label="Generated prompt"></textarea>
       </div>
     </aside>
-
-    <!-- Main Form Card -->
-    <main class="main-card">
-      <form id="briefForm" autocomplete="off">
-
-        <!-- STEP 1: BRAND & STYLE -->
-        <section class="step-panel active" data-panel="0">
-          <div class="step-header">
-            <span class="step-kicker">Step 1 of 7</span>
-            <h2>Brand Identity &amp; Visual Style</h2>
-            <p>Start with the venue's name, location, logo look, colors, and fonts. Don't worry about technical terms—just describe your look in plain English.</p>
-          </div>
-
-          <div class="section-group">
-            <div class="grid-2">
-              <div class="field">
-                <label for="venueName">Venue Name</label>
-                <input type="text" id="venueName" placeholder="e.g. Doko Manor" />
-                <span class="help">The official name of the wedding or event venue.</span>
-              </div>
-              <div class="field">
-                <label for="venueLocation">City &amp; State</label>
-                <input type="text" id="venueLocation" placeholder="e.g. Blythewood, South Carolina" />
-                <span class="help">Used in the hero badge, SEO descriptions, and footer.</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="section-group">
-            <div class="field">
-              <label for="tagline">Short Tagline / Eyebrow Line</label>
-              <input type="text" id="tagline" placeholder='e.g. Blythewood, South Carolina Event Venue' />
-              <span class="help">A short 4–7 word label displayed above the main headline to tell visitors where and what the venue is.</span>
-            </div>
-          </div>
-
-          <div class="section-group">
-            <h3 class="section-title">Custom Logo Description</h3>
-            <p class="section-desc">Describe what the custom vector (SVG) logo emblem should look like so the builder can design it from scratch without using any third-party logos.</p>
-
-            <div class="grid-3" style="margin-bottom: 14px;">
-              <div class="field">
-                <label for="logoStyle">Logo Style</label>
-                <select id="logoStyle">
-                  <option value="Crest / shield emblem with wordmark">Crest / shield emblem</option>
-                  <option value="Circular seal / monogram emblem">Circular seal / monogram</option>
-                  <option value="Minimal botanical wreath &amp; wordmark">Botanical wreath &amp; wordmark</option>
-                  <option value="Architectural line-art emblem">Architectural line-art mark</option>
-                  <option value="Clean serif wordmark with subtle divider">Clean serif wordmark</option>
-                </select>
-              </div>
-              <div class="field">
-                <label for="logoWordmark">Main Wordmark Text <span class="tag-opt">Optional</span></label>
-                <input type="text" id="logoWordmark" placeholder="Defaults to Venue Name" />
-              </div>
-              <div class="field">
-                <label for="logoCaption">Small Uppercase Caption</label>
-                <input type="text" id="logoCaption" placeholder="e.g. EVENTS &amp; WEDDINGS" />
-              </div>
-            </div>
-
-            <div class="field">
-              <label for="logoElements">What symbols or details should be inside the logo?</label>
-              <textarea id="logoElements" rows="2" placeholder="e.g. Classic manor house silhouette over a calm lake with willow branches framing a crest, serif wordmark underneath, and small spaced uppercase caption"></textarea>
-              <span class="help">List 2–3 visual elements (like a barn roofline, oak tree, monogram letters, columns, or floral sprigs).</span>
-            </div>
-          </div>
-
-          <div class="section-group">
-            <h3 class="section-title">Color Palette</h3>
-            <p class="section-desc">Pick 3 core colors. Click any color square to pick a shade, and give it a simple name (like "deep navy" or "forest green").</p>
-
-            <div class="grid-3">
-              <div class="color-card">
-                <div class="color-card-top">
-                  <input type="color" id="colorDarkPicker" class="color-swatch-input" value="#0F2644" />
-                  <div>
-                    <div class="color-card-title">Primary Dark</div>
-                    <div class="color-card-sub">Dark sections &amp; text on light</div>
-                  </div>
-                </div>
-                <div class="color-inputs">
-                  <input type="text" id="colorDarkName" value="deep navy" placeholder="Color name" />
-                  <input type="text" id="colorDarkHex" value="#0F2644" placeholder="#0F2644" />
-                </div>
-              </div>
-
-              <div class="color-card">
-                <div class="color-card-top">
-                  <input type="color" id="colorAccentPicker" class="color-swatch-input" value="#E5C378" />
-                  <div>
-                    <div class="color-card-title">Primary Accent</div>
-                    <div class="color-card-sub">Buttons, icons &amp; dividers</div>
-                  </div>
-                </div>
-                <div class="color-inputs">
-                  <input type="text" id="colorAccentName" value="champagne gold" placeholder="Color name" />
-                  <input type="text" id="colorAccentHex" value="#E5C378" placeholder="#E5C378" />
-                </div>
-              </div>
-
-              <div class="color-card">
-                <div class="color-card-top">
-                  <input type="color" id="colorLightPicker" class="color-swatch-input" value="#FAF6EE" />
-                  <div>
-                    <div class="color-card-title">Light Background</div>
-                    <div class="color-card-sub">Light sections &amp; text on dark</div>
-                  </div>
-                </div>
-                <div class="color-inputs">
-                  <input type="text" id="colorLightName" value="warm cream" placeholder="Color name" />
-                  <input type="text" id="colorLightHex" value="#FAF6EE" placeholder="#FAF6EE" />
-                </div>
-              </div>
-            </div>
-
-            <!-- Typography -->
-            <div class="grid-3" style="margin-top: 18px;">
-              <div class="field">
-                <label for="fontDisplay">Heading / Logo Font (Serif)</label>
-                <select id="fontDisplay">
-                  <option value="Cormorant Garamond">Cormorant Garamond (Romantic &amp; editorial)</option>
-                  <option value="Playfair Display">Playfair Display (Classic &amp; bold)</option>
-                  <option value="Cinzel">Cinzel (Formal &amp; grand)</option>
-                  <option value="Libre Baskerville">Libre Baskerville (Timeless &amp; refined)</option>
-                  <option value="Cormorant Garamond / Playfair Display">Cormorant Garamond / Playfair Display</option>
-                </select>
-              </div>
-              <div class="field">
-                <label for="fontBody">Body Text Font (Clean Sans)</label>
-                <select id="fontBody">
-                  <option value="Plus Jakarta Sans">Plus Jakarta Sans (Modern &amp; friendly)</option>
-                  <option value="Inter">Inter (Crisp &amp; minimal)</option>
-                  <option value="DM Sans">DM Sans (Soft &amp; approachable)</option>
-                </select>
-              </div>
-              <div class="field">
-                <label for="fontScript">Script Accent Font <span class="tag-opt">Optional</span></label>
-                <input type="text" id="fontScript" value="Great Vibes (short eyebrow phrases only)" placeholder="e.g. Great Vibes or None" />
-              </div>
-            </div>
-
-            <!-- Live Brand Preview -->
-            <div class="brand-preview" id="brandPreview" aria-label="Live brand preview">
-              <div class="preview-dark" id="previewDark">
-                <span class="preview-eyebrow" id="previewEyebrow">BLYTHEWOOD, SOUTH CAROLINA EVENT VENUE</span>
-                <span class="preview-script" id="previewScript">Modern Luxury Meets Timeless Elegance</span>
-                <div class="preview-h1" id="previewVenue">Your Venue Name</div>
-                <span class="preview-btn" id="previewBtn">Download Pricing Brochure</span>
-              </div>
-              <div class="preview-light" id="previewLight">
-                <span class="preview-eyebrow" id="previewLightEyebrow">LIVE PALETTE &amp; FONT PREVIEW</span>
-                <div style="font-size: 18px; font-weight: 600;" id="previewLightTitle">What Your Package Includes</div>
-                <div style="font-size: 13px; opacity: 0.85;" id="previewLightBody">
-                  See how your headings, body text, and buttons pair together on dark and light sections.
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- STEP 2: VENUE & BROCHURE CONTENT -->
-        <section class="step-panel" data-panel="1">
-          <div class="step-header">
-            <span class="step-kicker">Step 2 of 7</span>
-            <h2>Venue Details &amp; Brochure Info</h2>
-            <p>Pull these facts straight from the venue's brochure or website. Keep sentences short and clear, and do not include any pricing or rates.</p>
-          </div>
-
-          <div class="callout">
-            <strong>Writing tip:</strong> Keep sentences short and avoid em dashes (—). Use periods or commas instead, and never include dollar amounts or pricing anywhere.
-          </div>
-
-          <div class="section-group">
-            <div class="grid-2">
-              <div class="field">
-                <label for="contactPhone">Venue Phone Number</label>
-                <input type="tel" id="contactPhone" placeholder="e.g. (803) 555-0192" />
-                <span class="help">Shown on the Tour page and in the footer on all 3 pages.</span>
-              </div>
-              <div class="field">
-                <label for="contactEmail">Venue Events Email</label>
-                <input type="email" id="contactEmail" placeholder="e.g. events@yourvenue.com" />
-                <span class="help">Where couples or event hosts can reach the events team.</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="section-group">
-            <div class="grid-2">
-              <div class="field">
-                <label for="venuePositioning">One-Line Venue Summary</label>
-                <input type="text" id="venuePositioning" placeholder="e.g. Lakeside estate blending Southern charm with modern event amenities." />
-                <span class="help">One punchy sentence describing what makes this venue special.</span>
-              </div>
-              <div class="field">
-                <label for="maxCapacity">Maximum Guest Capacity</label>
-                <input type="text" id="maxCapacity" placeholder="e.g. Up to 300 guests seated" />
-                <span class="help">Include seated or standing capacity if helpful.</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="section-group">
-            <div class="field">
-              <label for="outdoorCeremony">Outdoor Ceremony Space</label>
-              <textarea id="outdoorCeremony" rows="2" placeholder="e.g. Lakeside white pergola surrounded by manicured lawns, weeping willows, and wrap-around covered porches."></textarea>
-              <span class="help">Describe the ceremony backdrop (pergola, lake, lawns, gardens, vineyard, covered porches, etc.).</span>
-            </div>
-
-            <div class="field">
-              <label for="receptionHall">Indoor Reception Hall(s)</label>
-              <textarea id="receptionHall" rows="2" placeholder="e.g. Grand Ballroom (6,000 sq ft) with high ceilings, panoramic windows, and a welcoming front lobby and gallery."></textarea>
-              <span class="help">Include hall name(s), approximate square footage, and lobby or gallery spaces.</span>
-            </div>
-
-            <div class="field">
-              <label for="kitchenSuites">Kitchen &amp; Getting-Ready Suites</label>
-              <textarea id="kitchenSuites" rows="2" placeholder="e.g. Full commercial catering kitchen, private bridal suite with vanity stations, and a separate groom's lounge."></textarea>
-              <span class="help">Mention catering kitchen setup, bridal suite, groom's room, or VIP spaces.</span>
-            </div>
-          </div>
-
-          <div class="section-group">
-            <h3 class="section-title">What's Included in Packages (No Pricing)</h3>
-            <p class="section-desc">Check everything that comes with a venue booking, and add any unique items below.</p>
-
-            <div class="chip-grid" id="inclusionsChips"></div>
-
-            <div class="inline-add">
-              <input type="text" id="customInclusionInput" placeholder="Add another item (e.g. Golf cart shuttle)" />
-              <button type="button" class="btn btn-secondary" id="btnAddInclusion">Add Item</button>
-            </div>
-          </div>
-        </section>
-
-        <!-- STEP 3: PAGE 1 COPY -->
-        <section class="step-panel" data-panel="2">
-          <div class="step-header">
-            <span class="step-kicker">Step 3 of 7</span>
-            <h2>Page 1: Opt-in Landing Page (<code>/</code>)</h2>
-            <p>This is the main landing page visitors see first. Its one job is to showcase the venue and get visitors to download the pricing brochure.</p>
-          </div>
-
-          <div class="section-group">
-            <h3 class="section-title">Hero Section (Top of Page)</h3>
-            <p class="section-desc">What visitors see immediately alongside the brochure download form.</p>
-
-            <div class="grid-2" style="margin-bottom: 16px;">
-              <div class="field">
-                <label for="p1Eyebrow">Hero Location Chip <span class="tag-opt">Optional</span></label>
-                <input type="text" id="p1Eyebrow" placeholder="Defaults to Tagline from Step 1" />
-                <span class="help">Small badge at the top of the hero. Leave blank to reuse your Tagline.</span>
-              </div>
-              <div class="field">
-                <label for="p1ScriptLine">Short Script Accent Line</label>
-                <input type="text" id="p1ScriptLine" placeholder="e.g. Modern Luxury Meets Timeless Elegance" />
-                <span class="help">A short 4–6 word romantic phrase above the main headline.</span>
-              </div>
-            </div>
-
-            <div class="field">
-              <label for="p1Headline">Main Headline (H1)</label>
-              <input type="text" id="p1Headline" placeholder="e.g. Your Unforgettable Lakeside Wedding Starts Here" />
-              <span class="help">Big, bold headline that immediately grabs attention.</span>
-            </div>
-
-            <div class="field">
-              <label for="p1Subcopy">Short Hero Description</label>
-              <textarea id="p1Subcopy" rows="2" placeholder="e.g. Host your ceremony by the water and celebrate inside our bright, spacious ballroom. Request our brochure for packages and availability."></textarea>
-              <span class="help">1–2 short sentences explaining why they should request the brochure.</span>
-            </div>
-          </div>
-
-          <div class="section-group">
-            <h3 class="section-title">3 Quick Stats (Shown under the Hero Text)</h3>
-            <p class="section-desc">Three bite-sized highlights covering guest capacity, ceremony space, and suites/kitchen.</p>
-
-            <div class="grid-3">
-              <div class="field">
-                <label for="stat1">Stat 1: Capacity</label>
-                <input type="text" id="stat1" placeholder="e.g. Up to 300 Guests" />
-              </div>
-              <div class="field">
-                <label for="stat2">Stat 2: Ceremony Space</label>
-                <input type="text" id="stat2" placeholder="e.g. Lakeside Pergola" />
-              </div>
-              <div class="field">
-                <label for="stat3">Stat 3: Kitchen &amp; Suites</label>
-                <input type="text" id="stat3" placeholder="e.g. Full Kitchen &amp; Suites" />
-              </div>
-            </div>
-          </div>
-
-          <div class="section-group">
-            <h3 class="section-title">Call-to-Action (CTA) Buttons</h3>
-            <p class="section-desc">Text shown on the main buttons and the bottom sticky bar on Page 1.</p>
-
-            <div class="grid-2">
-              <div class="field">
-                <label for="p1PrimaryCta">Primary Button Label</label>
-                <input type="text" id="p1PrimaryCta" value="Download Pricing Brochure" placeholder="e.g. Download Pricing Brochure" />
-                <span class="help">Scrolls visitors straight to the brochure form (also used on the sticky bar).</span>
-              </div>
-              <div class="field">
-                <label for="p1SecondaryCta">Secondary Button Label (Final CTA Band)</label>
-                <input type="text" id="p1SecondaryCta" value="Request a Private Tour" placeholder="e.g. Request a Private Tour" />
-                <span class="help">Links visitors from the bottom of Page 1 directly to the Tour page (<code>/tour</code>).</span>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- STEP 4: PAGES 2 & 3 COPY -->
-        <section class="step-panel" data-panel="3">
-          <div class="step-header">
-            <span class="step-kicker">Step 4 of 7</span>
-            <h2>Page 2 (Tour) &amp; Page 3 (Thank You)</h2>
-            <p>Keep both pages simple and distraction-free. After someone opts in on Page 1, they move to Page 2 to book a tour, and then land on Page 3.</p>
-          </div>
-
-          <!-- Page 2 -->
-          <div class="subcard">
-            <div class="subcard-head">
-              <div class="subcard-title">Page 2: Request a Tour <span class="route-pill">/tour</span></div>
-            </div>
-
-            <div class="grid-2" style="margin-bottom: 14px;">
-              <div class="field">
-                <label for="p2Headline">Page 2 Headline (H1)</label>
-                <input type="text" id="p2Headline" value="Request a Private Tour" placeholder="e.g. Request a Private Tour" />
-              </div>
-              <div class="field">
-                <label for="p2FormLabel">Small Label Above Tour Form</label>
-                <input type="text" id="p2FormLabel" value="Schedule Your Visit" placeholder="e.g. Schedule Your Visit" />
-                <span class="help">Short caption shown at the top of the tour form card.</span>
-              </div>
-            </div>
-
-            <div class="field" style="margin-bottom: 14px;">
-              <label for="p2Subcopy">Page 2 Short Subcopy</label>
-              <textarea id="p2Subcopy" rows="2" placeholder="e.g. Walk the ceremony grounds, explore our reception hall, and picture your wedding day in person with our events team."></textarea>
-            </div>
-
-            <div class="field">
-              <label for="p2StickyCta">Page 2 Sticky Button Label</label>
-              <input type="text" id="p2StickyCta" value="Request a Tour" placeholder="e.g. Request a Tour" />
-              <span class="help">Scrolls down to the tour form when clicked.</span>
-            </div>
-          </div>
-
-          <!-- Page 3 -->
-          <div class="subcard">
-            <div class="subcard-head">
-              <div class="subcard-title">Page 3: Thank You <span class="route-pill">/thank-you</span></div>
-            </div>
-
-            <div class="grid-2" style="margin-bottom: 14px;">
-              <div class="field">
-                <label for="p3Headline">Page 3 Headline (H1)</label>
-                <input type="text" id="p3Headline" value="Thank You!" placeholder="e.g. Thank You!" />
-              </div>
-              <div class="field">
-                <label for="p3ButtonLabel">Button &amp; Sticky CTA Label</label>
-                <input type="text" id="p3ButtonLabel" value="Back to Home" placeholder="e.g. Back to Home" />
-                <span class="help">Sends the visitor back to the main page (<code>/</code>).</span>
-              </div>
-            </div>
-
-            <div class="field">
-              <label for="p3Subheadline">Page 3 Subheadline</label>
-              <input type="text" id="p3Subheadline" value="We received your request. Our events team will reach out shortly to confirm your details." placeholder="e.g. We received your request and our events team will reach out shortly." />
-              <span class="help">One reassuring sentence letting them know what happens next.</span>
-            </div>
-          </div>
-        </section>
-
-        <!-- STEP 5: EMBEDDED FORMS -->
-        <section class="step-panel" data-panel="4">
-          <div class="step-header">
-            <span class="step-kicker">Step 5 of 7</span>
-            <h2>Embedded Form Codes (Iframes)</h2>
-            <p>Paste the exact embed code from your CRM or form builder (such as GoHighLevel) for both Page 1 and Page 2.</p>
-          </div>
-
-          <div class="callout">
-            <strong>Where do I find this?</strong> In GoHighLevel (or your form tool), open the form, click <strong>Integrate / Embed</strong>, and copy the entire HTML snippet starting with <code>&lt;iframe ...&gt;</code> (including the <code>&lt;script&gt;</code> tag if provided).
-          </div>
-
-          <div class="section-group">
-            <div class="field">
-              <label for="p1Iframe">Page 1 Form Embed Code (Brochure Download Form)</label>
-              <textarea id="p1Iframe" class="code-input" placeholder='<iframe src="https://..." style="width:100%;height:100%;border:none;" id="inline-..." data-form-name="Brochure Request" data-height="520"></iframe>&#10;<script src="https://..."></script>'></textarea>
-              <span class="help">This form appears in the hero section of Page 1 (<code>/</code>).</span>
-            </div>
-          </div>
-
-          <div class="section-group">
-            <div class="field">
-              <label for="p2Iframe">Page 2 Form Embed Code (Tour Request Form)</label>
-              <textarea id="p2Iframe" class="code-input" placeholder='<iframe src="https://..." style="width:100%;height:100%;border:none;" id="inline-..." data-form-name="Tour Request" data-height="650"></iframe>&#10;<script src="https://..."></script>'></textarea>
-              <span class="help">This form appears centered in a prominent card on Page 2 (<code>/tour</code>).</span>
-            </div>
-          </div>
-        </section>
-
-        <!-- STEP 6: SEO & PHOTOS -->
-        <section class="step-panel" data-panel="5">
-          <div class="step-header">
-            <span class="step-kicker">Step 6 of 7</span>
-            <h2>SEO Previews &amp; Venue Photos</h2>
-            <p>SEO controls the title, description, and preview image shown on Google and when someone texts or shares a link to your funnel.</p>
-          </div>
-
-          <div class="section-group">
-            <div class="section-title">
-              <span>Search &amp; Social Share Metadata</span>
-              <button type="button" class="btn btn-soft btn-sm" id="btnAutoSeo">Auto-Fill from Venue Info</button>
-            </div>
-            <p class="section-desc">Click <strong>Auto-Fill from Venue Info</strong> to draft all 3 pages automatically, then tweak anything you like.</p>
-
-            <div class="grid-2" style="margin-bottom: 16px;">
-              <div class="field">
-                <label for="seoOgImage">Default Social Share Image URL (<code>og:image</code>)</label>
-                <input type="url" id="seoOgImage" placeholder="https://your-cdn.com/images/venue-hero.jpg" />
-                <span class="help">Full web link (starting with <code>https://</code>) to your best wide hero photo. Used on all 3 pages unless overridden below.</span>
-              </div>
-              <div class="field">
-                <label for="seoFallbackTitle">Root Fallback Browser Title</label>
-                <input type="text" id="seoFallbackTitle" placeholder="Defaults to Venue Name" />
-                <span class="help">Short venue name shown in the browser tab as a fallback.</span>
-              </div>
-            </div>
-
-            <!-- SEO Page 1 -->
-            <div class="subcard">
-              <div class="subcard-head">
-                <div class="subcard-title">Page 1 SEO <span class="route-pill">/</span></div>
-              </div>
-              <div class="grid-2" style="margin-bottom: 12px;">
-                <div class="field">
-                  <label for="seo1Title">Page Title (<code>&lt;title&gt;</code> &amp; <code>og:title</code>)</label>
-                  <input type="text" id="seo1Title" placeholder="e.g. Doko Manor" />
-                </div>
-                <div class="field">
-                  <label for="seo1OgImage">Custom Share Image URL <span class="tag-opt">Optional</span></label>
-                  <input type="url" id="seo1OgImage" placeholder="Uses Default Share Image URL above" />
-                </div>
-              </div>
-              <div class="field" style="margin-bottom: 12px;">
-                <label for="seo1Desc">Meta Description (1–2 sentences for Google)</label>
-                <textarea id="seo1Desc" rows="2" placeholder="e.g. Premier wedding venue in Blythewood, SC featuring a lakeside pergola ceremony space, 6,000 sq ft reception hall for up to 300 guests, and full amenities."></textarea>
-              </div>
-              <div class="field">
-                <label for="seo1OgDesc">Shorter Social Description (<code>og:description</code>)</label>
-                <input type="text" id="seo1OgDesc" placeholder="e.g. Lakeside ceremony grounds, spacious ballroom, and full-service amenities in Blythewood, SC." />
-              </div>
-            </div>
-
-            <!-- SEO Page 2 -->
-            <div class="subcard">
-              <div class="subcard-head">
-                <div class="subcard-title">Page 2 SEO <span class="route-pill">/tour</span></div>
-              </div>
-              <div class="grid-2" style="margin-bottom: 12px;">
-                <div class="field">
-                  <label for="seo2Title">Page Title</label>
-                  <input type="text" id="seo2Title" placeholder="e.g. Doko Manor | Request a Tour" />
-                </div>
-                <div class="field">
-                  <label for="seo2OgImage">Custom Share Image URL <span class="tag-opt">Optional</span></label>
-                  <input type="url" id="seo2OgImage" placeholder="Uses Default Share Image URL above" />
-                </div>
-              </div>
-              <div class="field" style="margin-bottom: 12px;">
-                <label for="seo2Desc">Meta Description</label>
-                <textarea id="seo2Desc" rows="2" placeholder="e.g. Schedule a private tour of Doko Manor. Walk our outdoor ceremony space, explore the reception hall, and meet our events team."></textarea>
-              </div>
-              <div class="field">
-                <label for="seo2OgDesc">Shorter Social Description (<code>og:description</code>)</label>
-                <input type="text" id="seo2OgDesc" placeholder="e.g. Book a private tour of our ceremony grounds and reception hall." />
-              </div>
-            </div>
-
-            <!-- SEO Page 3 -->
-            <div class="subcard">
-              <div class="subcard-head">
-                <div class="subcard-title">Page 3 SEO <span class="route-pill">/thank-you</span></div>
-              </div>
-              <div class="grid-2" style="margin-bottom: 12px;">
-                <div class="field">
-                  <label for="seo3Title">Page Title</label>
-                  <input type="text" id="seo3Title" placeholder="e.g. Doko Manor | Thank You" />
-                </div>
-                <div class="field">
-                  <label for="seo3OgImage">Custom Share Image URL <span class="tag-opt">Optional</span></label>
-                  <input type="url" id="seo3OgImage" placeholder="Uses Default Share Image URL above" />
-                </div>
-              </div>
-              <div class="field" style="margin-bottom: 12px;">
-                <label for="seo3Desc">Meta Description</label>
-                <textarea id="seo3Desc" rows="2" placeholder="e.g. Thank you for your interest in Doko Manor. Our events team will reach out soon to help plan your celebration."></textarea>
-              </div>
-              <div class="field">
-                <label for="seo3OgDesc">Shorter Social Description (<code>og:description</code>)</label>
-                <input type="text" id="seo3OgDesc" placeholder="e.g. Thanks for reaching out. Our events team will be in touch soon." />
-              </div>
-            </div>
-          </div>
-
-          <div class="section-group">
-            <h3 class="section-title">Venue Photos &amp; Media Library <span class="tag-opt">Optional</span></h3>
-            <p class="section-desc">Paste image links from the venue's media library with short captions/alt text. If you plan to upload photos directly inside your builder later, you can leave these blank.</p>
-
-            <div class="gallery-list" id="mediaList">
-              <div class="gallery-row">
-                <span class="gallery-slot-label">Hero Photo</span>
-                <input type="url" data-media-key="heroUrl" placeholder="Image URL (https://...)" />
-                <input type="text" data-media-key="heroAlt" placeholder="Short alt description" />
-              </div>
-              <div class="gallery-row">
-                <span class="gallery-slot-label">Ceremony Card</span>
-                <input type="url" data-media-key="ceremonyUrl" placeholder="Image URL (https://...)" />
-                <input type="text" data-media-key="ceremonyAlt" placeholder="Short alt description" />
-              </div>
-              <div class="gallery-row">
-                <span class="gallery-slot-label">Reception Card</span>
-                <input type="url" data-media-key="receptionUrl" placeholder="Image URL (https://...)" />
-                <input type="text" data-media-key="receptionAlt" placeholder="Short alt description" />
-              </div>
-              <div class="gallery-row">
-                <span class="gallery-slot-label">Gallery 1</span>
-                <input type="url" data-media-key="gal1Url" placeholder="Image URL (https://...)" />
-                <input type="text" data-media-key="gal1Alt" placeholder="Caption / alt text" />
-              </div>
-              <div class="gallery-row">
-                <span class="gallery-slot-label">Gallery 2</span>
-                <input type="url" data-media-key="gal2Url" placeholder="Image URL (https://...)" />
-                <input type="text" data-media-key="gal2Alt" placeholder="Caption / alt text" />
-              </div>
-              <div class="gallery-row">
-                <span class="gallery-slot-label">Gallery 3</span>
-                <input type="url" data-media-key="gal3Url" placeholder="Image URL (https://...)" />
-                <input type="text" data-media-key="gal3Alt" placeholder="Caption / alt text" />
-              </div>
-              <div class="gallery-row">
-                <span class="gallery-slot-label">Gallery 4</span>
-                <input type="url" data-media-key="gal4Url" placeholder="Image URL (https://...)" />
-                <input type="text" data-media-key="gal4Alt" placeholder="Caption / alt text" />
-              </div>
-              <div class="gallery-row">
-                <span class="gallery-slot-label">Gallery 5</span>
-                <input type="url" data-media-key="gal5Url" placeholder="Image URL (https://...)" />
-                <input type="text" data-media-key="gal5Alt" placeholder="Caption / alt text" />
-              </div>
-              <div class="gallery-row">
-                <span class="gallery-slot-label">Gallery 6</span>
-                <input type="url" data-media-key="gal6Url" placeholder="Image URL (https://...)" />
-                <input type="text" data-media-key="gal6Alt" placeholder="Caption / alt text" />
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- STEP 7: GENERATED PROMPT -->
-        <section class="step-panel" data-panel="6">
-          <div class="step-header">
-            <span class="step-kicker">Step 7 of 7</span>
-            <h2>Your Ready-to-Use Build Brief</h2>
-            <p>Copy the prompt below and paste it directly into your AI site builder, or download it as a Markdown file.</p>
-          </div>
-
-          <div class="output-toolbar">
-            <div id="statusPill" class="status-pill incomplete">Checking fields...</div>
-            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-              <button type="button" class="btn btn-secondary" id="btnDownloadMd">Download .md File</button>
-              <button type="button" class="btn btn-primary" id="btnCopyPrompt">Copy Full Prompt</button>
-            </div>
-          </div>
-
-          <div class="missing-list" id="missingBox" style="display: none;">
-            <strong>Still missing a few fields (you can still copy now or fill them in first):</strong>
-            <ul id="missingList"></ul>
-          </div>
-
-          <div class="callout callout-warn" id="emDashWarn" style="display: none;">
-            <strong>Heads up:</strong> One or more of your copy fields contains an em dash (<code>—</code>). Your funnel rules forbid em dashes in the site copy.
-            <button type="button" class="btn btn-secondary btn-sm" id="btnCleanDashes" style="margin-left: 8px;">Replace em dashes with commas</button>
-          </div>
-
-          <textarea id="promptOutput" class="prompt-output" readonly aria-label="Generated build brief prompt"></textarea>
-        </section>
-
-      </form>
-
-      <!-- Footer Navigation -->
-      <div class="panel-footer">
-        <button type="button" class="btn btn-secondary" id="btnPrev">← Previous</button>
-        <div style="font-size: 13px; color: var(--text-muted);" id="stepCounter">Step 1 of 7</div>
-        <button type="button" class="btn btn-primary" id="btnNext">Next Step →</button>
-      </div>
-    </main>
-  </div>
+  </main>
 
   <div class="toast" id="toast">Copied to clipboard!</div>
 
   <script>
     (function () {
-      const STORAGE_KEY = "venue_funnel_brief_v1";
-
-      const DEFAULT_INCLUSIONS = [
-        "Tables & chairs",
-        "Dance floor + setup & breakdown",
-        "Audio / visual equipment",
-        "Built-in sound system",
-        "On-site guest parking",
-        "High-speed Wi-Fi",
-        "Tablecloths & linens",
-        "Full commercial catering kitchen",
-        "Private bridal suite",
-        "Groom's room / lounge",
-        "Conference / meeting rooms",
-        "Outdoor ceremony seating"
-      ];
-
-      const STEP_COUNT = 7;
-      let currentStep = 0;
-      let inclusionsList = [...DEFAULT_INCLUSIONS];
-      let selectedInclusions = new Set([
-        "Tables & chairs",
-        "Dance floor + setup & breakdown",
-        "On-site guest parking",
-        "High-speed Wi-Fi"
-      ]);
-
-      const TEXT_FIELDS = [
-        "venueName", "venueLocation", "tagline",
-        "logoStyle", "logoWordmark", "logoCaption", "logoElements",
-        "colorDarkName", "colorDarkHex",
-        "colorAccentName", "colorAccentHex",
-        "colorLightName", "colorLightHex",
-        "fontDisplay", "fontBody", "fontScript",
-        "contactPhone", "contactEmail", "venuePositioning", "maxCapacity",
-        "outdoorCeremony", "receptionHall", "kitchenSuites",
-        "p1Eyebrow", "p1ScriptLine", "p1Headline", "p1Subcopy",
-        "stat1", "stat2", "stat3", "p1PrimaryCta", "p1SecondaryCta",
-        "p2Headline", "p2FormLabel", "p2Subcopy", "p2StickyCta",
-        "p3Headline", "p3ButtonLabel", "p3Subheadline",
+      const STORAGE_KEY = "venue_brief_urls_v2";
+      const FIELD_IDS = [
+        "venueName", "venueLocation",
+        "websiteUrl", "brochureUrl",
+        "mediaFolderUrl", "heroImageUrl", "ceremonyImageUrl", "receptionImageUrl", "galleryUrls",
         "p1Iframe", "p2Iframe",
-        "seoOgImage", "seoFallbackTitle",
-        "seo1Title", "seo1OgImage", "seo1Desc", "seo1OgDesc",
-        "seo2Title", "seo2OgImage", "seo2Desc", "seo2OgDesc",
-        "seo3Title", "seo3OgImage", "seo3Desc", "seo3OgDesc"
+        "p1Cta", "p2Cta", "extraNotes"
       ];
 
-      const REQUIRED_FIELDS = [
-        { id: "venueName", label: "Venue Name (Step 1)", step: 0 },
-        { id: "venueLocation", label: "City & State (Step 1)", step: 0 },
-        { id: "tagline", label: "Tagline / Eyebrow (Step 1)", step: 0 },
-        { id: "logoElements", label: "Logo Description (Step 1)", step: 0 },
-        { id: "contactPhone", label: "Phone Number (Step 2)", step: 1 },
-        { id: "contactEmail", label: "Events Email (Step 2)", step: 1 },
-        { id: "venuePositioning", label: "One-Line Venue Summary (Step 2)", step: 1 },
-        { id: "maxCapacity", label: "Max Guest Capacity (Step 2)", step: 1 },
-        { id: "outdoorCeremony", label: "Outdoor Ceremony Space (Step 2)", step: 1 },
-        { id: "receptionHall", label: "Indoor Reception Hall (Step 2)", step: 1 },
-        { id: "kitchenSuites", label: "Kitchen & Suites (Step 2)", step: 1 },
-        { id: "p1ScriptLine", label: "Page 1 Script Line (Step 3)", step: 2 },
-        { id: "p1Headline", label: "Page 1 Headline (Step 3)", step: 2 },
-        { id: "p1Subcopy", label: "Page 1 Subcopy (Step 3)", step: 2 },
-        { id: "stat1", label: "Hero Stat 1 (Step 3)", step: 2 },
-        { id: "stat2", label: "Hero Stat 2 (Step 3)", step: 2 },
-        { id: "stat3", label: "Hero Stat 3 (Step 3)", step: 2 },
-        { id: "p2Subcopy", label: "Page 2 Subcopy (Step 4)", step: 3 },
-        { id: "p1Iframe", label: "Page 1 Form Embed Code (Step 5)", step: 4 },
-        { id: "p2Iframe", label: "Page 2 Form Embed Code (Step 5)", step: 4 },
-        { id: "seoOgImage", label: "Social Share Image URL (Step 6)", step: 5 },
-        { id: "seo1Title", label: "Page 1 SEO Title (Step 6)", step: 5 },
-        { id: "seo1Desc", label: "Page 1 SEO Description (Step 6)", step: 5 },
-        { id: "seo2Title", label: "Page 2 SEO Title (Step 6)", step: 5 },
-        { id: "seo2Desc", label: "Page 2 SEO Description (Step 6)", step: 5 },
-        { id: "seo3Title", label: "Page 3 SEO Title (Step 6)", step: 5 },
-        { id: "seo3Desc", label: "Page 3 SEO Description (Step 6)", step: 5 }
-      ];
+      let extraUrls = [{ label: "", url: "" }];
 
       const $ = (id) => document.getElementById(id);
+      const val = (id) => ($(id) ? $(id).value.trim() : "");
 
       function showToast(msg) {
-        const el = $("toast");
-        el.textContent = msg;
-        el.classList.add("show");
-        clearTimeout(showToast._timer);
-        showToast._timer = setTimeout(() => el.classList.remove("show"), 2400);
+        const t = $("toast");
+        t.textContent = msg;
+        t.classList.add("show");
+        clearTimeout(showToast._t);
+        showToast._t = setTimeout(() => t.classList.remove("show"), 2200);
       }
 
-      function val(id) {
-        const el = $(id);
-        return el ? el.value.trim() : "";
-      }
+      function renderExtraUrls() {
+        const list = $("extraUrlsList");
+        list.innerHTML = "";
+        extraUrls.forEach((row, idx) => {
+          const wrap = document.createElement("div");
+          wrap.className = "url-row";
 
-      function getMediaValues() {
-        const data = {};
-        document.querySelectorAll("[data-media-key]").forEach((input) => {
-          data[input.dataset.mediaKey] = input.value.trim();
-        });
-        return data;
-      }
-
-      function setMediaValues(data) {
-        document.querySelectorAll("[data-media-key]").forEach((input) => {
-          input.value = (data && data[input.dataset.mediaKey]) || "";
-        });
-      }
-
-      function renderInclusions() {
-        const container = $("inclusionsChips");
-        container.innerHTML = "";
-        inclusionsList.forEach((item) => {
-          const isChecked = selectedInclusions.has(item);
-          const label = document.createElement("label");
-          label.className = "chip" + (isChecked ? " checked" : "");
-          const cb = document.createElement("input");
-          cb.type = "checkbox";
-          cb.checked = isChecked;
-          cb.addEventListener("change", () => {
-            if (cb.checked) selectedInclusions.add(item);
-            else selectedInclusions.delete(item);
-            label.classList.toggle("checked", cb.checked);
-            onDataChange();
+          const labelIn = document.createElement("input");
+          labelIn.type = "text";
+          labelIn.placeholder = "Label (e.g. Instagram)";
+          labelIn.value = row.label;
+          labelIn.addEventListener("input", () => {
+            extraUrls[idx].label = labelIn.value;
+            onUpdate();
           });
-          label.appendChild(cb);
-          label.appendChild(document.createTextNode(item));
-          container.appendChild(label);
+
+          const urlIn = document.createElement("input");
+          urlIn.type = "url";
+          urlIn.placeholder = "https://...";
+          urlIn.value = row.url;
+          urlIn.addEventListener("input", () => {
+            extraUrls[idx].url = urlIn.value;
+            onUpdate();
+          });
+
+          const rmBtn = document.createElement("button");
+          rmBtn.type = "button";
+          rmBtn.className = "icon-btn";
+          rmBtn.title = "Remove link";
+          rmBtn.textContent = "×";
+          rmBtn.addEventListener("click", () => {
+            extraUrls.splice(idx, 1);
+            if (extraUrls.length === 0) extraUrls.push({ label: "", url: "" });
+            renderExtraUrls();
+            onUpdate();
+          });
+
+          wrap.appendChild(labelIn);
+          wrap.appendChild(urlIn);
+          wrap.appendChild(rmBtn);
+          list.appendChild(wrap);
         });
       }
 
-      function syncColorPair(pickerId, hexId) {
-        const picker = $(pickerId);
-        const hex = $(hexId);
-
-        picker.addEventListener("input", () => {
-          hex.value = picker.value.toUpperCase();
-          onDataChange();
-        });
-
-        hex.addEventListener("input", () => {
-          const v = hex.value.trim();
-          if (/^#[0-9A-Fa-f]{6}$/.test(v)) {
-            picker.value = v;
-          }
-          onDataChange();
-        });
+      function parseLines(text) {
+        return text
+          .split(/\r?\n/)
+          .map((l) => l.trim())
+          .filter(Boolean);
       }
 
-      function updateBrandPreview() {
-        const darkHex = /^#[0-9A-Fa-f]{6}$/.test(val("colorDarkHex")) ? val("colorDarkHex") : "#0F2644";
-        const accentHex = /^#[0-9A-Fa-f]{6}$/.test(val("colorAccentHex")) ? val("colorAccentHex") : "#E5C378";
-        const lightHex = /^#[0-9A-Fa-f]{6}$/.test(val("colorLightHex")) ? val("colorLightHex") : "#FAF6EE";
-
-        const displayFont = (val("fontDisplay") || "Cormorant Garamond").split("/")[0].trim();
-        const bodyFont = val("fontBody") || "Plus Jakarta Sans";
-
-        const pDark = $("previewDark");
-        const pLight = $("previewLight");
-
-        pDark.style.background = darkHex;
-        pDark.style.color = lightHex;
-        pDark.style.fontFamily = `"${bodyFont}", sans-serif`;
-
-        pLight.style.background = lightHex;
-        pLight.style.color = darkHex;
-        pLight.style.fontFamily = `"${bodyFont}", sans-serif`;
-
-        $("previewEyebrow").textContent = (val("tagline") || "CITY, STATE EVENT VENUE").toUpperCase();
-        $("previewEyebrow").style.color = accentHex;
-        $("previewScript").textContent = val("p1ScriptLine") || "Modern Luxury Meets Timeless Elegance";
-        $("previewScript").style.color = accentHex;
-        $("previewVenue").textContent = val("venueName") || "Your Venue Name";
-        $("previewVenue").style.fontFamily = `"${displayFont}", Georgia, serif`;
-
-        const btn = $("previewBtn");
-        btn.style.background = accentHex;
-        btn.style.color = darkHex;
-        btn.textContent = val("p1PrimaryCta") || "Download Pricing Brochure";
-
-        $("previewLightTitle").style.fontFamily = `"${displayFont}", Georgia, serif`;
-        $("previewLightEyebrow").style.color = darkHex;
-      }
-
-      function goToStep(stepIndex) {
-        currentStep = Math.max(0, Math.min(STEP_COUNT - 1, stepIndex));
-
-        document.querySelectorAll(".step-panel").forEach((panel) => {
-          panel.classList.toggle("active", Number(panel.dataset.panel) === currentStep);
-        });
-
-        document.querySelectorAll(".step-btn").forEach((btn) => {
-          btn.classList.toggle("active", Number(btn.dataset.step) === currentStep);
-        });
-
-        $("btnPrev").style.visibility = currentStep === 0 ? "hidden" : "visible";
-        $("btnNext").textContent = currentStep === STEP_COUNT - 1 ? "Copy Full Prompt" : (currentStep === STEP_COUNT - 2 ? "Review & Generate →" : "Next Step →");
-        $("stepCounter").textContent = `Step ${currentStep + 1} of ${STEP_COUNT}`;
-
-        if (currentStep === STEP_COUNT - 1) {
-          refreshOutput();
-        }
-
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      }
-
-      function updateProgress() {
-        let filled = 0;
-        const stepMissing = new Array(STEP_COUNT).fill(0);
-
-        REQUIRED_FIELDS.forEach((f) => {
-          if (val(f.id)) {
-            filled++;
-          } else {
-            stepMissing[f.step]++;
-          }
-        });
-
-        // Also count inclusions as part of step 1
-        const total = REQUIRED_FIELDS.length + 1;
-        if (selectedInclusions.size > 0) filled++;
-        else stepMissing[1]++;
-
-        const pct = Math.round((filled / total) * 100);
-        $("progressPct").textContent = `${pct}%`;
-        $("progressFill").style.width = `${pct}%`;
-
-        document.querySelectorAll(".step-btn").forEach((btn) => {
-          const s = Number(btn.dataset.step);
-          if (s < STEP_COUNT - 1) {
-            btn.classList.toggle("done", stepMissing[s] === 0);
-          } else {
-            btn.classList.toggle("done", pct === 100);
-          }
-        });
-      }
-
-      function buildPromptText() {
-        const vName = val("venueName") || "[FILL IN: VENUE NAME]";
-        const vLoc = val("venueLocation") || "[FILL IN: CITY, STATE]";
-        const vTag = val("tagline") || `[FILL IN: e.g. "${vLoc} Event Venue"]`;
-
-        const logoWordmark = val("logoWordmark") || val("venueName") || "[FILL IN: VENUE NAME]";
-        const logoCaption = val("logoCaption") ? ` with small uppercase caption "${val("logoCaption")}"` : "";
-        const logoDesc = val("logoElements")
-          ? `${val("logoStyle")}. Elements: ${val("logoElements")}. Serif wordmark reading "${logoWordmark}"${logoCaption}.`
-          : "[FILL IN: describe a custom SVG emblem mark — crest/shield or wordmark style; list the elements inside it; specify serif wordmark text and small uppercase caption]";
-
-        const darkStr = `${val("colorDarkName") || "deep navy"} ${val("colorDarkHex") || "#0F2644"}`;
-        const accentStr = `${val("colorAccentName") || "champagne gold"} ${val("colorAccentHex") || "#E5C378"}`;
-        const lightStr = `${val("colorLightName") || "warm cream"} ${val("colorLightHex") || "#FAF6EE"}`;
-
-        const fontDisplay = val("fontDisplay") || "Cormorant Garamond / Playfair Display";
-        const fontBody = val("fontBody") || "Plus Jakarta Sans";
-        const fontScript = val("fontScript") || "Optional script accent for short eyebrow phrases only";
-
-        const defaultOgImg = val("seoOgImage") || "[FILL IN: absolute URL of hero/cover image]";
-        const fallbackTitle = val("seoFallbackTitle") || (val("venueName") || "[FILL IN: short venue name]");
-
-        const s1Title = val("seo1Title") || (val("venueName") || "[FILL IN: Page 1 title]");
-        const s1Desc = val("seo1Desc") || "[FILL IN: 1-2 sentences — premier wedding venue in CITY, STATE; signature ceremony spot; reception hall size; capacity; full amenities]";
-        const s1OgDesc = val("seo1OgDesc") || s1Desc;
-        const s1Img = val("seo1OgImage") || defaultOgImg;
-
-        const s2Title = val("seo2Title") || (val("venueName") ? `${val("venueName")} | Request a Tour` : "[FILL IN: Page 2 title]");
-        const s2Desc = val("seo2Desc") || "[FILL IN: schedule a private tour; tour the ceremony space; see the reception hall; meet the team]";
-        const s2OgDesc = val("seo2OgDesc") || s2Desc;
-        const s2Img = val("seo2OgImage") || defaultOgImg;
-
-        const s3Title = val("seo3Title") || (val("venueName") ? `${val("venueName")} | Thank You` : "[FILL IN: Page 3 title]");
-        const s3Desc = val("seo3Desc") || "[FILL IN: thanks for your interest; the events team will reach out soon]";
-        const s3OgDesc = val("seo3OgDesc") || s3Desc;
-        const s3Img = val("seo3OgImage") || defaultOgImg;
-
-        const positioning = val("venuePositioning") || "[FILL IN: one-line venue positioning]";
-        const ceremony = val("outdoorCeremony") || "[FILL IN: describe the ceremony spot]";
-        const reception = val("receptionHall") || "[FILL IN: hall name(s), square footage, lobby/gallery]";
-        const kitchen = val("kitchenSuites") || "[FILL IN: full commercial catering kitchen; bridal suite; groom's room]";
-        const capacity = val("maxCapacity") || "[FILL IN: max guests]";
-        const inclusions = selectedInclusions.size > 0
-          ? Array.from(selectedInclusions).join(", ")
-          : "[FILL IN: tables, chairs, dance floor + setup/breakdown, A/V, parking, Wi-Fi, etc.]";
-        const phone = val("contactPhone") || "[FILL IN phone]";
-        const email = val("contactEmail") || "[FILL IN email]";
-
-        const p1Eyebrow = val("p1Eyebrow") || vTag;
-        const p1Script = val("p1ScriptLine") || "[FILL IN: short script accent line]";
-        const p1H1 = val("p1Headline") || "[FILL IN: Page 1 H1]";
-        const p1Sub = val("p1Subcopy") || "[FILL IN: Page 1 short subcopy]";
-        const st1 = val("stat1") || "[FILL IN: capacity stat]";
-        const st2 = val("stat2") || "[FILL IN: ceremony stat]";
-        const st3 = val("stat3") || "[FILL IN: kitchen & suites stat]";
-        const p1Cta = val("p1PrimaryCta") || "Download Pricing Brochure";
-        const p1SecCta = val("p1SecondaryCta") || "Request a Private Tour";
-
-        const p2H1 = val("p2Headline") || "Request a Private Tour";
-        const p2Sub = val("p2Subcopy") || "[FILL IN: Page 2 short subcopy]";
-        const p2Label = val("p2FormLabel") || "Schedule Your Visit";
-        const p2Sticky = val("p2StickyCta") || "Request a Tour";
-
-        const p3H1 = val("p3Headline") || "Thank You!";
-        const p3Sub = val("p3Subheadline") || "[FILL IN: Page 3 subheadline]";
-        const p3Btn = val("p3ButtonLabel") || "Back to Home";
-
+      function buildPrompt() {
+        const venueName = val("venueName") || "[EXTRACT FROM WEBSITE]";
+        const venueLocation = val("venueLocation") || "[EXTRACT CITY, STATE FROM WEBSITE]";
+        const websiteUrl = val("websiteUrl") || "[ADD CLIENT WEBSITE URL]";
+        const brochureUrl = val("brochureUrl");
+        const mediaFolderUrl = val("mediaFolderUrl");
+        const heroImageUrl = val("heroImageUrl");
+        const ceremonyImageUrl = val("ceremonyImageUrl");
+        const receptionImageUrl = val("receptionImageUrl");
+        const galleryList = parseLines(val("galleryUrls"));
         const p1Iframe = val("p1Iframe") || "[Insert Page 1 Iframe]";
         const p2Iframe = val("p2Iframe") || "[Insert Page 2 Iframe]";
+        const p1Cta = val("p1Cta") || "Download Pricing Brochure";
+        const p2Cta = val("p2Cta") || "Request a Tour";
+        const extraNotes = val("extraNotes");
 
-        // Media library list
-        const media = getMediaValues();
-        const mediaSlots = [
-          { label: "Hero photo", url: media.heroUrl, alt: media.heroAlt },
-          { label: "Outdoor ceremony card", url: media.ceremonyUrl, alt: media.ceremonyAlt },
-          { label: "Indoor reception card", url: media.receptionUrl, alt: media.receptionAlt },
-          { label: "Gallery 1", url: media.gal1Url, alt: media.gal1Alt },
-          { label: "Gallery 2", url: media.gal2Url, alt: media.gal2Alt },
-          { label: "Gallery 3", url: media.gal3Url, alt: media.gal3Alt },
-          { label: "Gallery 4", url: media.gal4Url, alt: media.gal4Alt },
-          { label: "Gallery 5", url: media.gal5Url, alt: media.gal5Alt },
-          { label: "Gallery 6", url: media.gal6Url, alt: media.gal6Alt }
-        ].filter((m) => m.url || m.alt);
+        const validExtras = extraUrls.filter((r) => r.url.trim());
 
-        let mediaSection = `Use the venue's own media-library images throughout (hero, ceremony space, reception hall, gallery, golden hour, brochure). Always set descriptive alt text.`;
-        if (mediaSlots.length > 0) {
-          mediaSection += "\n\nProvided images:\n" + mediaSlots
-            .map((m) => `- ${m.label}: ${m.url || "[upload from media library]"}${m.alt ? ` (alt/caption: "${m.alt}")` : ""}`)
-            .join("\n");
+        const sourceLines = [`- Website: ${websiteUrl}`];
+        if (brochureUrl) sourceLines.push(`- Brochure / Packages: ${brochureUrl}`);
+        if (mediaFolderUrl) sourceLines.push(`- Photo Gallery / Media Library: ${mediaFolderUrl}`);
+        validExtras.forEach((r) => {
+          sourceLines.push(`- ${r.label.trim() || "Additional Resource"}: ${r.url.trim()}`);
+        });
+
+        const photoLines = [];
+        if (heroImageUrl) photoLines.push(`- Hero / Cover & og:image: ${heroImageUrl}`);
+        if (ceremonyImageUrl) photoLines.push(`- Outdoor Ceremony Feature Card: ${ceremonyImageUrl}`);
+        if (receptionImageUrl) photoLines.push(`- Indoor Reception Feature Card: ${receptionImageUrl}`);
+        if (galleryList.length) {
+          galleryList.forEach((u, i) => photoLines.push(`- Gallery Image ${i + 1}: ${u}`));
         }
+        if (mediaFolderUrl) {
+          photoLines.push(`- Additional venue photos source: ${mediaFolderUrl}`);
+        }
+        const photoBlock = photoLines.length
+          ? photoLines.join("\n")
+          : `- Pull real venue photos directly from the provided Website / Brochure URLs (hero, outdoor ceremony space, indoor reception hall, and 6 gallery photos).`;
 
-        // Dynamic checklist status
-        const chk = (ok) => (ok ? "[x]" : "[ ]");
-        const hasBrand = Boolean(val("venueName") && val("venueLocation") && val("tagline"));
-        const hasLogo = Boolean(val("logoElements"));
-        const hasColors = Boolean(val("colorDarkHex") && val("colorAccentHex") && val("colorLightHex"));
-        const hasFonts = Boolean(val("fontDisplay") && val("fontBody"));
-        const hasBrochure = Boolean(val("venuePositioning") && val("outdoorCeremony") && val("receptionHall") && val("kitchenSuites") && val("maxCapacity") && selectedInclusions.size > 0 && val("contactPhone") && val("contactEmail"));
-        const hasCopy = Boolean(val("p1Headline") && val("p1Subcopy") && val("p2Subcopy") && val("p3Subheadline"));
-        const hasCta = Boolean(val("p1PrimaryCta") && val("p2StickyCta") && val("p3ButtonLabel"));
-        const hasSeo = Boolean(val("seo1Title") && val("seo1Desc") && val("seo2Title") && val("seo2Desc") && val("seo3Title") && val("seo3Desc") && val("seoOgImage"));
-        const hasForms = Boolean(val("p1Iframe") && val("p2Iframe"));
-        const hasMedia = mediaSlots.length > 0;
+        const ogImageText = heroImageUrl || "[Use the best hero/cover image URL from the client's assets above]";
 
-        return `# Build Brief: ${vName} — 3-Step Booking Funnel
+        const notesBlock = extraNotes
+          ? `\n---\n\n## Additional Client Notes\n\n${extraNotes}\n`
+          : "";
 
-Build a 3-page lead-capture funnel for a wedding/event venue. No site header/nav on any page. Name the project "${vName}". This is a funnel, not a brochure site — keep it focused and short.
+        return `# Build Brief: ${venueName} — 3-Step Booking Funnel
 
----
-
-## 1) Brand identity
-
-- Venue name: ${vName}
-- Location: ${vLoc}
-- Tagline / eyebrow: ${vTag}
-
-- Logo: ${logoDesc} No third-party or competing-venue logos.
-
-- Color palette (define these as semantic design tokens; adjust hue for the brand):
-  - Primary dark: ${darkStr} — dark sections, text on light
-  - Primary accent: ${accentStr} — buttons, dividers, icons
-  - Light background: ${lightStr} — light sections, text on dark
-  - Define as tokens (e.g. navy, navy-deep, gold, gold-muted, gold-light, cream, cream-card, background, foreground, muted-foreground, card, border). Use tokens everywhere, never raw colors.
-
-- Typography:
-  - Display/serif (headings, logo): ${fontDisplay}
-  - Body sans: ${fontBody}
-  - Script accent (short "eyebrow" phrases only): ${fontScript}
+Build a 3-page lead-capture funnel for a wedding/event venue. No site header/nav on any page. Name the project "${venueName}". This is a funnel, not a brochure site — keep it focused and short.
 
 ---
 
-## 2) SEO context (fill in per page)
+## 0) Client Source Resources (Analyze First)
 
-Each page gets its own <head> with unique metadata. Use these:
+Before building, visit and analyze all provided client URLs below to extract the venue's real brand identity, colors, fonts, spaces, amenities, guest capacity, contact details, and imagery. Do not invent facts or copy details from any other venue.
+
+${sourceLines.join("\n")}
+
+---
+
+## 1) Brand identity (extract from Website / Brochure)
+
+- Venue name: ${venueName}
+- Location: ${venueLocation}
+- Tagline / eyebrow: Derive a short location-based eyebrow (e.g. "${venueLocation} Event Venue") from the client's site.
+
+- Logo: Create a custom SVG emblem mark inspired by the venue's real brand identity (crest/shield or refined wordmark style with relevant venue elements, serif wordmark reading "${venueName}", and a small uppercase caption). No third-party or competing-venue logos.
+
+- Color palette (extract the venue's brand hues from the website/brochure and define as semantic design tokens):
+  - Primary dark: dark sections, text on light
+  - Primary accent: buttons, dividers, icons
+  - Light background: light sections, text on dark
+  - Define as semantic tokens (e.g. primary-dark, primary-deep, accent, accent-muted, accent-light, surface-light, card, background, foreground, muted-foreground, border). Use tokens everywhere, never raw colors.
+
+- Typography (match or complement the venue's brand):
+  - Display/serif (headings, logo): e.g. Cormorant Garamond / Playfair Display
+  - Body sans: e.g. Plus Jakarta Sans
+  - Optional script accent for short "eyebrow" phrases only
+
+---
+
+## 2) SEO context (generate per page from extracted venue details)
+
+Each page gets its own <head> with unique metadata:
 
 ### Page 1 — Opt-in (\`/\`)
-- <title>: "${s1Title}"
-- meta description: "${s1Desc}"
-- og:title: "${s1Title}"
-- og:description: "${s1OgDesc}"
+- <title>: "${venueName}"
+- meta description: 1–2 sentences covering premier wedding venue in ${venueLocation}, signature ceremony spot, reception hall size, capacity, and full amenities (from brochure/website).
+- og:title: same as title
+- og:description: shorter version of description
 - og:type: "website"
-- og:image: "${s1Img}"
+- og:image: ${ogImageText}
 - twitter:card: "summary_large_image"
-- twitter:image: "${s1Img}"
+- twitter:image: same image URL as og:image
 
 ### Page 2 — Request a Tour (\`/tour\`)
-- <title>: "${s2Title}"
-- meta description: "${s2Desc}"
-- og:title: "${s2Title}"
-- og:description: "${s2OgDesc}"
-- og:image: "${s2Img}"
-- og:type: "website"; twitter:card: "summary_large_image"; twitter:image: "${s2Img}"
+- <title>: "${venueName} | Request a Tour"
+- meta description: Schedule a private tour; walk the ceremony space; see the reception hall; meet the events team.
+- og:title / og:description / og:image: per above
+- og:type: "website"; twitter:card: "summary_large_image"; twitter:image: same as og:image
 
 ### Page 3 — Thank You (\`/thank-you\`)
-- <title>: "${s3Title}"
-- meta description: "${s3Desc}"
-- og:title: "${s3Title}"
-- og:description: "${s3OgDesc}"
-- og:image: "${s3Img}"
-- og:type: "website"; twitter:card: "summary_large_image"; twitter:image: "${s3Img}"
+- <title>: "${venueName} | Thank You"
+- meta description: Thanks for your interest in ${venueName}; the events team will reach out soon.
+- og:title / og:description / og:image: per above
+- og:type: "website"; twitter:card: "summary_large_image"; twitter:image: same as og:image
 
-Root fallback title: "${fallbackTitle}". Do NOT use placeholder titles like "AI Studio App" / "Generated Project".
+Root fallback title: "${venueName}". Do NOT use placeholder titles like "AI Studio App" / "Generated Project".
 
 ---
 
@@ -1926,21 +862,20 @@ Root fallback title: "${fallbackTitle}". Do NOT use placeholder titles like "AI 
 - A sticky CTA on every page (see "Sticky CTA").
 - Use short sentences. Not wordy.
 - NO em dashes (—) anywhere; use periods or commas.
-- Do NOT show pricing/rates anywhere.
+- Do NOT show pricing/rates anywhere (even if pricing appears in the brochure URL).
 
 ---
 
-## 5) Content (from the venue brochure)
+## 5) Content (extract from the provided Website & Brochure URLs)
 
-Use this info where relevant:
-
-- Venue positioning: ${positioning}
-- Outdoor ceremony: ${ceremony}
-- Reception: ${reception}
-- Kitchen / suites: ${kitchen}
-- Capacity: ${capacity}
-- Package inclusions (checklist — list each): ${inclusions}
-- Contact: phone ${phone}, email ${email}
+Extract and use the venue's real brochure/website data for:
+- One-line venue positioning
+- Outdoor ceremony space (pergola, gardens, lake, lawns, porches, etc.)
+- Indoor reception hall(s), square footage, lobby/gallery
+- Kitchen / getting-ready suites (catering kitchen, bridal suite, groom's room)
+- Maximum guest capacity
+- Package inclusions checklist (list every real inclusion such as tables, chairs, dance floor, setup/breakdown, A/V, parking, Wi-Fi, linens, sound system — NO prices)
+- Contact info: phone and email
 
 ---
 
@@ -1949,11 +884,11 @@ Use this info where relevant:
 Hero sells the venue; the single goal is the brochure download.
 
 Sections:
-1. Hero — logo, eyebrow chip ("${p1Eyebrow}"), script line "${p1Script}", H1 "${p1H1}", short subcopy "${p1Sub}", and 3 quick stats (${st1} / ${st2} / ${st3}). Right side: the brochure form card.
-2. "What Your Package Includes" — grid of checklist items with check icons. Highlight what's included; no pricing.
+1. Hero — logo, eyebrow chip (venue location line), short script accent line, H1, short subcopy, and 3 quick stats (capacity / ceremony / kitchen & suites). Right side: the brochure form card.
+2. "What Your Package Includes" — grid of checklist items with check icons extracted from the brochure. Highlight what's included; no pricing.
 3. "Our Spaces" — two feature cards (outdoor ceremony + indoor reception) each with image, tag, badge, title, short description.
-4. Gallery — 6-image grid with captions.
-5. Final CTA band — script line, headline, one-line subcopy, two buttons: "${p1Cta}" (scrolls to the form) + "${p1SecCta}" (links to /tour).
+4. Gallery — 6-image grid with short captions.
+5. Final CTA band — script line, headline, one-line subcopy, two buttons: "${p1Cta}" (scrolls to #brochure-form) + "${p2Cta}" (links to /tour).
 
 Primary CTA label: "${p1Cta}". The form card has id="brochure-form".
 
@@ -1961,15 +896,15 @@ Primary CTA label: "${p1Cta}". The form card has id="brochure-form".
 
 ## 7) PAGE 2 — Request a Tour (\`/tour\`) — keep it simple
 
-- Hero: logo, "Step 2 of 3" label, H1 "${p2H1}", short subcopy "${p2Sub}".
-- The tour form in a visible card (id="tour-form") with a small label "${p2Label}". Include a contact line: prefer to talk? Call ${phone} or email ${email}.
+- Hero: logo, "Step 2 of 3" label, H1 ("Request a Private Tour"), short subcopy.
+- The tour form in a visible card (id="tour-form") with a small label above it. Include a contact line: prefer to talk? Call [extracted phone] or email [extracted email].
 - Footer + sticky CTA. No extra sections.
 
 ---
 
 ## 8) PAGE 3 — Thank You (\`/thank-you\`) — keep it minimal
 
-- Only: hero with logo, "Step 3 of 3", H1 "${p3H1}", one subheadline "${p3Sub}", and a "${p3Btn}" button (links to \`/\`).
+- Only: hero with logo, "Step 3 of 3", H1 ("Thank You!"), one reassuring subheadline, and a "Back to Home" button (links to \`/\`).
 - Footer + sticky CTA. Nothing else.
 
 ---
@@ -1997,258 +932,88 @@ A single sticky button per page that adapts to viewport:
 
 Labels per page:
 - Page 1 → "${p1Cta}" (scrolls to #brochure-form)
-- Page 2 → "${p2Sticky}" (scrolls to #tour-form)
-- Page 3 → "${p3Btn}" (links to \`/\`)
+- Page 2 → "${p2Cta}" (scrolls to #tour-form)
+- Page 3 → "Back to Home" (links to \`/\`)
 
 ---
 
 ## 11) Footer
 
-Minimal: logo mark, venue name & city (${vName}, ${vLoc}), contact (${phone} + ${email}), short location line ("${vTag}"). Match the palette (dark/light tokens + accent).
+Minimal: logo mark, venue name & city, extracted contact (phone + email), short location line. Match the palette (dark/light tokens + accent).
 
 ---
 
 ## 12) Assets & images
 
-${mediaSection}
+Use the venue's own real images throughout and always set descriptive alt text:
 
----
-
-## Fill-in checklist before building
-
-${chk(hasBrand)} Venue name, city, tagline
-${chk(hasLogo)} Logo description (custom SVG emblem)
-${chk(hasColors)} Color palette (dark / accent / light)
-${chk(hasFonts)} Fonts (serif display + sans body)
-${chk(hasBrochure)} Brochure copy: positioning, ceremony spot, reception hall, kitchen/suites, capacity, package inclusions, contact
-${chk(hasCopy)} H1 + subcopy per page
-${chk(hasCta)} CTA labels per page
-${chk(hasSeo)} SEO title + description + og:image per page (3 pages)
-${chk(hasForms)} Form embed codes (form ID, name, height) for Page 1 and Page 2
-${chk(hasMedia)} Media-library images`;
+${photoBlock}${notesBlock}`;
       }
 
-      const COPY_FIELD_IDS = [
-        "tagline", "venuePositioning", "outdoorCeremony", "receptionHall", "kitchenSuites",
-        "p1Eyebrow", "p1ScriptLine", "p1Headline", "p1Subcopy", "stat1", "stat2", "stat3",
-        "p2Headline", "p2FormLabel", "p2Subcopy", "p3Headline", "p3Subheadline",
-        "seo1Desc", "seo1OgDesc", "seo2Desc", "seo2OgDesc", "seo3Desc", "seo3OgDesc"
-      ];
-
-      function refreshOutput() {
-        $("promptOutput").value = buildPromptText();
-
-        const missing = REQUIRED_FIELDS.filter((f) => !val(f.id));
-        if (selectedInclusions.size === 0) {
-          missing.push({ id: "inclusions", label: "Package Inclusions (Step 2)", step: 1 });
-        }
+      function updateStatus() {
+        const missing = [];
+        if (!val("venueName")) missing.push("Venue Name");
+        if (!val("websiteUrl") && !val("brochureUrl")) missing.push("Website or Brochure URL");
+        if (!val("p1Iframe")) missing.push("Page 1 Iframe");
+        if (!val("p2Iframe")) missing.push("Page 2 Iframe");
 
         const pill = $("statusPill");
-        const missingBox = $("missingBox");
-        const missingList = $("missingList");
-
         if (missing.length === 0) {
           pill.className = "status-pill ready";
-          pill.textContent = "All required fields completed";
-          missingBox.style.display = "none";
+          pill.textContent = "Ready to copy & build";
         } else {
-          pill.className = "status-pill incomplete";
-          pill.textContent = `${missing.length} required field${missing.length === 1 ? "" : "s"} still blank`;
-          missingBox.style.display = "block";
-          missingList.innerHTML = "";
-          missing.forEach((m) => {
-            const li = document.createElement("li");
-            const a = document.createElement("a");
-            a.href = "#";
-            a.textContent = m.label;
-            a.style.color = "inherit";
-            a.addEventListener("click", (e) => {
-              e.preventDefault();
-              goToStep(m.step);
-              const el = $(m.id);
-              if (el) setTimeout(() => el.focus(), 120);
-            });
-            li.appendChild(a);
-            missingList.appendChild(li);
-          });
+          pill.className = "status-pill pending";
+          pill.textContent = `Missing: ${missing.join(", ")}`;
         }
-
-        // Check for em dashes in user copy
-        const hasEmDash = COPY_FIELD_IDS.some((id) => val(id).includes("—"));
-        $("emDashWarn").style.display = hasEmDash ? "block" : "none";
       }
 
-      function saveToStorage() {
-        const payload = {
-          fields: {},
-          inclusionsList,
-          selectedInclusions: Array.from(selectedInclusions),
-          media: getMediaValues()
-        };
-        TEXT_FIELDS.forEach((id) => {
-          payload.fields[id] = $(id) ? $(id).value : "";
+      function save() {
+        const fields = {};
+        FIELD_IDS.forEach((id) => {
+          fields[id] = $(id) ? $(id).value : "";
         });
         try {
-          localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
-          const now = new Date();
-          const time = now.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
-          $("saveIndicator").textContent = `Auto-saved at ${time}`;
-        } catch (e) {
-          // Ignore storage quota issues
-        }
+          localStorage.setItem(STORAGE_KEY, JSON.stringify({ fields, extraUrls }));
+          const t = new Date().toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
+          $("saveNote").textContent = `Saved at ${t}`;
+        } catch (e) {}
       }
 
-      function loadFromStorage() {
+      function load() {
         try {
           const raw = localStorage.getItem(STORAGE_KEY);
           if (!raw) return;
-          const payload = JSON.parse(raw);
-          if (payload.fields) {
-            TEXT_FIELDS.forEach((id) => {
-              if ($(id) && payload.fields[id] !== undefined) {
-                $(id).value = payload.fields[id];
-              }
+          const data = JSON.parse(raw);
+          if (data.fields) {
+            FIELD_IDS.forEach((id) => {
+              if ($(id) && data.fields[id] !== undefined) $(id).value = data.fields[id];
             });
           }
-          if (Array.isArray(payload.inclusionsList) && payload.inclusionsList.length) {
-            inclusionsList = payload.inclusionsList;
+          if (Array.isArray(data.extraUrls) && data.extraUrls.length) {
+            extraUrls = data.extraUrls;
           }
-          if (Array.isArray(payload.selectedInclusions)) {
-            selectedInclusions = new Set(payload.selectedInclusions);
-          }
-          if (payload.media) {
-            setMediaValues(payload.media);
-          }
-          // Sync color pickers
-          [["colorDarkPicker", "colorDarkHex"], ["colorAccentPicker", "colorAccentHex"], ["colorLightPicker", "colorLightHex"]].forEach(([p, h]) => {
-            if (/^#[0-9A-Fa-f]{6}$/.test(val(h))) $(p).value = val(h);
-          });
-        } catch (e) {
-          // Ignore corrupt storage
-        }
+        } catch (e) {}
       }
 
-      function onDataChange() {
-        updateBrandPreview();
-        updateProgress();
-        saveToStorage();
-        if (currentStep === STEP_COUNT - 1) {
-          refreshOutput();
-        }
-      }
-
-      function autoFillSeo() {
-        const name = val("venueName") || "Our Venue";
-        const loc = val("venueLocation") || "your area";
-        const cap = val("maxCapacity");
-        const ceremony = val("outdoorCeremony");
-        const reception = val("receptionHall");
-
-        if (!val("seoFallbackTitle")) $("seoFallbackTitle").value = name;
-        $("seo1Title").value = name;
-        $("seo1Desc").value = `${name} is a premier wedding and event venue in ${loc}.${ceremony ? " " + ceremony.split(".")[0] + "." : ""}${reception ? " " + reception.split(".")[0] + "." : ""}${cap ? " Accommodates " + cap.toLowerCase() + "." : ""}`.replace(/\.\./g, ".");
-        $("seo1OgDesc").value = `Premier wedding and event venue in ${loc}.${cap ? " Hosting " + cap.toLowerCase() + "." : ""}`;
-
-        $("seo2Title").value = `${name} | Request a Tour`;
-        $("seo2Desc").value = `Schedule a private tour of ${name} in ${loc}. Walk the ceremony space, see the reception hall, and meet our events team.`;
-        $("seo2OgDesc").value = `Schedule a private tour of ${name} and see our ceremony and reception spaces in person.`;
-
-        $("seo3Title").value = `${name} | Thank You`;
-        $("seo3Desc").value = `Thank you for your interest in ${name}. Our events team will reach out soon.`;
-        $("seo3OgDesc").value = `Thank you for reaching out to ${name}. Our events team will be in touch soon.`;
-
-        onDataChange();
-        showToast("SEO fields drafted from your venue info");
-      }
-
-      function fillExampleVenue() {
-        const example = {
-          venueName: "Doko Manor",
-          venueLocation: "Blythewood, South Carolina",
-          tagline: "Blythewood, South Carolina Event Venue",
-          logoStyle: "Crest / shield emblem with wordmark",
-          logoWordmark: "Doko Manor",
-          logoCaption: "EVENT VENUE",
-          logoElements: "Architectural manor house gable above calm water ripples framed by subtle laurel branches inside a refined crest",
-          colorDarkName: "deep navy",
-          colorDarkHex: "#0F2644",
-          colorAccentName: "champagne gold",
-          colorAccentHex: "#E5C378",
-          colorLightName: "warm cream",
-          colorLightHex: "#FAF6EE",
-          fontDisplay: "Cormorant Garamond",
-          fontBody: "Plus Jakarta Sans",
-          fontScript: "Great Vibes (short eyebrow phrases only)",
-          contactPhone: "(803) 754-0501",
-          contactEmail: "events@dokomanor.com",
-          venuePositioning: "A refined lakeside estate combining Southern charm with modern event amenities just outside Columbia.",
-          maxCapacity: "Up to 300 seated guests",
-          outdoorCeremony: "Scenic lakeside pergola surrounded by manicured green lawns, weeping willows, and wrap-around covered porches.",
-          receptionHall: "Grand Ballroom (6,000 sq ft) with soaring ceilings, expansive natural light, and a welcoming front lobby and gallery.",
-          kitchenSuites: "Full commercial catering kitchen, spacious private bridal suite with vanity mirrors, and a separate groom's room.",
-          p1Eyebrow: "Blythewood, South Carolina Event Venue",
-          p1ScriptLine: "Modern Luxury Meets Timeless Elegance",
-          p1Headline: "A Timeless Lakeside Setting for Your Unforgettable Wedding",
-          p1Subcopy: "Exchange vows beside the water and celebrate inside our bright, expansive ballroom. Download our brochure to explore packages and inclusions.",
-          stat1: "Up to 300 Guests",
-          stat2: "Lakeside Pergola",
-          stat3: "Full Kitchen & Suites",
-          p1PrimaryCta: "Download Pricing Brochure",
-          p1SecondaryCta: "Request a Private Tour",
-          p2Headline: "Request a Private Tour",
-          p2FormLabel: "Choose Your Preferred Visit",
-          p2Subcopy: "Walk the lakeside ceremony grounds, tour the grand ballroom, and meet our dedicated events team in person.",
-          p2StickyCta: "Request a Tour",
-          p3Headline: "Thank You!",
-          p3Subheadline: "We have received your request. Our events team will reach out shortly with next steps.",
-          p3ButtonLabel: "Back to Home",
-          p1Iframe: `<iframe src="https://api.leadconnectorhq.com/widget/form/EXAMPLE_BROCHURE_ID" style="width:100%;height:100%;border:none;border-radius:4px" id="inline-EXAMPLE_BROCHURE_ID" data-layout="{'id':'INLINE'}" data-trigger-type="alwaysShow" data-activation-type="alwaysActivated" data-deactivation-type="neverDeactivate" data-form-name="Doko Manor Brochure Opt-In" data-height="540" data-layout-iframe-id="inline-EXAMPLE_BROCHURE_ID" data-form-id="EXAMPLE_BROCHURE_ID" title="Doko Manor Brochure Opt-In"></iframe>\n<script src="https://link.msgsndr.com/js/form_embed.js"><\/script>`,
-          p2Iframe: `<iframe src="https://api.leadconnectorhq.com/widget/form/EXAMPLE_TOUR_ID" style="width:100%;height:100%;border:none;border-radius:4px" id="inline-EXAMPLE_TOUR_ID" data-layout="{'id':'INLINE'}" data-trigger-type="alwaysShow" data-activation-type="alwaysActivated" data-deactivation-type="neverDeactivate" data-form-name="Doko Manor Tour Request" data-height="680" data-layout-iframe-id="inline-EXAMPLE_TOUR_ID" data-form-id="EXAMPLE_TOUR_ID" title="Doko Manor Tour Request"></iframe>\n<script src="https://link.msgsndr.com/js/form_embed.js"><\/script>`,
-          seoOgImage: "https://example.com/media/doko-manor-hero.jpg",
-          seoFallbackTitle: "Doko Manor"
-        };
-
-        Object.entries(example).forEach(([k, v]) => {
-          if ($(k)) $(k).value = v;
-        });
-
-        $("colorDarkPicker").value = example.colorDarkHex;
-        $("colorAccentPicker").value = example.colorAccentHex;
-        $("colorLightPicker").value = example.colorLightHex;
-
-        selectedInclusions = new Set([
-          "Tables & chairs",
-          "Dance floor + setup & breakdown",
-          "Audio / visual equipment",
-          "Built-in sound system",
-          "On-site guest parking",
-          "High-speed Wi-Fi",
-          "Tablecloths & linens",
-          "Full commercial catering kitchen",
-          "Private bridal suite",
-          "Groom's room / lounge",
-          "Conference / meeting rooms"
-        ]);
-        renderInclusions();
-        autoFillSeo();
-        showToast("Example venue loaded");
+      function onUpdate() {
+        $("promptOutput").value = buildPrompt();
+        updateStatus();
+        save();
       }
 
       async function copyPrompt() {
-        refreshOutput();
         const text = $("promptOutput").value;
         try {
           await navigator.clipboard.writeText(text);
-          showToast("Full Build Brief copied to clipboard!");
-        } catch (err) {
+          showToast("Prompt copied to clipboard!");
+        } catch (e) {
           $("promptOutput").select();
           document.execCommand("copy");
-          showToast("Full Build Brief copied to clipboard!");
+          showToast("Prompt copied to clipboard!");
         }
       }
 
-      function downloadMarkdown() {
-        refreshOutput();
+      function downloadPrompt() {
         const text = $("promptOutput").value;
         const slug = (val("venueName") || "venue-funnel")
           .toLowerCase()
@@ -2266,87 +1031,67 @@ ${chk(hasMedia)} Media-library images`;
         showToast(`Downloaded ${slug}-build-brief.md`);
       }
 
+      function fillExample() {
+        $("venueName").value = "Doko Manor";
+        $("venueLocation").value = "Blythewood, South Carolina";
+        $("websiteUrl").value = "https://www.dokomanor.com";
+        $("brochureUrl").value = "https://www.dokomanor.com/wedding-brochure.pdf";
+        $("mediaFolderUrl").value = "https://www.dokomanor.com/gallery";
+        $("heroImageUrl").value = "https://www.dokomanor.com/images/hero-lakeside.jpg";
+        $("ceremonyImageUrl").value = "https://www.dokomanor.com/images/ceremony-pergola.jpg";
+        $("receptionImageUrl").value = "https://www.dokomanor.com/images/grand-ballroom.jpg";
+        $("galleryUrls").value = [
+          "https://www.dokomanor.com/images/gallery-1.jpg",
+          "https://www.dokomanor.com/images/gallery-2.jpg",
+          "https://www.dokomanor.com/images/gallery-3.jpg",
+          "https://www.dokomanor.com/images/gallery-4.jpg",
+          "https://www.dokomanor.com/images/gallery-5.jpg",
+          "https://www.dokomanor.com/images/gallery-6.jpg"
+        ].join("\n");
+        extraUrls = [
+          { label: "Instagram", url: "https://www.instagram.com/dokomanor" }
+        ];
+        $("p1Iframe").value = `<iframe src="https://api.leadconnectorhq.com/widget/form/EXAMPLE_BROCHURE_ID" style="width:100%;height:100%;border:none;" id="inline-EXAMPLE_BROCHURE_ID" data-form-name="Doko Manor Brochure" data-height="540"></iframe>\n<script src="https://link.msgsndr.com/js/form_embed.js"><\/script>`;
+        $("p2Iframe").value = `<iframe src="https://api.leadconnectorhq.com/widget/form/EXAMPLE_TOUR_ID" style="width:100%;height:100%;border:none;" id="inline-EXAMPLE_TOUR_ID" data-form-name="Doko Manor Tour" data-height="680"></iframe>\n<script src="https://link.msgsndr.com/js/form_embed.js"><\/script>`;
+        $("p1Cta").value = "Download Pricing Brochure";
+        $("p2Cta").value = "Request a Tour";
+        $("extraNotes").value = "";
+        renderExtraUrls();
+        onUpdate();
+        showToast("Example venue loaded");
+      }
+
       // Wire events
-      document.querySelectorAll(".step-btn").forEach((btn) => {
-        btn.addEventListener("click", () => goToStep(Number(btn.dataset.step)));
+      $("btnAddExtraUrl").addEventListener("click", () => {
+        extraUrls.push({ label: "", url: "" });
+        renderExtraUrls();
+        onUpdate();
       });
 
-      $("btnPrev").addEventListener("click", () => goToStep(currentStep - 1));
-      $("btnNext").addEventListener("click", () => {
-        if (currentStep === STEP_COUNT - 1) copyPrompt();
-        else goToStep(currentStep + 1);
-      });
+      $("btnCopy").addEventListener("click", copyPrompt);
+      $("btnTopCopy").addEventListener("click", copyPrompt);
+      $("btnDownload").addEventListener("click", downloadPrompt);
+      $("btnExample").addEventListener("click", fillExample);
 
-      $("btnJumpOutput").addEventListener("click", () => goToStep(STEP_COUNT - 1));
-      $("btnCopyPrompt").addEventListener("click", copyPrompt);
-      $("btnDownloadMd").addEventListener("click", downloadMarkdown);
-      $("btnAutoSeo").addEventListener("click", autoFillSeo);
-      $("btnLoadExample").addEventListener("click", fillExampleVenue);
-
-      $("btnCleanDashes").addEventListener("click", () => {
-        COPY_FIELD_IDS.forEach((id) => {
-          const el = $(id);
-          if (el && el.value.includes("—")) {
-            el.value = el.value.replace(/\s*—\s*/g, ", ");
-          }
-        });
-        onDataChange();
-        refreshOutput();
-        showToast("Replaced em dashes with commas");
-      });
-
-      $("btnReset").addEventListener("click", () => {
-        if (!confirm("Clear all form fields and start fresh?")) return;
+      $("btnClear").addEventListener("click", () => {
+        if (!confirm("Clear all fields?")) return;
         localStorage.removeItem(STORAGE_KEY);
         $("briefForm").reset();
-        inclusionsList = [...DEFAULT_INCLUSIONS];
-        selectedInclusions = new Set();
-        renderInclusions();
-        $("colorDarkPicker").value = "#0F2644";
-        $("colorDarkHex").value = "#0F2644";
-        $("colorDarkName").value = "deep navy";
-        $("colorAccentPicker").value = "#E5C378";
-        $("colorAccentHex").value = "#E5C378";
-        $("colorAccentName").value = "champagne gold";
-        $("colorLightPicker").value = "#FAF6EE";
-        $("colorLightHex").value = "#FAF6EE";
-        $("colorLightName").value = "warm cream";
-        onDataChange();
-        goToStep(0);
+        $("p1Cta").value = "Download Pricing Brochure";
+        $("p2Cta").value = "Request a Tour";
+        extraUrls = [{ label: "", url: "" }];
+        renderExtraUrls();
+        onUpdate();
         showToast("Form cleared");
       });
 
-      $("btnAddInclusion").addEventListener("click", () => {
-        const input = $("customInclusionInput");
-        const txt = input.value.trim();
-        if (!txt) return;
-        if (!inclusionsList.includes(txt)) inclusionsList.push(txt);
-        selectedInclusions.add(txt);
-        input.value = "";
-        renderInclusions();
-        onDataChange();
-      });
+      $("briefForm").addEventListener("input", onUpdate);
+      $("briefForm").addEventListener("change", onUpdate);
 
-      $("customInclusionInput").addEventListener("keydown", (e) => {
-        if (e.key === "Enter") {
-          e.preventDefault();
-          $("btnAddInclusion").click();
-        }
-      });
-
-      syncColorPair("colorDarkPicker", "colorDarkHex");
-      syncColorPair("colorAccentPicker", "colorAccentHex");
-      syncColorPair("colorLightPicker", "colorLightHex");
-
-      $("briefForm").addEventListener("input", onDataChange);
-      $("briefForm").addEventListener("change", onDataChange);
-
-      // Initialize
-      loadFromStorage();
-      renderInclusions();
-      updateBrandPreview();
-      updateProgress();
-      goToStep(0);
+      // Init
+      load();
+      renderExtraUrls();
+      onUpdate();
     })();
   </script>
 </body>

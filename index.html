@@ -856,6 +856,12 @@
         </div>
 
         <div class="field">
+          <label for="privacyPolicyUrl">Privacy Policy Page URL <span class="tag-opt">Optional</span></label>
+          <input type="url" id="privacyPolicyUrl" placeholder="https://www.venuewebsite.com/privacy-policy" />
+          <span class="help">If provided, the funnel will also include a dedicated <code>/privacy-policy</code> page built from the policy at this URL and linked in the footer.</span>
+        </div>
+
+        <div class="field">
           <label>Other Reference Links <span class="tag-opt">Optional</span></label>
           <div class="url-list" id="extraUrlsList"></div>
           <button type="button" class="btn btn-secondary" id="btnAddExtraUrl">+ Add Another Link</button>
@@ -1007,7 +1013,7 @@
       const STORAGE_KEY = "venue_brief_urls_v2";
       const FIELD_IDS = [
         "venueName", "venueLocation",
-        "websiteUrl", "brochureUrl",
+        "websiteUrl", "brochureUrl", "privacyPolicyUrl",
         "logoImageUrl", "mediaFolderUrl", "galleryUrls",
         "p1Iframe", "p2Iframe",
         "p1Cta", "p2Cta", "extraNotes"
@@ -1101,6 +1107,7 @@
         const venueLocation = val("venueLocation") || "[EXTRACT CITY, STATE FROM WEBSITE]";
         const websiteUrl = val("websiteUrl") || "[ADD CLIENT WEBSITE URL]";
         const brochureUrl = val("brochureUrl");
+        const privacyPolicyUrl = val("privacyPolicyUrl");
         const logoImageUrl = val("logoImageUrl");
         const mediaFolderUrl = val("mediaFolderUrl");
         const galleryList = parseLines(val("galleryUrls"));
@@ -1114,6 +1121,7 @@
 
         const sourceLines = [`- Website: ${websiteUrl}`];
         if (brochureUrl) sourceLines.push(`- Brochure / Packages: ${brochureUrl}`);
+        if (privacyPolicyUrl) sourceLines.push(`- Privacy Policy Reference Page: ${privacyPolicyUrl}`);
         if (logoImageUrl) sourceLines.push(`- Official Venue Logo Image: ${logoImageUrl}`);
         if (mediaFolderUrl) sourceLines.push(`- Photo Gallery / Media Library: ${mediaFolderUrl}`);
         validExtras.forEach((r) => {
@@ -1143,6 +1151,22 @@
 
         const notesBlock = extraNotes
           ? `\n---\n\n## Additional Client Notes\n\n${extraNotes}\n`
+          : "";
+
+        const privacySeoBlock = privacyPolicyUrl
+          ? `\n\n### Privacy Policy (\`/privacy-policy\`)\n- <title>: "${venueName} | Privacy Policy"\n- meta description: Privacy policy for ${venueName}, detailing how visitor information and inquiries are handled.\n- og:title / og:description / og:image: per above\n- og:type: "website"; twitter:card: "summary_large_image"; twitter:image: same as og:image`
+          : "";
+
+        const privacyRouteLine = privacyPolicyUrl
+          ? `\n4. \`/privacy-policy\` — Privacy Policy (linked from the footer, generated from ${privacyPolicyUrl})`
+          : "";
+
+        const privacyPageBlock = privacyPolicyUrl
+          ? `\n\n---\n\n## 8b) PRIVACY POLICY (\`/privacy-policy\`)\n\n- Visit and analyze ${privacyPolicyUrl}, then generate a clean, complete Privacy Policy page based on its real content and disclosures (preserve data collection, SMS/email messaging consent terms if present, opt-out instructions, and contact details, updated accurately for "${venueName}").\n- Match the site's design tokens and typography: official venue logo at top, clear H1 ("Privacy Policy"), readable structured sections, a subtle "Back to Home" link (\`/\`), and the site footer.\n- No site header/nav bar. No sticky CTA bar needed on this legal page.`
+          : "";
+
+        const footerPrivacyNote = privacyPolicyUrl
+          ? ` Include a subtle "Privacy Policy" link to \`/privacy-policy\`.`
           : "";
 
         return `# Build Brief: ${venueName} — 3-Step Booking Funnel
@@ -1204,7 +1228,7 @@ Each page gets its own <head> with unique metadata:
 - <title>: "${venueName} | Thank You"
 - meta description: Thanks for your interest in ${venueName}; the events team will reach out soon.
 - og:title / og:description / og:image: per above
-- og:type: "website"; twitter:card: "summary_large_image"; twitter:image: same as og:image
+- og:type: "website"; twitter:card: "summary_large_image"; twitter:image: same as og:image${privacySeoBlock}
 
 Root fallback title: "${venueName}". Do NOT use placeholder titles like "AI Studio App" / "Generated Project".
 
@@ -1214,7 +1238,7 @@ Root fallback title: "${venueName}". Do NOT use placeholder titles like "AI Stud
 
 1. \`/\` — Opt-in (Step 1 of 3)
 2. \`/tour\` — Request a Tour (Step 2 of 3)
-3. \`/thank-you\` — Thank You (Step 3 of 3)
+3. \`/thank-you\` — Thank You (Step 3 of 3)${privacyRouteLine}
 
 ---
 
@@ -1267,7 +1291,7 @@ Primary CTA label: "${p1Cta}". The form card has id="brochure-form".
 ## 8) PAGE 3 — Thank You (\`/thank-you\`) — keep it minimal
 
 - Only: hero with logo, "Step 3 of 3", H1 ("Thank You!"), one reassuring subheadline, and a "Back to Home" button (links to \`/\`).
-- Footer + sticky CTA. Nothing else.
+- Footer + sticky CTA. Nothing else.${privacyPageBlock}
 
 ---
 
@@ -1301,7 +1325,7 @@ Labels per page:
 
 ## 11) Footer
 
-Minimal: official venue logo, venue name & city, extracted contact (phone + email), short location line. Match the palette (dark/light tokens + accent).
+Minimal: official venue logo, venue name & city, extracted contact (phone + email), short location line.${footerPrivacyNote} Match the palette (dark/light tokens + accent).
 
 ---
 
@@ -1603,6 +1627,7 @@ Follow these rules when choosing and placing imagery across the funnel:
         $("venueLocation").value = "Blythewood, South Carolina";
         $("websiteUrl").value = "https://www.dokomanor.com";
         $("brochureUrl").value = "https://www.dokomanor.com/wedding-brochure.pdf";
+        $("privacyPolicyUrl").value = "https://www.dokomanor.com/privacy-policy";
         $("logoImageUrl").value = "https://www.dokomanor.com/images/logo.png";
         $("mediaFolderUrl").value = "https://www.dokomanor.com/gallery";
         $("galleryUrls").value = [

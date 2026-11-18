@@ -562,12 +562,12 @@
         </div>
       </section>
 
-      <!-- 3. Venue Image / Media URLs -->
+      <!-- 3. Venue Logo & Media URLs -->
       <section class="card">
         <div class="card-head">
-          <h2><span class="step-badge">3</span> Venue Photos &amp; Media URLs</h2>
+          <h2><span class="step-badge">3</span> Venue Logo &amp; Media URLs</h2>
         </div>
-        <p class="card-sub">Paste direct image links (or a media gallery / folder URL) so the funnel uses the venue's real photography.</p>
+        <p class="card-sub">Share the venue's logo, photo gallery page, or any direct image links. The AI will select the best photos for each section (or adapt with meaningful venue highlights if photos are limited).</p>
 
         <div class="grid-2" style="margin-bottom: 14px;">
           <div class="field">
@@ -582,26 +582,10 @@
           </div>
         </div>
 
-        <div class="grid-2" style="margin-bottom: 14px;">
-          <div class="field">
-            <label for="heroImageUrl">Hero / Cover Image URL <span class="tag-opt">Also og:image</span></label>
-            <input type="url" id="heroImageUrl" placeholder="https://.../hero.jpg" />
-          </div>
-          <div class="field">
-            <label for="ceremonyImageUrl">Outdoor Ceremony Image URL <span class="tag-opt">Optional</span></label>
-            <input type="url" id="ceremonyImageUrl" placeholder="https://.../ceremony.jpg" />
-          </div>
-        </div>
-
         <div class="field">
-          <label for="receptionImageUrl">Indoor Reception Hall Image URL <span class="tag-opt">Optional</span></label>
-          <input type="url" id="receptionImageUrl" placeholder="https://.../reception.jpg" />
-        </div>
-
-        <div class="field">
-          <label for="galleryUrls">Additional Gallery Image URLs <span class="tag-opt">Up to 6 — one per line</span></label>
-          <textarea id="galleryUrls" rows="3" placeholder="https://.../photo-1.jpg&#10;https://.../photo-2.jpg&#10;https://.../photo-3.jpg"></textarea>
-          <span class="help">Paste up to 6 direct image URLs (one per line) for the 6-image gallery grid.</span>
+          <label for="galleryUrls">Direct Venue Photo URLs <span class="tag-opt">Optional — one per line</span></label>
+          <textarea id="galleryUrls" rows="4" placeholder="https://.../photo-1.jpg&#10;https://.../photo-2.jpg&#10;https://.../photo-3.jpg"></textarea>
+          <span class="help">Paste any direct image links from the venue's media library (one per line). The AI will pick the strongest shots for the hero, spaces, and gallery automatically.</span>
         </div>
       </section>
 
@@ -675,7 +659,7 @@
       const FIELD_IDS = [
         "venueName", "venueLocation",
         "websiteUrl", "brochureUrl",
-        "logoImageUrl", "mediaFolderUrl", "heroImageUrl", "ceremonyImageUrl", "receptionImageUrl", "galleryUrls",
+        "logoImageUrl", "mediaFolderUrl", "galleryUrls",
         "p1Iframe", "p2Iframe",
         "p1Cta", "p2Cta", "extraNotes"
       ];
@@ -751,9 +735,6 @@
         const brochureUrl = val("brochureUrl");
         const logoImageUrl = val("logoImageUrl");
         const mediaFolderUrl = val("mediaFolderUrl");
-        const heroImageUrl = val("heroImageUrl");
-        const ceremonyImageUrl = val("ceremonyImageUrl");
-        const receptionImageUrl = val("receptionImageUrl");
         const galleryList = parseLines(val("galleryUrls"));
         const p1Iframe = val("p1Iframe") || "[Insert Page 1 Iframe]";
         const p2Iframe = val("p2Iframe") || "[Insert Page 2 Iframe]";
@@ -773,24 +754,19 @@
 
         const photoLines = [];
         if (logoImageUrl) photoLines.push(`- Official Venue Logo: ${logoImageUrl}`);
-        if (heroImageUrl) photoLines.push(`- Hero / Cover & og:image: ${heroImageUrl}`);
-        if (ceremonyImageUrl) photoLines.push(`- Outdoor Ceremony Feature Card: ${ceremonyImageUrl}`);
-        if (receptionImageUrl) photoLines.push(`- Indoor Reception Feature Card: ${receptionImageUrl}`);
+        if (mediaFolderUrl) photoLines.push(`- Media Library / Photo Gallery Source: ${mediaFolderUrl}`);
         if (galleryList.length) {
-          galleryList.forEach((u, i) => photoLines.push(`- Gallery Image ${i + 1}: ${u}`));
-        }
-        if (mediaFolderUrl) {
-          photoLines.push(`- Additional venue photos source: ${mediaFolderUrl}`);
+          galleryList.forEach((u, i) => photoLines.push(`- Venue Photo ${i + 1}: ${u}`));
         }
         const photoBlock = photoLines.length
           ? photoLines.join("\n")
-          : `- Pull the official venue logo and real venue photos directly from the provided Website / Brochure URLs (hero, outdoor ceremony space, indoor reception hall, and 6 gallery photos).`;
+          : `- No direct photo URLs were pasted; extract the official venue logo and real venue photography from the provided Website / Brochure URLs.`;
 
         const logoInstruction = logoImageUrl
           ? `Use the actual venue logo image provided at ${logoImageUrl} across all pages and the footer (preserve aspect ratio and ensure clean contrast on both dark and light sections). No third-party or competing-venue logos.`
           : `Extract and use the venue's actual official logo (SVG or transparent PNG) directly from the provided website URL (or brochure) if possible. Only fall back to a clean custom SVG wordmark/emblem reading "${venueName}" matching the venue's brand if the official logo image cannot be extracted. No third-party or competing-venue logos.`;
 
-        const ogImageText = heroImageUrl || "[Use the best hero/cover image URL from the client's assets above]";
+        const ogImageText = "[Select the strongest wide landscape hero/cover image URL from the venue's real assets]";
 
         const notesBlock = extraNotes
           ? `\n---\n\n## Additional Client Notes\n\n${extraNotes}\n`
@@ -882,11 +858,10 @@ Root fallback title: "${venueName}". Do NOT use placeholder titles like "AI Stud
 
 ## 5) Content (extract from the provided Website & Brochure URLs)
 
-Extract and use the venue's real brochure/website data for:
+Extract and use the venue's real brochure/website data for (adapt to what this venue actually offers — do not invent spaces it does not have):
 - One-line venue positioning
-- Outdoor ceremony space (pergola, gardens, lake, lawns, porches, etc.)
-- Indoor reception hall(s), square footage, lobby/gallery
-- Kitchen / getting-ready suites (catering kitchen, bridal suite, groom's room)
+- Signature event spaces (e.g. ceremony lawn/pergola/chapel/terrace, reception hall/ballroom/barn/rooftop, cocktail lounge, lobby/gallery, square footage)
+- Kitchen / getting-ready suites & amenities (catering kitchen, bridal suite, groom's room, VIP lounges, etc. — only list what the venue actually has)
 - Maximum guest capacity
 - Package inclusions checklist (list every real inclusion such as tables, chairs, dance floor, setup/breakdown, A/V, parking, Wi-Fi, linens, sound system — NO prices)
 - Contact info: phone and email
@@ -898,10 +873,10 @@ Extract and use the venue's real brochure/website data for:
 Hero sells the venue; the single goal is the brochure download.
 
 Sections:
-1. Hero — logo, eyebrow chip (venue location line), short script accent line, H1, short subcopy, and 3 quick stats (capacity / ceremony / kitchen & suites). Right side: the brochure form card.
+1. Hero — official venue logo, eyebrow chip (venue location line), short script accent line, H1, short subcopy, and 3 quick stats tailored to this venue's top highlights (e.g. capacity / signature space / key amenity). Right side: the brochure form card.
 2. "What Your Package Includes" — grid of checklist items with check icons extracted from the brochure. Highlight what's included; no pricing.
-3. "Our Spaces" — two feature cards (outdoor ceremony + indoor reception) each with image, tag, badge, title, short description.
-4. Gallery — 6-image grid with short captions.
+3. "Our Spaces" — feature cards for the venue's 2–3 real signature spaces (whatever this venue actually offers — do not force an "outdoor" or "indoor" split if the venue is all-indoor, all-outdoor, or multi-room). Each card has a tag, badge, title, short description, and a matching real photo (or a structured venue-highlight visual/spec block if no photo is available for that space).
+4. Gallery — up to 6 diverse real venue photos with short captions (or a compact 3–4 photo showcase / highlight strip if fewer unique photos exist — see Media Selection Rules below).
 5. Final CTA band — script line, headline, one-line subcopy, two buttons: "${p1Cta}" (scrolls to #brochure-form) + "${p2Cta}" (links to /tour).
 
 Primary CTA label: "${p1Cta}". The form card has id="brochure-form".
@@ -957,11 +932,21 @@ Minimal: official venue logo, venue name & city, extracted contact (phone + emai
 
 ---
 
-## 12) Assets & images
+## 12) Assets, media selection & fallback rules
 
-Use the venue's own real images throughout and always set descriptive alt text:
+Available media inputs:
+${photoBlock}
 
-${photoBlock}${notesBlock}`;
+Follow these rules when choosing and placing imagery across the funnel:
+- **Use only real venue imagery:** Pull from the provided URLs, media folder, website, or brochure. Never use generic stock photos of unrelated venues, watermarked images, or broken image links. Always write descriptive alt text.
+- **How to choose each photo slot (when photos are available):**
+  - *Hero / Cover & og:image:* Pick the highest-resolution, wide landscape photo that best captures the venue's atmosphere and signature architecture/setting, with clean contrast/overlay so the headline and form stay easy to read.
+  - *Our Spaces cards:* Match each card to a real photo of that exact space (avoid repeating the hero photo if another strong photo exists).
+  - *Gallery:* Pick up to 6 varied, complementary photos showing different angles/moments (e.g. ceremony setup, reception tablescapes, architecture/grounds, evening lighting, suites) with short accurate captions. Avoid low-res thumbnails or near-duplicates.
+- **When photos are missing or limited (meaningful content fallback):**
+  - *If a specific space has no suitable photo:* Replace the image area on that card with a clean, brand-styled venue highlight panel featuring real specs from the brochure (e.g. capacity, square footage, seating layouts, standout architectural/amenity bullets) using the design tokens and subtle icons.
+  - *If the hero has no strong wide photo:* Use a refined solid/subtle-gradient dark brand-token hero backdrop with an elevated architectural framing motif or high-contrast typography — never a blurry or stretched photo.
+  - *If fewer than 6 unique gallery photos exist:* Display a balanced 3- or 4-image grid (no duplicates). If almost no usable photos exist, replace the Gallery section with a meaningful "Venue Highlights" or "Why Couples Choose ${venueName}" feature grid built from real brochure facts and amenities.${notesBlock}`;
       }
 
       function updateStatus() {
@@ -1052,16 +1037,13 @@ ${photoBlock}${notesBlock}`;
         $("brochureUrl").value = "https://www.dokomanor.com/wedding-brochure.pdf";
         $("logoImageUrl").value = "https://www.dokomanor.com/images/logo.png";
         $("mediaFolderUrl").value = "https://www.dokomanor.com/gallery";
-        $("heroImageUrl").value = "https://www.dokomanor.com/images/hero-lakeside.jpg";
-        $("ceremonyImageUrl").value = "https://www.dokomanor.com/images/ceremony-pergola.jpg";
-        $("receptionImageUrl").value = "https://www.dokomanor.com/images/grand-ballroom.jpg";
         $("galleryUrls").value = [
-          "https://www.dokomanor.com/images/gallery-1.jpg",
-          "https://www.dokomanor.com/images/gallery-2.jpg",
-          "https://www.dokomanor.com/images/gallery-3.jpg",
-          "https://www.dokomanor.com/images/gallery-4.jpg",
-          "https://www.dokomanor.com/images/gallery-5.jpg",
-          "https://www.dokomanor.com/images/gallery-6.jpg"
+          "https://www.dokomanor.com/images/hero-lakeside.jpg",
+          "https://www.dokomanor.com/images/ceremony-pergola.jpg",
+          "https://www.dokomanor.com/images/grand-ballroom.jpg",
+          "https://www.dokomanor.com/images/bridal-suite.jpg",
+          "https://www.dokomanor.com/images/golden-hour-porch.jpg",
+          "https://www.dokomanor.com/images/reception-tablescape.jpg"
         ].join("\n");
         extraUrls = [
           { label: "Instagram", url: "https://www.instagram.com/dokomanor" }

@@ -545,7 +545,7 @@
         <div class="field">
           <label for="websiteUrl">Venue Website URL</label>
           <input type="url" id="websiteUrl" placeholder="https://www.venuewebsite.com" />
-          <span class="help">Used to extract brand identity, palette, typography, logo inspiration, location, and contact details.</span>
+          <span class="help">Used to extract the official logo, brand identity, palette, typography, location, and contact details.</span>
         </div>
 
         <div class="field">
@@ -569,10 +569,17 @@
         </div>
         <p class="card-sub">Paste direct image links (or a media gallery / folder URL) so the funnel uses the venue's real photography.</p>
 
-        <div class="field">
-          <label for="mediaFolderUrl">Media Library / Photo Gallery Page URL <span class="tag-opt">Optional</span></label>
-          <input type="url" id="mediaFolderUrl" placeholder="https://www.venuewebsite.com/gallery or Drive folder URL" />
-          <span class="help">If all photos live on one gallery page or shared folder, paste that link here.</span>
+        <div class="grid-2" style="margin-bottom: 14px;">
+          <div class="field">
+            <label for="logoImageUrl">Venue Logo Image URL <span class="tag-opt">Optional</span></label>
+            <input type="url" id="logoImageUrl" placeholder="https://.../logo.png or .svg" />
+            <span class="help">Direct link to the actual venue logo. Leave blank to extract it from the website.</span>
+          </div>
+          <div class="field">
+            <label for="mediaFolderUrl">Photo Gallery / Media Folder URL <span class="tag-opt">Optional</span></label>
+            <input type="url" id="mediaFolderUrl" placeholder="https://www.venuewebsite.com/gallery" />
+            <span class="help">Paste a gallery page or Drive folder if all photos live in one place.</span>
+          </div>
         </div>
 
         <div class="grid-2" style="margin-bottom: 14px;">
@@ -668,7 +675,7 @@
       const FIELD_IDS = [
         "venueName", "venueLocation",
         "websiteUrl", "brochureUrl",
-        "mediaFolderUrl", "heroImageUrl", "ceremonyImageUrl", "receptionImageUrl", "galleryUrls",
+        "logoImageUrl", "mediaFolderUrl", "heroImageUrl", "ceremonyImageUrl", "receptionImageUrl", "galleryUrls",
         "p1Iframe", "p2Iframe",
         "p1Cta", "p2Cta", "extraNotes"
       ];
@@ -742,6 +749,7 @@
         const venueLocation = val("venueLocation") || "[EXTRACT CITY, STATE FROM WEBSITE]";
         const websiteUrl = val("websiteUrl") || "[ADD CLIENT WEBSITE URL]";
         const brochureUrl = val("brochureUrl");
+        const logoImageUrl = val("logoImageUrl");
         const mediaFolderUrl = val("mediaFolderUrl");
         const heroImageUrl = val("heroImageUrl");
         const ceremonyImageUrl = val("ceremonyImageUrl");
@@ -757,12 +765,14 @@
 
         const sourceLines = [`- Website: ${websiteUrl}`];
         if (brochureUrl) sourceLines.push(`- Brochure / Packages: ${brochureUrl}`);
+        if (logoImageUrl) sourceLines.push(`- Official Venue Logo Image: ${logoImageUrl}`);
         if (mediaFolderUrl) sourceLines.push(`- Photo Gallery / Media Library: ${mediaFolderUrl}`);
         validExtras.forEach((r) => {
           sourceLines.push(`- ${r.label.trim() || "Additional Resource"}: ${r.url.trim()}`);
         });
 
         const photoLines = [];
+        if (logoImageUrl) photoLines.push(`- Official Venue Logo: ${logoImageUrl}`);
         if (heroImageUrl) photoLines.push(`- Hero / Cover & og:image: ${heroImageUrl}`);
         if (ceremonyImageUrl) photoLines.push(`- Outdoor Ceremony Feature Card: ${ceremonyImageUrl}`);
         if (receptionImageUrl) photoLines.push(`- Indoor Reception Feature Card: ${receptionImageUrl}`);
@@ -774,7 +784,11 @@
         }
         const photoBlock = photoLines.length
           ? photoLines.join("\n")
-          : `- Pull real venue photos directly from the provided Website / Brochure URLs (hero, outdoor ceremony space, indoor reception hall, and 6 gallery photos).`;
+          : `- Pull the official venue logo and real venue photos directly from the provided Website / Brochure URLs (hero, outdoor ceremony space, indoor reception hall, and 6 gallery photos).`;
+
+        const logoInstruction = logoImageUrl
+          ? `Use the actual venue logo image provided at ${logoImageUrl} across all pages and the footer (preserve aspect ratio and ensure clean contrast on both dark and light sections). No third-party or competing-venue logos.`
+          : `Extract and use the venue's actual official logo (SVG or transparent PNG) directly from the provided website URL (or brochure) if possible. Only fall back to a clean custom SVG wordmark/emblem reading "${venueName}" matching the venue's brand if the official logo image cannot be extracted. No third-party or competing-venue logos.`;
 
         const ogImageText = heroImageUrl || "[Use the best hero/cover image URL from the client's assets above]";
 
@@ -802,7 +816,7 @@ ${sourceLines.join("\n")}
 - Location: ${venueLocation}
 - Tagline / eyebrow: Derive a short location-based eyebrow (e.g. "${venueLocation} Event Venue") from the client's site.
 
-- Logo: Create a custom SVG emblem mark inspired by the venue's real brand identity (crest/shield or refined wordmark style with relevant venue elements, serif wordmark reading "${venueName}", and a small uppercase caption). No third-party or competing-venue logos.
+- Logo: ${logoInstruction}
 
 - Color palette (extract the venue's brand hues from the website/brochure and define as semantic design tokens):
   - Primary dark: dark sections, text on light
@@ -939,7 +953,7 @@ Labels per page:
 
 ## 11) Footer
 
-Minimal: logo mark, venue name & city, extracted contact (phone + email), short location line. Match the palette (dark/light tokens + accent).
+Minimal: official venue logo, venue name & city, extracted contact (phone + email), short location line. Match the palette (dark/light tokens + accent).
 
 ---
 
@@ -1036,6 +1050,7 @@ ${photoBlock}${notesBlock}`;
         $("venueLocation").value = "Blythewood, South Carolina";
         $("websiteUrl").value = "https://www.dokomanor.com";
         $("brochureUrl").value = "https://www.dokomanor.com/wedding-brochure.pdf";
+        $("logoImageUrl").value = "https://www.dokomanor.com/images/logo.png";
         $("mediaFolderUrl").value = "https://www.dokomanor.com/gallery";
         $("heroImageUrl").value = "https://www.dokomanor.com/images/hero-lakeside.jpg";
         $("ceremonyImageUrl").value = "https://www.dokomanor.com/images/ceremony-pergola.jpg";

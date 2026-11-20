@@ -1216,6 +1216,206 @@
         transform: none !important;
       }
     }
+
+    /* Hero Action Buttons */
+    .hero-action-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-top: 28px;
+      flex-wrap: wrap;
+    }
+
+    .btn-hero {
+      padding: 12px 22px;
+      font-size: 15px;
+      letter-spacing: 0.08em;
+      border-radius: 4px;
+    }
+
+    /* Prompt Console & General Mobile Responsiveness */
+    @media (max-width: 1200px) {
+      .workbench-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+
+      .cockpit-console {
+        position: relative;
+        top: 0;
+        margin-top: 10px;
+        box-shadow: 0 4px 16px rgba(0, 0, 22, 0.05);
+      }
+    }
+
+    @media (max-width: 768px) {
+      :root {
+        --gutter: 20px;
+      }
+
+      .hero-editorial {
+        padding-top: 36px;
+        padding-bottom: 30px;
+      }
+
+      .hero-headline {
+        font-size: clamp(34px, 9vw, 48px);
+        line-height: 0.98;
+        margin-bottom: 16px;
+      }
+
+      .hero-subrow {
+        gap: 20px;
+      }
+
+      .hero-description {
+        font-size: 14.5px;
+      }
+
+      .hero-stats {
+        padding-left: 0;
+        border-left: none;
+        width: 100%;
+        justify-content: space-between;
+        gap: 16px;
+        padding-top: 16px;
+        border-top: 1px solid var(--cl-border);
+      }
+
+      .hero-stat-num {
+        font-size: 22px;
+      }
+
+      .hero-action-row {
+        margin-top: 22px;
+        width: 100%;
+      }
+
+      .hero-action-row .btn {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .panel-header {
+        padding: 14px 18px;
+      }
+
+      .panel-body {
+        padding: 18px;
+      }
+
+      /* Prompt Textarea Responsiveness */
+      .prompt-screen {
+        max-width: 100%;
+        overflow: hidden;
+      }
+
+      .prompt-textarea {
+        height: 380px;
+        min-block-size: 240px;
+        max-block-size: 60vh;
+        font-size: 11.5px;
+        line-height: 1.6;
+        padding: 14px 16px;
+        overflow-x: auto;
+        overflow-y: auto;
+        white-space: pre-wrap;
+        word-break: break-word;
+        overflow-wrap: anywhere;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .cockpit-header {
+        padding: 12px 16px;
+      }
+
+      .cockpit-footer {
+        padding: 14px 16px;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+      }
+
+      .cockpit-stats {
+        text-align: center;
+        font-size: 11px;
+      }
+
+      .cockpit-action-group {
+        width: 100%;
+      }
+
+      .copy-wrap {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .copy-wrap .btn {
+        width: 100%;
+        justify-content: center;
+        padding: 12px;
+        font-size: 14px;
+      }
+
+      .copy-status {
+        text-align: center;
+      }
+    }
+
+    /* Mobile Sticky Action Bar */
+    .mobile-sticky-bar {
+      display: none;
+    }
+
+    @media (max-width: 900px) {
+      .mobile-sticky-bar {
+        display: block;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 90;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-top: 1px solid var(--cl-border);
+        box-shadow: 0 -8px 24px rgba(0, 0, 22, 0.1);
+        padding: 10px 16px;
+        padding-bottom: calc(10px + env(safe-area-inset-bottom, 0px));
+        transform: translateY(115%);
+        transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+        pointer-events: none;
+      }
+
+      .mobile-sticky-bar.visible {
+        transform: translateY(0);
+        pointer-events: auto;
+      }
+
+      .mobile-sticky-inner {
+        max-width: var(--container);
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+      }
+
+      .mobile-sticky-inner .btn {
+        flex: 1;
+        padding: 11px 12px;
+        font-size: 13px;
+        justify-content: center;
+      }
+
+      /* Prevent floating sticky bar from covering footer content */
+      body {
+        padding-bottom: 78px;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -1269,6 +1469,15 @@
             <span class="hero-stat-label">NATIVE EMBED</span>
           </div>
         </div>
+      </div>
+      <div class="hero-action-row">
+        <a href="#briefForm" class="btn btn-primary btn-hero" id="btnHeroToForm">
+          <span>Configure Funnel Form</span>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg>
+        </a>
+        <button type="button" class="btn btn-secondary btn-hero" id="btnHeroExample">
+          <span>Load Doko Manor Sample</span>
+        </button>
       </div>
     </div>
   </section>
@@ -1512,6 +1721,18 @@
 
     <div class="modal-stage" id="modalStage"></div>
   </dialog>
+
+  <!-- Mobile Floating Sticky Action Bar (Appears when scrolled past form) -->
+  <aside class="mobile-sticky-bar" id="mobileStickyBar" aria-label="Quick Actions">
+    <div class="mobile-sticky-inner">
+      <a href="#briefForm" class="btn btn-secondary btn-sm" id="btnStickyToForm">
+        <span>↑ Edit Form</span>
+      </a>
+      <button type="button" class="btn btn-primary btn-sm" id="btnStickyCopy" aria-label="Copy prompt brief to clipboard">
+        <span>📋 Copy Brief</span>
+      </button>
+    </div>
+  </aside>
 
   <!-- Toast Notification -->
   <div class="toast-box" id="toast"></div>
@@ -2269,6 +2490,45 @@ ${p2Iframe}
 
       $("briefForm").addEventListener("input", onUpdate);
       $("briefForm").addEventListener("change", onUpdate);
+
+
+      // Smooth scroll to form handler
+      function scrollToForm(e) {
+        if (e) e.preventDefault();
+        const form = $("briefForm");
+        if (form) {
+          form.scrollIntoView({ behavior: "smooth", block: "start" });
+          setTimeout(() => {
+            const firstInput = $("venueName");
+            if (firstInput) firstInput.focus({ preventScroll: true });
+          }, 450);
+        }
+      }
+
+      $("btnHeroToForm").addEventListener("click", scrollToForm);
+      $("btnHeroExample").addEventListener("click", fillExample);
+      $("btnStickyToForm").addEventListener("click", scrollToForm);
+      $("btnStickyCopy").addEventListener("click", copyPrompt);
+
+      // Scroll observer for mobile sticky bar (shows when user scrolls past the form)
+      function updateStickyBar() {
+        const form = $("briefForm");
+        const bar = $("mobileStickyBar");
+        if (!form || !bar) return;
+
+        const rect = form.getBoundingClientRect();
+        // Visible when the bottom of the form is at or above 150px from the top (scrolled past form)
+        const isPastForm = rect.bottom < 150;
+
+        if (isPastForm) {
+          bar.classList.add("visible");
+        } else {
+          bar.classList.remove("visible");
+        }
+      }
+
+      window.addEventListener("scroll", updateStickyBar, { passive: true });
+      window.addEventListener("resize", updateStickyBar, { passive: true });
 
       // Initialize
       load();

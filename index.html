@@ -1,177 +1,191 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" data-type="software" data-radius="soft" data-ground="sand" data-buttons="solid" data-motion>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Venue Funnel Studio — AI Build Brief Builder</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
-    rel="stylesheet"
-  />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Venue Funnel Studio: 3-Page GoHighLevel Booking Funnel Brief Generator</title>
+  <meta name="description" content="Generate high-converting GoHighLevel venue booking funnel build briefs from client website URLs, digital brochures, and form embeds.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Venue Funnel Studio: 3-Page GoHighLevel Booking Funnel Brief Generator">
+  <meta property="og:description" content="Generate high-converting GoHighLevel venue booking funnel build briefs from client website URLs, digital brochures, and form embeds.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="site-kind" content="software">
+  <meta name="page-type" content="software">
+  <meta name="theme-color" content="#0b0f17">
+
+  <!-- Google Fonts: Onest (headings/body) + JetBrains Mono (developer prompt console) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Taste Skill System Stylesheets -->
+  <link rel="stylesheet" href="assets/system.css">
+  <link rel="stylesheet" href="assets/ui/cards.css">
+  <link rel="stylesheet" href="assets/motion/motion.css">
+  <link rel="stylesheet" href="assets/backgrounds/backgrounds.css">
+  <link rel="stylesheet" href="assets/layout/layout.css">
+  <link rel="stylesheet" href="assets/icons/icon.css">
+
+  <script>
+    document.documentElement.classList.add('m-enter');
+    setTimeout(() => document.documentElement.classList.add('m-enter-done'), 700);
+  </script>
+  <script src="assets/backgrounds/backgrounds.js"></script>
+
   <style>
     :root {
-      --bg: #f8f7f4;
-      --bg-subtle: #f3f0e9;
-      --surface: #ffffff;
-      --surface-raised: #faf9f6;
-      --border: #e6e2d8;
-      --border-strong: #d2ccbf;
-      --border-focus: #c5a059;
+      /* Palette: Obsidian Studio & Warm Champagne Gold */
+      --p-bg: #0b0f17;
+      --p-surface: #111827;
+      --p-surface-raised: #182234;
+      --p-surface-hover: #1f2b42;
+      --p-ink: #f8fafc;
+      --p-muted: #94a3b8;
+      --p-muted-dim: #64748b;
+      --p-border: rgba(255, 255, 255, 0.08);
+      --p-border-strong: rgba(255, 255, 255, 0.16);
+      --p-accent: #d4af37;
+      --p-accent-hover: #e0be53;
+      --p-accent-ink: #0b0f17;
+      --p-action: #d4af37;
+      --p-action-ink: #0b0f17;
 
-      --text: #131722;
-      --text-muted: #5e6676;
-      --text-soft: #88909f;
+      --p-inv-bg: #f8fafc;
+      --p-inv-surface: #e5e7ea;
+      --p-inv-ink: #0b0f17;
+      --p-inv-muted: #595d64;
+      --p-inv-accent: #0b0f17;
+      --p-inv-accent-ink: #f8fafc;
+      --p-inv-action: #0b0f17;
+      --p-inv-action-ink: #f8fafc;
 
-      --navy-950: #0a111e;
-      --navy-900: #0f1a2e;
-      --navy-800: #162642;
-      --navy-soft: #eaf0fa;
+      --font-display: "Onest", system-ui, -apple-system, sans-serif;
+      --font-text: "Onest", system-ui, -apple-system, sans-serif;
+      --font-mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+      --display-weight: 600;
+      --display-tracking: -0.025em;
 
-      --gold-600: #a77c2b;
-      --gold-500: #c59b43;
-      --gold-400: #e2ba64;
-      --gold-soft: #fcf8ee;
-      --gold-border: #ebd9b4;
-
-      --success: #15803d;
-      --success-soft: #ecfdf3;
-      --success-border: #bbf7d0;
-
-      --warning: #b45309;
-      --warning-soft: #fef8ee;
-      --warning-border: #fed7aa;
-
-      --danger: #b91c1c;
-
-      --radius-xs: 6px;
-      --radius-sm: 9px;
-      --radius-md: 14px;
-      --radius-lg: 18px;
-      --radius-xl: 24px;
-
-      --shadow-xs: 0 1px 2px rgba(15, 23, 42, 0.04);
-      --shadow-sm: 0 2px 6px rgba(15, 23, 42, 0.04), 0 1px 2px rgba(15, 23, 42, 0.02);
-      --shadow-md: 0 8px 24px -4px rgba(15, 23, 42, 0.06), 0 2px 6px -1px rgba(15, 23, 42, 0.03);
-      --shadow-lg: 0 18px 40px -8px rgba(15, 23, 42, 0.10), 0 4px 12px -2px rgba(15, 23, 42, 0.04);
-      --shadow-modal: 0 28px 70px -12px rgba(10, 17, 30, 0.45);
+      --container: 1400px;
+      --gut: 40px;
     }
 
     * {
       box-sizing: border-box;
     }
 
-    html, body {
+    body {
       margin: 0;
       padding: 0;
-      background: var(--bg);
-      color: var(--text);
-      font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      font-size: 14px;
-      line-height: 1.55;
+      background: var(--p-bg);
+      color: var(--p-ink);
+      font-family: var(--font-text);
+      font-size: 15px;
+      line-height: 1.6;
       -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      min-height: 100vh;
+      overflow-x: hidden;
     }
 
-    /* Subtle background ambient sheen */
+    /* Ambient studio background grid */
     body::before {
       content: "";
       position: fixed;
       inset: 0;
       pointer-events: none;
-      background: radial-gradient(circle at 18% 12%, rgba(197, 155, 67, 0.035) 0%, transparent 45%),
-                  radial-gradient(circle at 85% 75%, rgba(15, 26, 46, 0.03) 0%, transparent 50%);
+      background-image:
+        radial-gradient(circle at 15% 15%, rgba(212, 175, 55, 0.04) 0%, transparent 45%),
+        radial-gradient(circle at 85% 80%, rgba(30, 58, 138, 0.06) 0%, transparent 50%),
+        linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 48px 48px, 48px 48px;
       z-index: 0;
     }
 
-    /* Top Navigation */
+    /* Wrap container with equal edges */
+    .wrap {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 var(--gut);
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Header Nav */
     .topbar {
       position: sticky;
       top: 0;
-      z-index: 40;
-      background: rgba(255, 255, 255, 0.92);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--border);
-      padding: 12px 28px;
-      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      z-index: 50;
+      background: rgba(11, 15, 23, 0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--p-border);
+      padding: 14px 0;
     }
 
-    .topbar-inner {
-      max-width: 1400px;
-      margin: 0 auto;
+    .topbar .wrap {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 18px;
-      flex-wrap: wrap;
+      gap: 20px;
     }
 
     .brand {
       display: flex;
       align-items: center;
-      gap: 13px;
+      gap: 14px;
+      text-decoration: none;
+      color: inherit;
     }
 
     .brand-mark {
-      width: 40px;
-      height: 40px;
-      border-radius: 11px;
-      background: linear-gradient(135deg, var(--navy-950) 0%, var(--navy-800) 100%);
-      color: #fff;
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #182234 0%, #0d1522 100%);
+      border: 1px solid rgba(212, 175, 55, 0.4);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.15);
       display: grid;
       place-items: center;
-      font-family: "Cinzel", Georgia, serif;
-      font-size: 20px;
+      font-family: var(--font-display);
+      font-size: 18px;
       font-weight: 700;
-      flex-shrink: 0;
-      box-shadow: 0 4px 12px rgba(10, 17, 30, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.18);
-      position: relative;
-      border: 1px solid rgba(197, 155, 67, 0.35);
-    }
-
-    .brand-mark::after {
-      content: "";
-      position: absolute;
-      inset: 2px;
-      border-radius: 8px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      pointer-events: none;
+      color: var(--p-accent);
+      letter-spacing: -0.02em;
     }
 
     .brand-text h1 {
       margin: 0;
-      font-size: 16.5px;
+      font-size: 17px;
       font-weight: 700;
-      letter-spacing: -0.015em;
-      color: var(--navy-950);
+      letter-spacing: -0.02em;
+      color: #fff;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
     }
 
-    .brand-pill {
-      font-size: 10px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      padding: 2px 7px;
+    .brand-badge {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 8px;
       border-radius: 999px;
-      background: var(--gold-soft);
-      color: var(--gold-600);
-      border: 1px solid var(--gold-border);
+      background: rgba(212, 175, 55, 0.12);
+      color: var(--p-accent);
+      border: 1px solid rgba(212, 175, 55, 0.28);
+      letter-spacing: 0.02em;
     }
 
     .brand-text p {
       margin: 2px 0 0;
-      font-size: 12.5px;
-      color: var(--text-muted);
+      font-size: 13px;
+      color: var(--p-muted);
     }
 
     .topbar-actions {
       display: flex;
       align-items: center;
-      gap: 9px;
+      gap: 10px;
       flex-wrap: wrap;
     }
 
@@ -180,355 +194,425 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 7px;
-      padding: 8px 14px;
-      border-radius: var(--radius-sm);
-      font-family: inherit;
-      font-size: 13px;
+      gap: 8px;
+      height: 40px;
+      padding: 0 16px;
+      border-radius: 8px;
+      font-family: var(--font-text);
+      font-size: 13.5px;
       font-weight: 600;
-      border: 1px solid transparent;
       cursor: pointer;
-      transition: all 0.16s cubic-bezier(0.16, 1, 0.3, 1);
+      text-decoration: none;
       white-space: nowrap;
       user-select: none;
+      transition: all 0.16s cubic-bezier(0.16, 1, 0.3, 1);
+      border: 1px solid transparent;
     }
 
     .btn:active {
-      transform: scale(0.98);
+      transform: translateY(1px) scale(0.985);
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, var(--navy-900) 0%, var(--navy-800) 100%);
-      color: #ffffff;
-      box-shadow: 0 2px 8px rgba(15, 26, 46, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.15);
-      border-color: rgba(0, 0, 0, 0.1);
+      background: var(--p-accent);
+      color: var(--p-accent-ink);
+      box-shadow: 0 2px 8px rgba(212, 175, 55, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+      font-weight: 700;
     }
 
     .btn-primary:hover {
-      background: linear-gradient(135deg, var(--navy-950) 0%, var(--navy-900) 100%);
-      box-shadow: 0 4px 14px rgba(15, 26, 46, 0.22);
+      background: var(--p-accent-hover);
+      box-shadow: 0 4px 14px rgba(212, 175, 55, 0.34);
       transform: translateY(-1px);
     }
 
     .btn-secondary {
-      background: var(--surface);
-      color: var(--text);
-      border-color: var(--border-strong);
-      box-shadow: var(--shadow-xs);
+      background: var(--p-surface-raised);
+      color: var(--p-ink);
+      border-color: var(--p-border-strong);
     }
 
     .btn-secondary:hover {
-      background: var(--surface-raised);
-      border-color: #beb7a8;
-      box-shadow: var(--shadow-sm);
+      background: var(--p-surface-hover);
+      border-color: rgba(255, 255, 255, 0.24);
       transform: translateY(-1px);
     }
 
     .btn-ghost {
       background: transparent;
-      color: var(--text-muted);
+      color: var(--p-muted);
+      border-color: transparent;
     }
 
     .btn-ghost:hover {
-      background: rgba(15, 26, 46, 0.05);
-      color: var(--text);
-    }
-
-    .btn-gold {
-      background: linear-gradient(135deg, #d3ab55 0%, #b88b32 100%);
-      color: #ffffff;
-      box-shadow: 0 3px 10px rgba(184, 139, 50, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.25);
-    }
-
-    .btn-gold:hover {
-      background: linear-gradient(135deg, #dfb75f 0%, #aa7e27 100%);
-      transform: translateY(-1px);
-      box-shadow: 0 5px 14px rgba(184, 139, 50, 0.3);
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--p-ink);
     }
 
     .btn-sm {
-      padding: 6px 11px;
-      font-size: 12px;
-      border-radius: var(--radius-xs);
+      height: 32px;
+      padding: 0 12px;
+      font-size: 12.5px;
+      border-radius: 6px;
     }
 
-    /* Main 2-Column Responsive Layout */
-    .layout {
-      position: relative;
-      z-index: 1;
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 26px 28px 72px;
+    /* Hero Section */
+    .hero-banner {
+      padding: 44px 0 28px;
+      border-bottom: 1px solid var(--p-border);
+    }
+
+    .hero-row {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+
+    .hero-main {
+      max-width: 780px;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--p-accent);
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .hero-tag::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--p-accent);
+      box-shadow: 0 0 8px var(--p-accent);
+    }
+
+    .hero-title {
+      margin: 0 0 12px;
+      font-size: clamp(26px, 2.4vw + 16px, 38px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.18;
+      color: #ffffff;
+    }
+
+    .hero-desc {
+      margin: 0;
+      font-size: 16px;
+      color: var(--p-muted);
+      line-height: 1.6;
+      max-width: 680px;
+    }
+
+    .hero-metrics {
+      display: flex;
+      gap: 20px;
+      padding-top: 10px;
+    }
+
+    .metric-pill {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      background: var(--p-surface-raised);
+      border: 1px solid var(--p-border);
+      border-radius: 8px;
+      font-size: 12.5px;
+      color: var(--p-muted);
+    }
+
+    .metric-pill strong {
+      color: #ffffff;
+    }
+
+    /* Main Studio Workbench Layout */
+    .studio-layout {
+      padding: 32px 0 80px;
+    }
+
+    .studio-grid {
       display: grid;
-      grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
-      gap: 26px;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+      gap: 32px;
       align-items: start;
     }
 
-    .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-sm);
-      padding: 22px 26px;
-      transition: box-shadow 0.2s ease, border-color 0.2s ease;
+    @media (max-width: 1080px) {
+      .studio-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
-    .card:hover {
-      box-shadow: var(--shadow-md);
-      border-color: #dad5c7;
-    }
-
-    .form-stack {
+    /* Form Panels */
+    .form-column {
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 24px;
     }
 
-    .card-head {
+    .panel {
+      background: var(--p-surface);
+      border: 1px solid var(--p-border);
+      border-radius: 14px;
+      padding: 24px 26px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+      transition: border-color 0.16s ease, transform 0.16s ease;
+    }
+
+    .panel:hover {
+      border-color: var(--p-border-strong);
+      transform: translateY(-2px);
+    }
+
+    .panel-header {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 12px;
+      gap: 16px;
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--p-border);
     }
 
-    .card-head h2 {
-      margin: 0;
-      font-size: 15.5px;
-      font-weight: 700;
-      letter-spacing: -0.01em;
-      color: var(--navy-950);
+    .panel-title-wrap {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
     }
 
     .step-badge {
-      width: 26px;
-      height: 26px;
-      border-radius: 8px;
-      background: var(--navy-soft);
-      color: var(--navy-900);
+      width: 28px;
+      height: 28px;
+      border-radius: 7px;
+      background: rgba(212, 175, 55, 0.15);
+      color: var(--p-accent);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      font-family: var(--font-mono);
       font-size: 12px;
       font-weight: 700;
-      display: inline-grid;
+      display: grid;
       place-items: center;
       flex-shrink: 0;
-      border: 1px solid #d4e0f4;
-      font-family: "JetBrains Mono", monospace;
     }
 
-    .card-sub {
-      margin: -4px 0 16px;
-      font-size: 12.8px;
-      color: var(--text-muted);
-      line-height: 1.5;
+    .panel-title {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: -0.015em;
+      color: #fff;
     }
 
-    .grid-2 {
+    .panel-sub {
+      margin: 3px 0 0;
+      font-size: 13px;
+      color: var(--p-muted);
+    }
+
+    .field-grid-2 {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
     }
 
-    .field {
-      margin-bottom: 14px;
+    @media (max-width: 640px) {
+      .field-grid-2 {
+        grid-template-columns: 1fr;
+      }
     }
 
-    .field:last-child,
-    .grid-2 .field {
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+
+    .field-group:last-child {
       margin-bottom: 0;
     }
 
-    .field label {
+    .field-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--p-ink);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 6px;
-      font-size: 12.8px;
-      font-weight: 600;
-      margin-bottom: 6px;
-      color: var(--text);
+      gap: 8px;
     }
 
-    .label-left {
-      display: flex;
-      align-items: center;
-      gap: 6px;
+    .field-hint {
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--p-muted);
     }
 
-    .tag-opt {
-      font-size: 10.5px;
-      font-weight: 600;
-      color: var(--text-soft);
-      background: #f1ede3;
-      padding: 1.5px 7px;
-      border-radius: 999px;
-      letter-spacing: 0.02em;
+    .field-optional {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--p-muted-dim);
     }
 
-    .help {
-      display: block;
-      font-size: 11.8px;
-      color: var(--text-muted);
-      margin-top: 5px;
-      line-height: 1.45;
-    }
-
-    /* Input styling */
-    .input-wrap {
-      position: relative;
-    }
-
-    input[type="text"],
-    input[type="url"],
-    textarea,
-    select {
+    .input-text,
+    .input-textarea {
       width: 100%;
-      padding: 10px 13px;
-      border: 1px solid var(--border-strong);
-      border-radius: var(--radius-sm);
-      font-family: inherit;
-      font-size: 13.5px;
-      color: var(--text);
-      background: #ffffff;
-      transition: all 0.16s ease;
-      box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.02);
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid var(--p-border);
+      border-radius: 8px;
+      padding: 10px 14px;
+      color: #ffffff;
+      font-family: var(--font-text);
+      font-size: 14px;
+      transition: border-color 0.16s ease, box-shadow 0.16s ease, background-color 0.16s ease;
     }
 
-    textarea {
-      resize: vertical;
-      min-height: 76px;
+    .input-text:focus,
+    .input-textarea:focus {
+      outline: none;
+      border-color: var(--p-accent);
+      background: rgba(0, 0, 0, 0.45);
+      box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
+    }
+
+    .input-text::placeholder,
+    .input-textarea::placeholder {
+      color: var(--p-muted-dim);
+    }
+
+    .input-mono {
+      font-family: var(--font-mono);
+      font-size: 13px;
       line-height: 1.5;
     }
 
-    textarea.code-input {
-      font-family: "JetBrains Mono", SFMono-Regular, Menlo, Monaco, monospace;
-      font-size: 12px;
-      background: #fbfaf8;
-      min-height: 86px;
-      line-height: 1.45;
+    .input-textarea {
+      resize: vertical;
+      min-height: 84px;
     }
 
-    input:focus,
-    textarea:focus,
-    select:focus {
-      outline: none;
-      border-color: var(--navy-900);
-      background: #ffffff;
-      box-shadow: 0 0 0 3px rgba(15, 26, 46, 0.09), inset 0 1px 2px rgba(0, 0, 0, 0.02);
-    }
-
-    input::placeholder,
-    textarea::placeholder {
-      color: #9aa2b1;
-    }
-
-    /* Dynamic URL Rows */
-    .url-list {
-      display: flex;
-      flex-direction: column;
-      gap: 9px;
-      margin-bottom: 12px;
-    }
-
+    /* Extra URLs Dynamic List */
     .url-row {
       display: grid;
-      grid-template-columns: 145px minmax(0, 1fr) auto;
-      gap: 9px;
+      grid-template-columns: 160px 1fr 36px;
+      gap: 8px;
       align-items: center;
+      margin-bottom: 8px;
+    }
+
+    @media (max-width: 600px) {
+      .url-row {
+        grid-template-columns: 1fr 1fr 36px;
+      }
     }
 
     .icon-btn {
       width: 36px;
       height: 36px;
-      border-radius: var(--radius-sm);
-      border: 1px solid var(--border-strong);
-      background: #ffffff;
-      color: var(--text-muted);
-      font-size: 18px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--p-border);
+      color: var(--p-muted);
       cursor: pointer;
       display: grid;
       place-items: center;
-      transition: all 0.15s ease;
-      line-height: 1;
+      font-size: 16px;
+      transition: all 0.14s ease;
     }
 
     .icon-btn:hover {
-      background: #fef2f2;
-      border-color: #fecaca;
-      color: var(--danger);
+      background: rgba(239, 68, 68, 0.15);
+      color: #f87171;
+      border-color: rgba(239, 68, 68, 0.3);
     }
 
-    /* Inspiration Gallery */
-    .inspo-bar {
+    /* Callout & Instruction Cards */
+    .info-callout {
+      background: rgba(212, 175, 55, 0.06);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-size: 13px;
+      color: #e2d7ba;
+      line-height: 1.55;
+      margin-top: 14px;
+    }
+
+    .info-callout p {
+      margin: 0;
+    }
+
+    .info-callout strong {
+      color: var(--p-accent);
+    }
+
+    /* Inspiration Selection Section */
+    .inspo-header-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 12px;
       flex-wrap: wrap;
-      margin-bottom: 14px;
-      padding: 9px 13px;
-      background: var(--surface-raised);
-      border-radius: var(--radius-sm);
-      border: 1px solid var(--border);
+      margin-bottom: 16px;
     }
 
-    .inspo-count-wrap {
+    .inspo-meta {
       display: flex;
       align-items: center;
       gap: 8px;
+      font-size: 13px;
+      color: var(--p-muted);
     }
 
-    .inspo-dot {
+    .status-dot {
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      background: #cbd5e1;
-      transition: background 0.2s ease;
+      background: var(--p-muted-dim);
     }
 
-    .inspo-dot.active {
-      background: var(--gold-500);
-      box-shadow: 0 0 0 3px rgba(197, 155, 67, 0.2);
-    }
-
-    .inspo-count {
-      font-size: 12.5px;
-      font-weight: 600;
-      color: var(--navy-900);
+    .status-dot.active {
+      background: var(--p-accent);
+      box-shadow: 0 0 8px var(--p-accent);
     }
 
     .inspo-grid {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 14px;
     }
 
     .inspo-card {
-      position: relative;
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      background: #ffffff;
-      padding: 13px 14px;
+      background: var(--p-surface-raised);
+      border: 1px solid var(--p-border);
+      border-radius: 10px;
+      padding: 14px;
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      justify-content: space-between;
+      gap: 12px;
       transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
-      box-shadow: var(--shadow-xs);
     }
 
     .inspo-card:hover {
-      border-color: #cdc7b9;
-      transform: translateY(-1.5px);
-      box-shadow: var(--shadow-md);
+      border-color: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+      background: var(--p-surface-hover);
     }
 
     .inspo-card.selected {
-      border-color: var(--gold-500);
-      background: linear-gradient(180deg, #fffcf6 0%, #faf6ec 100%);
-      box-shadow: 0 0 0 2px var(--gold-border), var(--shadow-sm);
+      border-color: var(--p-accent);
+      background: rgba(212, 175, 55, 0.05);
+      box-shadow: 0 0 0 1px var(--p-accent), 0 4px 16px rgba(0, 0, 0, 0.3);
     }
 
     .inspo-card-top {
@@ -539,344 +623,274 @@
     }
 
     .inspo-name {
-      font-size: 13.5px;
+      font-size: 14px;
       font-weight: 700;
-      color: var(--navy-950);
-      line-height: 1.35;
-      letter-spacing: -0.01em;
+      color: #fff;
     }
 
     .inspo-host {
+      font-family: var(--font-mono);
       font-size: 11.5px;
-      color: var(--text-soft);
-      word-break: break-all;
+      color: var(--p-muted);
       margin-top: 3px;
-      font-family: "JetBrains Mono", monospace;
+      word-break: break-all;
     }
 
     .inspo-check {
       width: 22px;
       height: 22px;
       border-radius: 6px;
-      border: 1.5px solid var(--border-strong);
-      background: #fff;
+      border: 1px solid var(--p-border-strong);
+      background: rgba(0, 0, 0, 0.3);
+      color: var(--p-accent);
       display: grid;
       place-items: center;
-      font-size: 12px;
+      font-size: 13px;
       font-weight: 700;
-      color: #fff;
-      flex-shrink: 0;
       cursor: pointer;
+      flex-shrink: 0;
       transition: all 0.14s ease;
     }
 
     .inspo-card.selected .inspo-check {
-      background: var(--navy-900);
-      border-color: var(--navy-900);
-      box-shadow: 0 2px 5px rgba(15, 26, 46, 0.2);
+      background: var(--p-accent);
+      color: var(--p-accent-ink);
+      border-color: var(--p-accent);
     }
 
     .inspo-actions {
-      display: flex;
-      gap: 7px;
-    }
-
-    .inspo-actions .btn {
-      flex: 1;
-      padding: 6px 9px;
-      font-size: 11.8px;
-    }
-
-    /* Optional details accordion */
-    details.optional-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-sm);
-      padding: 16px 24px;
-      transition: border-color 0.18s ease;
-    }
-
-    details.optional-card[open] {
-      border-color: #d8d3c5;
-    }
-
-    details.optional-card summary {
-      cursor: pointer;
-      font-size: 13.5px;
-      font-weight: 700;
-      color: var(--navy-950);
-      list-style: none;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      user-select: none;
-    }
-
-    details.optional-card summary::-webkit-details-marker {
-      display: none;
-    }
-
-    .summary-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-    }
-
-    .summary-icon {
-      width: 24px;
-      height: 24px;
-      border-radius: 50%;
-      background: var(--bg-subtle);
-      display: grid;
-      place-items: center;
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--text-muted);
-      transition: transform 0.2s ease;
-    }
-
-    details.optional-card[open] .summary-icon {
-      transform: rotate(45deg);
-    }
-
-    .details-body {
-      margin-top: 14px;
-      padding-top: 16px;
-      border-top: 1px solid var(--border);
-    }
-
-    /* Sticky Prompt Console Column */
-    .preview-col {
-      position: sticky;
-      top: 80px;
-    }
-
-    .console-card {
-      background: #0f1623;
-      border: 1px solid #222d3f;
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-lg), 0 0 0 1px rgba(255, 255, 255, 0.04);
-      padding: 18px 20px;
-      color: #edf2f9;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .console-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-bottom: 12px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid #1e293b;
-    }
-
-    .console-title {
-      display: flex;
-      align-items: center;
-      gap: 9px;
-    }
-
-    .console-dot {
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: #22c55e;
-      box-shadow: 0 0 10px rgba(34, 197, 94, 0.6);
-    }
-
-    .console-title h2 {
-      margin: 0;
-      font-size: 14.5px;
-      font-weight: 700;
-      letter-spacing: -0.01em;
-      color: #f8fafc;
-    }
-
-    .console-actions {
-      display: flex;
-      align-items: center;
-      gap: 7px;
-    }
-
-    .console-actions .btn {
-      padding: 6px 12px;
-      font-size: 12px;
-    }
-
-    .btn-console-dark {
-      background: #1e283b;
-      color: #e2e8f0;
-      border-color: #334155;
-    }
-
-    .btn-console-dark:hover {
-      background: #2b3952;
-      border-color: #475569;
-      color: #fff;
-    }
-
-    .btn-console-gold {
-      background: linear-gradient(135deg, #d4af37 0%, #aa8425 100%);
-      color: #0b111c;
-      font-weight: 700;
-      border-color: transparent;
-      box-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
-    }
-
-    .btn-console-gold:hover {
-      background: linear-gradient(135deg, #e4be45 0%, #bd942d 100%);
-      transform: translateY(-1px);
-    }
-
-    .console-meta-bar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-bottom: 10px;
-      font-size: 11.5px;
-      color: #8b99ae;
-    }
-
-    .status-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 3px 9px;
-      border-radius: 999px;
-      font-size: 11.5px;
-      font-weight: 600;
-    }
-
-    .status-pill.ready {
-      background: rgba(34, 197, 94, 0.14);
-      color: #4ade80;
-      border: 1px solid rgba(34, 197, 94, 0.3);
-    }
-
-    .status-pill.pending {
-      background: rgba(245, 158, 11, 0.14);
-      color: #fbbf24;
-      border: 1px solid rgba(245, 158, 11, 0.3);
-    }
-
-    .console-stats {
-      font-family: "JetBrains Mono", monospace;
-      color: #718096;
-    }
-
-    .prompt-output {
-      width: 100%;
-      height: calc(100vh - 245px);
-      min-height: 480px;
-      max-height: 800px;
-      font-family: "JetBrains Mono", SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-      font-size: 12px;
-      line-height: 1.62;
-      padding: 16px 18px;
-      border-radius: var(--radius-sm);
-      border: 1px solid #1e293d;
-      background: #080c14;
-      color: #e2e8f0;
-      white-space: pre-wrap;
-      word-break: break-word;
-      resize: vertical;
-    }
-
-    .prompt-output:focus {
-      outline: none;
-      border-color: #3b82f6;
-      box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
-    }
-
-    /* Modal Backdrop & Realistic Device Frames */
-    .modal-backdrop {
-      position: fixed;
-      inset: 0;
-      background: rgba(8, 12, 20, 0.82);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      z-index: 100;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 18px;
-    }
-
-    .modal-backdrop.open {
-      display: flex;
-    }
-
-    .modal-shell {
-      width: min(1440px, 98vw);
-      height: min(94vh, 940px);
-      background: #111723;
-      border-radius: 20px;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      box-shadow: var(--shadow-modal);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-    }
-
-    .modal-head {
-      background: #172132;
-      border-bottom: 1px solid #233147;
-      padding: 12px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-      flex-wrap: wrap;
-      color: #fff;
-    }
-
-    .modal-nav-group {
       display: flex;
       align-items: center;
       gap: 8px;
     }
 
-    .modal-select {
-      padding: 7px 12px;
-      border-radius: var(--radius-sm);
-      border: 1px solid #2d3e58;
-      font-family: inherit;
+    .inspo-actions .btn {
+      flex: 1;
+    }
+
+    /* Output Console Column (Sticky) */
+    .console-column {
+      position: sticky;
+      top: 86px;
+    }
+
+    .console-card {
+      background: var(--p-surface);
+      border: 1px solid var(--p-border);
+      border-radius: 14px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+      overflow: hidden;
+    }
+
+    .console-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 20px;
+      background: var(--p-surface-raised);
+      border-bottom: 1px solid var(--p-border);
+    }
+
+    .console-title-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .console-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .console-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .console-dot.red { background: #ef4444; }
+    .console-dot.amber { background: #f59e0b; }
+    .console-dot.green { background: #10b981; }
+
+    .console-heading {
       font-size: 13.5px;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: -0.01em;
+    }
+
+    .console-status {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .status-pill {
+      font-size: 11.5px;
       font-weight: 600;
-      color: #f1f5f9;
-      background: #0d1522;
-      max-width: 280px;
+      padding: 3px 9px;
+      border-radius: 999px;
+      letter-spacing: 0.02em;
+    }
+
+    .status-pill.ready {
+      background: rgba(16, 185, 129, 0.15);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    .status-pill.pending {
+      background: rgba(245, 158, 11, 0.15);
+      color: #fbbf24;
+      border: 1px solid rgba(245, 158, 11, 0.3);
+    }
+
+    .console-counter {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--p-muted);
+    }
+
+    .prompt-viewer {
+      width: 100%;
+      height: 520px;
+      background: #070a10;
+      color: #e2e8f0;
+      border: none;
+      padding: 20px;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      line-height: 1.65;
+      resize: vertical;
+      white-space: pre-wrap;
+      word-break: break-word;
+      tab-size: 2;
+    }
+
+    .prompt-viewer:focus {
+      outline: none;
+    }
+
+    .console-footer {
+      padding: 14px 20px;
+      background: var(--p-surface-raised);
+      border-top: 1px solid var(--p-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .console-footer-note {
+      font-size: 12px;
+      color: var(--p-muted);
+    }
+
+    .console-footer-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* Live Multi-Device Preview Modal */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      background: rgba(5, 8, 13, 0.85);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      display: none;
+      place-items: center;
+      padding: 20px;
+    }
+
+    .modal-backdrop.open {
+      display: grid;
+    }
+
+    .modal-window {
+      width: 95vw;
+      max-width: 1480px;
+      height: 92vh;
+      background: #0d121c;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 16px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.7);
+      overflow: hidden;
+    }
+
+    .modal-top {
+      padding: 14px 20px;
+      background: #111724;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .modal-nav-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .modal-select {
+      background: #090d14;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 8px;
+      color: #fff;
+      font-family: var(--font-text);
+      font-size: 13.5px;
+      padding: 6px 12px;
+      cursor: pointer;
     }
 
     .modal-select:focus {
       outline: none;
-      border-color: var(--gold-400);
+      border-color: var(--p-accent);
     }
 
-    .device-tabs {
-      display: inline-flex;
-      background: #0d1522;
+    .modal-url-chip {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--p-muted);
+      background: rgba(255, 255, 255, 0.04);
+      padding: 6px 12px;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      max-width: 320px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .device-switcher {
+      display: flex;
+      align-items: center;
+      background: #090d14;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
       padding: 3px;
-      border-radius: 11px;
-      gap: 3px;
-      border: 1px solid #24334a;
+      gap: 2px;
     }
 
     .device-tab {
-      border: none;
-      background: transparent;
-      padding: 6px 13px;
-      border-radius: 8px;
-      font-family: inherit;
+      padding: 6px 12px;
       font-size: 12.5px;
       font-weight: 600;
-      color: #94a3b8;
+      color: var(--p-muted);
+      background: transparent;
+      border: none;
+      border-radius: 6px;
       cursor: pointer;
       transition: all 0.14s ease;
       display: inline-flex;
@@ -884,32 +898,38 @@
       gap: 6px;
     }
 
-    .device-tab.active {
-      background: #1e2d44;
+    .device-tab:hover {
       color: #ffffff;
-      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
     }
 
-    .modal-right-actions {
+    .device-tab.active {
+      background: var(--p-surface-raised);
+      color: var(--p-accent);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+    }
+
+    .modal-controls {
       display: flex;
       align-items: center;
-      gap: 9px;
-      flex-wrap: wrap;
+      gap: 8px;
     }
 
     .modal-stage {
       flex: 1;
-      overflow: auto;
-      padding: 24px;
+      background: #06090f;
       display: flex;
-      align-items: flex-start;
+      align-items: center;
       justify-content: center;
       gap: 24px;
-      background: radial-gradient(circle at top, #1a2332 0%, #0c111a 100%);
+      padding: 24px;
+      overflow: auto;
+      position: relative;
     }
 
     .modal-stage.mode-all {
-      flex-wrap: wrap;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 28px;
     }
 
     .device-shell {
@@ -917,486 +937,491 @@
       flex-direction: column;
       align-items: center;
       gap: 10px;
-      max-width: 100%;
     }
 
     .device-label {
-      font-size: 11.5px;
-      font-weight: 700;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--p-muted);
+      letter-spacing: 0.04em;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: #94a3b8;
-      background: rgba(15, 23, 42, 0.7);
-      padding: 3px 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      font-family: "JetBrains Mono", monospace;
     }
 
-    /* Realistic Apple Device Frames */
     .device-frame {
-      position: relative;
-      background: #000;
+      background: #182030;
+      border-radius: 16px;
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.6);
+      border: 8px solid #1a2233;
       overflow: hidden;
-      box-shadow: 0 25px 60px -10px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.1);
+      display: grid;
+      place-items: center;
     }
 
-    /* Desktop - Studio Display */
     .frame-desktop {
       border-radius: 12px;
-      border: 10px solid #1e2634;
-      border-bottom: 22px solid #1a212d;
+      border-width: 10px 10px 14px 10px;
+      border-color: #1f2a40;
     }
 
-    .frame-desktop::before {
-      content: "";
-      position: absolute;
-      top: -7px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: #0d131c;
-      z-index: 10;
-    }
-
-    /* Tablet - iPad Pro */
     .frame-tablet {
-      border-radius: 22px;
-      border: 10px solid #1a2230;
+      border-radius: 24px;
+      border-width: 14px;
+      border-color: #1a2336;
     }
 
-    /* Mobile - iPhone 16 Pro with Dynamic Island */
     .frame-mobile {
-      border-radius: 38px;
-      border: 10px solid #1e2532;
+      border-radius: 36px;
+      border-width: 12px;
+      border-color: #131a26;
+      position: relative;
     }
 
     .frame-mobile::before {
       content: "";
       position: absolute;
-      top: 10px;
+      top: 8px;
       left: 50%;
       transform: translateX(-50%);
-      width: 76px;
-      height: 20px;
+      width: 72px;
+      height: 18px;
       background: #000;
-      border-radius: 20px;
-      z-index: 15;
-      box-shadow: 0 0 1px rgba(255, 255, 255, 0.2);
+      border-radius: 999px;
+      z-index: 10;
     }
 
     .device-viewport {
       position: relative;
+      background: #fff;
       overflow: hidden;
-      background: #ffffff;
     }
 
     .device-viewport iframe {
-      border: 0;
-      transform-origin: top left;
+      border: none;
+      transform-origin: 0 0;
       display: block;
-      background: #ffffff;
     }
 
     .frame-loader {
       position: absolute;
       inset: 0;
+      background: #0a0e17;
+      color: var(--p-muted);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 10px;
-      background: #0c111a;
-      color: #94a3b8;
+      gap: 12px;
       font-size: 13px;
-      font-weight: 500;
-      pointer-events: none;
-      transition: opacity 0.25s ease;
       z-index: 5;
+      transition: opacity 0.25s ease;
     }
 
     .frame-loader.hidden {
       opacity: 0;
+      pointer-events: none;
     }
 
     .spinner {
       width: 28px;
       height: 28px;
       border: 3px solid rgba(255, 255, 255, 0.1);
-      border-top-color: var(--gold-400);
+      border-top-color: var(--p-accent);
       border-radius: 50%;
-      animation: spin 0.75s linear infinite;
+      animation: spin 0.8s linear infinite;
     }
 
     @keyframes spin {
       to { transform: rotate(360deg); }
     }
 
-    .modal-foot {
-      background: #172132;
-      border-top: 1px solid #233147;
-      padding: 10px 22px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-      flex-wrap: wrap;
-      font-size: 12px;
-      color: #94a3b8;
-    }
-
-    .modal-foot strong {
-      color: #e2e8f0;
-      font-family: "JetBrains Mono", monospace;
-    }
-
-    .modal-foot a {
-      color: var(--gold-400);
-      font-weight: 600;
-      text-decoration: none;
-    }
-
-    .modal-foot a:hover {
-      text-decoration: underline;
-    }
-
     /* Toast Notification */
-    .toast {
+    .toast-box {
       position: fixed;
       bottom: 24px;
       right: 24px;
-      background: #0d1522;
+      z-index: 200;
+      background: #111827;
       color: #ffffff;
-      padding: 11px 18px;
-      border-radius: var(--radius-sm);
-      font-size: 13px;
+      border: 1px solid var(--p-accent);
+      border-radius: 8px;
+      padding: 12px 18px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+      font-size: 13.5px;
       font-weight: 600;
-      box-shadow: var(--shadow-lg);
-      border: 1px solid rgba(255, 255, 255, 0.15);
       opacity: 0;
       transform: translateY(12px);
       pointer-events: none;
       transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-      z-index: 120;
-      display: flex;
-      align-items: center;
-      gap: 8px;
     }
 
-    .toast.show {
+    .toast-box.show {
       opacity: 1;
       transform: translateY(0);
     }
 
-    /* Responsive */
-    @media (max-width: 1024px) {
-      .layout {
-        grid-template-columns: 1fr;
-        padding: 20px 18px 60px;
-      }
-
-      .preview-col {
-        position: static;
-      }
-
-      .prompt-output {
-        height: 440px;
-      }
+    /* Footer with one licence credit line (Rule 1) */
+    .studio-footer {
+      border-top: 1px solid var(--p-border);
+      padding: 24px 0;
+      color: var(--p-muted-dim);
+      font-size: 12.5px;
     }
 
-    @media (max-width: 640px) {
-      .topbar {
-        padding: 12px 16px;
-      }
+    .studio-footer .wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
 
-      .card {
-        padding: 18px 16px;
-      }
+    .studio-footer a {
+      color: var(--p-muted);
+      text-decoration: none;
+      transition: color 0.14s ease;
+    }
 
-      .grid-2,
-      .url-row,
-      .inspo-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .icon-btn {
-        width: 100%;
-      }
+    .studio-footer a:hover {
+      color: var(--p-ink);
     }
   </style>
 </head>
 <body>
+
+  <!-- Top Navigation Bar -->
   <header class="topbar">
-    <div class="topbar-inner">
-      <div class="brand">
-        <div class="brand-mark">V</div>
+    <div class="wrap">
+      <a class="brand" href="#top">
+        <div class="brand-mark">VF</div>
         <div class="brand-text">
-          <h1>Venue Funnel Studio <span class="brand-pill">3-Page Spec</span></h1>
-          <p>Generate high-converting lead funnel build briefs from client URLs &amp; assets</p>
+          <h1>Venue Funnel Studio <span class="brand-badge">GHL 3-Step System</span></h1>
+          <p>Generate high-converting booking funnel briefs from venue URLs</p>
         </div>
-      </div>
+      </a>
       <div class="topbar-actions">
-        <button type="button" class="btn btn-secondary" id="btnExample">
-          <span>✨ Fill Example</span>
-        </button>
-        <button type="button" class="btn btn-ghost" id="btnClear">Clear</button>
-        <button type="button" class="btn btn-gold" id="btnTopCopy">
-          <span>Copy Build Prompt</span>
-        </button>
+        <button type="button" class="btn btn-secondary btn-sm" id="btnExample">Load Demo Venue</button>
+        <button type="button" class="btn btn-ghost btn-sm" id="btnClear">Reset Form</button>
+        <button type="button" class="btn btn-primary btn-sm" id="btnTopCopy">Copy Prompt</button>
       </div>
     </div>
   </header>
 
-  <main class="layout">
-    <!-- LEFT COLUMN: STREAMLINED ASSET-URL FORM -->
-    <form id="briefForm" class="form-stack" autocomplete="off">
-
-      <!-- 1. Venue Basics -->
-      <section class="card">
-        <div class="card-head">
-          <h2><span class="step-badge">01</span> Venue Identity</h2>
+  <!-- Hero Banner -->
+  <section class="hero-banner" id="top">
+    <div class="wrap">
+      <div class="hero-row">
+        <div class="hero-main">
+          <div class="hero-tag">GoHighLevel Lead Capture Architecture</div>
+          <h2 class="hero-title">Turn venue links and brochures into ready-to-build booking funnels.</h2>
+          <p class="hero-desc">
+            Paste client website URLs, digital brochures, and form embeds to extract brand colors,
+            floorplans, photography, and conversion elements into one structured brief.
+          </p>
         </div>
-        <div class="grid-2">
-          <div class="field">
-            <label for="venueName">
-              <span class="label-left">Venue Name</span>
-            </label>
-            <input type="text" id="venueName" placeholder="e.g. Doko Manor" />
+        <div class="hero-metrics">
+          <div class="metric-pill">
+            <strong>13</strong> Live layout references
           </div>
-          <div class="field">
-            <label for="venueLocation">
-              <span class="label-left">City, State</span>
-              <span class="tag-opt">Optional</span>
-            </label>
-            <input type="text" id="venueLocation" placeholder="Leave blank to extract from site" />
+          <div class="metric-pill">
+            <strong>3-Step</strong> Opt-in, Tour & Thank you
           </div>
         </div>
-      </section>
-
-      <!-- 2. Client Resource URLs -->
-      <section class="card">
-        <div class="card-head">
-          <h2><span class="step-badge">02</span> Client Resource URLs</h2>
-        </div>
-        <p class="card-sub">Share links to the venue's live website, brochure, and privacy policy. The AI analyzes these to pull brand colors, fonts, spaces, amenities, capacity, and contact info.</p>
-
-        <div class="field">
-          <label for="websiteUrl">
-            <span class="label-left">Venue Website URL</span>
-          </label>
-          <input type="url" id="websiteUrl" placeholder="https://www.venuewebsite.com" />
-          <span class="help">Used to extract the official logo, palette, typography, location, and contact details.</span>
-        </div>
-
-        <div class="field">
-          <label for="brochureUrl">
-            <span class="label-left">Brochure / Packages URL</span>
-            <span class="tag-opt">PDF or Webpage</span>
-          </label>
-          <input type="url" id="brochureUrl" placeholder="https://www.venuewebsite.com/wedding-brochure.pdf" />
-          <span class="help">Used to extract spaces, kitchen/suites, guest capacity, and inclusions (no pricing shown).</span>
-        </div>
-
-        <div class="field">
-          <label for="privacyPolicyUrl">
-            <span class="label-left">Privacy Policy Page URL</span>
-            <span class="tag-opt">Optional</span>
-          </label>
-          <input type="url" id="privacyPolicyUrl" placeholder="https://www.venuewebsite.com/privacy-policy" />
-          <span class="help">If provided, the AI generates a brand-matched <code>/privacy-policy</code> page linked in the footer.</span>
-        </div>
-
-        <div class="field">
-          <label>
-            <span class="label-left">Additional Reference Links</span>
-            <span class="tag-opt">Optional</span>
-          </label>
-          <div class="url-list" id="extraUrlsList"></div>
-          <button type="button" class="btn btn-secondary btn-sm" id="btnAddExtraUrl">+ Add Another Link</button>
-          <span class="help">e.g. Instagram, The Knot / WeddingWire, About page, FAQ page, or Drive folder.</span>
-        </div>
-      </section>
-
-      <!-- 3. Venue Logo & Media URLs -->
-      <section class="card">
-        <div class="card-head">
-          <h2><span class="step-badge">03</span> Venue Logo &amp; Photography</h2>
-        </div>
-        <p class="card-sub">Share the venue's official logo, photo gallery, or direct image links. The AI picks the strongest shots for each section or adapts with meaningful spec highlights.</p>
-
-        <div class="grid-2" style="margin-bottom: 14px;">
-          <div class="field">
-            <label for="logoImageUrl">
-              <span class="label-left">Venue Logo Image URL</span>
-              <span class="tag-opt">Optional</span>
-            </label>
-            <input type="url" id="logoImageUrl" placeholder="https://.../logo.png or .svg" />
-            <span class="help">Direct link to logo. Leave blank to extract from site.</span>
-          </div>
-          <div class="field">
-            <label for="mediaFolderUrl">
-              <span class="label-left">Photo Gallery / Media Folder URL</span>
-              <span class="tag-opt">Optional</span>
-            </label>
-            <input type="url" id="mediaFolderUrl" placeholder="https://www.venuewebsite.com/gallery" />
-            <span class="help">Paste a gallery or Drive folder link.</span>
-          </div>
-        </div>
-
-        <div class="field">
-          <label for="galleryUrls">
-            <span class="label-left">Direct Venue Photo URLs</span>
-            <span class="tag-opt">Optional — one per line</span>
-          </label>
-          <textarea id="galleryUrls" rows="3" placeholder="https://.../photo-1.jpg&#10;https://.../photo-2.jpg&#10;https://.../photo-3.jpg"></textarea>
-          <span class="help">Paste any direct image links. The AI will distribute the best shots across hero, spaces, and gallery automatically.</span>
-        </div>
-      </section>
-
-      <!-- 4. Embedded Forms (GHL Iframes) -->
-      <section class="card">
-        <div class="card-head">
-          <h2><span class="step-badge">04</span> Form Embed Codes (Iframes)</h2>
-        </div>
-        <p class="card-sub">Paste the iframe embed snippets from GoHighLevel (or your CRM) for Page 1 and Page 2.</p>
-
-        <div class="field">
-          <label for="p1Iframe">
-            <span class="label-left">Page 1 Form Embed Code (Brochure Opt-in)</span>
-          </label>
-          <textarea id="p1Iframe" class="code-input" placeholder='<iframe src="https://..." id="inline-..." data-form-name="..." data-height="540"></iframe>&#10;<script src="https://..."></script>'></textarea>
-        </div>
-
-        <div class="field">
-          <label for="p2Iframe">
-            <span class="label-left">Page 2 Form Embed Code (Tour Request)</span>
-          </label>
-          <textarea id="p2Iframe" class="code-input" placeholder='<iframe src="https://..." id="inline-..." data-form-name="..." data-height="680"></iframe>&#10;<script src="https://..."></script>'></textarea>
-        </div>
-      </section>
-
-      <!-- 5. Optional Layout Inspiration -->
-      <section class="card">
-        <div class="card-head">
-          <h2><span class="step-badge">05</span> Layout &amp; Visual Inspiration</h2>
-          <button type="button" class="btn btn-secondary btn-sm" id="btnOpenGalleryPreview">
-            <span>📱 Live Device Preview</span>
-          </button>
-        </div>
-        <p class="card-sub">Select one or more example funnels to guide layout hierarchy, pacing, and mobile composition. All branding, logo, colors, and content will still come exclusively from the client's assets.</p>
-
-        <div class="inspo-bar">
-          <div class="inspo-count-wrap">
-            <span class="inspo-dot" id="inspoDot"></span>
-            <span class="inspo-count" id="inspoCount">None selected (optional)</span>
-          </div>
-          <button type="button" class="btn btn-ghost btn-sm" id="btnClearInspo" style="display: none;">Clear selection</button>
-        </div>
-
-        <div class="inspo-grid" id="inspoGrid"></div>
-      </section>
-
-      <!-- 6. Optional Overrides -->
-      <details class="optional-card">
-        <summary>
-          <span class="summary-badge">
-            <span class="summary-icon">+</span>
-            <span>Optional: Custom CTA Labels or Special Notes</span>
-          </span>
-        </summary>
-        <div class="details-body">
-          <div class="grid-2" style="margin-bottom: 14px;">
-            <div class="field">
-              <label for="p1Cta">
-                <span class="label-left">Page 1 Primary CTA Label</span>
-              </label>
-              <input type="text" id="p1Cta" value="Download Pricing Brochure" />
-            </div>
-            <div class="field">
-              <label for="p2Cta">
-                <span class="label-left">Page 2 Tour CTA Label</span>
-              </label>
-              <input type="text" id="p2Cta" value="Request a Tour" />
-            </div>
-          </div>
-          <div class="field">
-            <label for="extraNotes">
-              <span class="label-left">Special Instructions for the AI</span>
-              <span class="tag-opt">Optional</span>
-            </label>
-            <textarea id="extraNotes" rows="2" placeholder="e.g. Match the deep navy &amp; gold palette from their logo; highlight the lakeside pergola; ignore corporate pricing."></textarea>
-          </div>
-        </div>
-      </details>
-
-    </form>
-
-    <!-- RIGHT COLUMN: AI BUILD BRIEF CONSOLE -->
-    <aside class="preview-col">
-      <div class="console-card">
-        <div class="console-head">
-          <div class="console-title">
-            <span class="console-dot"></span>
-            <h2>Generated Build Brief Prompt</h2>
-          </div>
-          <div class="console-actions">
-            <button type="button" class="btn btn-console-dark" id="btnDownload">Download .md</button>
-            <button type="button" class="btn btn-console-gold" id="btnCopy">Copy Brief</button>
-          </div>
-        </div>
-
-        <div class="console-meta-bar">
-          <span class="status-pill pending" id="statusPill">Paste venue URLs &amp; iframes</span>
-          <span class="console-stats" id="consoleStats">0 words · 0 chars</span>
-          <span id="saveNote">Auto-saved</span>
-        </div>
-
-        <textarea id="promptOutput" class="prompt-output" readonly aria-label="Generated prompt"></textarea>
       </div>
-    </aside>
+    </div>
+  </section>
+
+  <!-- Main Studio Workbench -->
+  <main class="studio-layout">
+    <div class="wrap">
+      <div class="studio-grid">
+
+        <!-- Left Column: Intake Form -->
+        <div class="form-column">
+          <form id="briefForm" autocomplete="off" onsubmit="return false;">
+
+            <!-- Section 01: Client Assets & Discovery URLs -->
+            <div class="panel">
+              <div class="panel-header">
+                <div class="panel-title-wrap">
+                  <div>
+                    <h3 class="panel-title">Client assets & discovery</h3>
+                    <p class="panel-sub">Target venue name, physical location, and core web destinations</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="field-grid-2">
+                <div class="field-group">
+                  <label class="field-label" for="venueName">Venue name</label>
+                  <input type="text" id="venueName" class="input-text" placeholder="e.g. Doko Manor">
+                </div>
+                <div class="field-group">
+                  <label class="field-label" for="venueLocation">Location (city, state)</label>
+                  <input type="text" id="venueLocation" class="input-text" placeholder="e.g. Blythewood, South Carolina">
+                </div>
+              </div>
+
+              <div class="field-group">
+                <label class="field-label" for="websiteUrl">
+                  Client website URL
+                  <span class="field-hint">Primary extraction source</span>
+                </label>
+                <input type="url" id="websiteUrl" class="input-text input-mono" placeholder="https://www.examplevenue.com">
+              </div>
+
+              <div class="field-grid-2">
+                <div class="field-group">
+                  <label class="field-label" for="brochureUrl">
+                    Brochure or packages URL
+                    <span class="field-optional">(optional)</span>
+                  </label>
+                  <input type="url" id="brochureUrl" class="input-text input-mono" placeholder="https://.../pricing-guide.pdf">
+                </div>
+                <div class="field-group">
+                  <label class="field-label" for="privacyPolicyUrl">
+                    Privacy policy URL
+                    <span class="field-optional">(optional)</span>
+                  </label>
+                  <input type="url" id="privacyPolicyUrl" class="input-text input-mono" placeholder="https://.../privacy-policy">
+                </div>
+              </div>
+
+              <div class="field-group">
+                <label class="field-label">
+                  Additional reference URLs
+                  <span class="field-hint">Instagram, virtual tours, drive folders</span>
+                </label>
+                <div id="extraUrlsList"></div>
+                <button type="button" class="btn btn-secondary btn-sm" id="btnAddExtraUrl">+ Add Additional Resource</button>
+              </div>
+            </div>
+
+            <!-- Section 02: Venue Identity & Brand Assets -->
+            <div class="panel">
+              <div class="panel-header">
+                <div class="panel-title-wrap">
+                  <div>
+                    <h3 class="panel-title">Venue identity & brand</h3>
+                    <p class="panel-sub">Official logo image and automated design token extraction</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="field-group">
+                <label class="field-label" for="logoImageUrl">
+                  Venue logo image URL
+                  <span class="field-optional">(optional direct link)</span>
+                </label>
+                <input type="url" id="logoImageUrl" class="input-text input-mono" placeholder="https://.../venue-logo.png">
+              </div>
+
+              <div class="info-callout">
+                <p>
+                  <strong>Adaptive brand rule:</strong> If a logo image link is provided, it is enforced across all pages.
+                  Otherwise, the builder instructs the model to extract the authentic transparent SVG or PNG logo directly from the website.
+                </p>
+              </div>
+            </div>
+
+            <!-- Section 03: Venue Photography & Adaptive Media -->
+            <div class="panel">
+              <div class="panel-header">
+                <div class="panel-title-wrap">
+                  <div>
+                    <h3 class="panel-title">Photography & adaptive media</h3>
+                    <p class="panel-sub">Image repositories, photo folders, and fallback rules</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="field-group">
+                <label class="field-label" for="mediaFolderUrl">
+                  Media library or drive URL
+                  <span class="field-optional">(Google Drive, Dropbox, Box)</span>
+                </label>
+                <input type="url" id="mediaFolderUrl" class="input-text input-mono" placeholder="https://drive.google.com/drive/folders/...">
+              </div>
+
+              <div class="field-group">
+                <label class="field-label" for="galleryUrls">
+                  Direct photo URLs
+                  <span class="field-hint">One URL per line</span>
+                </label>
+                <textarea id="galleryUrls" class="input-textarea input-mono" rows="3" placeholder="https://.../hero.jpg&#10;https://.../ballroom.jpg"></textarea>
+              </div>
+
+              <div class="info-callout">
+                <p>
+                  <strong>Dynamic media rules:</strong> Photos are allocated intelligently (landscape hero, signature ceremony and reception spaces).
+                  If photos are limited, the brief specifies structured architectural highlight spec cards instead of empty spaces.
+                </p>
+              </div>
+            </div>
+
+            <!-- Section 04: Funnel Pages & Form Embeds -->
+            <div class="panel">
+              <div class="panel-header">
+                <div class="panel-title-wrap">
+                  <div>
+                    <h3 class="panel-title">Funnel pages & form embeds</h3>
+                    <p class="panel-sub">LeadConnector iframe snippets for Step 1 and Step 2</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="field-group">
+                <label class="field-label" for="p1Iframe">Page 1 brochure form embed code</label>
+                <textarea id="p1Iframe" class="input-textarea input-mono" rows="3" placeholder='&lt;iframe src="https://api.leadconnectorhq.com/widget/form/..." style="width:100%;height:100%;border:none;" id="inline-..." data-form-name="Brochure Form" data-height="540"&gt;&lt;/iframe&gt;&#10;&lt;script src="https://link.msgsndr.com/js/form_embed.js"&gt;&lt;/script&gt;'></textarea>
+              </div>
+
+              <div class="field-group">
+                <label class="field-label" for="p1Cta">Page 1 CTA button text</label>
+                <input type="text" id="p1Cta" class="input-text" value="Download Pricing Brochure">
+              </div>
+
+              <div class="field-group">
+                <label class="field-label" for="p2Iframe">Page 2 tour booking form embed code</label>
+                <textarea id="p2Iframe" class="input-textarea input-mono" rows="3" placeholder='&lt;iframe src="https://api.leadconnectorhq.com/widget/form/..." style="width:100%;height:100%;border:none;" id="inline-..." data-form-name="Tour Form" data-height="680"&gt;&lt;/iframe&gt;&#10;&lt;script src="https://link.msgsndr.com/js/form_embed.js"&gt;&lt;/script&gt;'></textarea>
+              </div>
+
+              <div class="field-group">
+                <label class="field-label" for="p2Cta">Page 2 CTA button text</label>
+                <input type="text" id="p2Cta" class="input-text" value="Request a Tour">
+              </div>
+            </div>
+
+            <!-- Section 05: Layout Inspiration & Visual References -->
+            <div class="panel">
+              <div class="panel-header">
+                <div class="panel-title-wrap">
+                  <div>
+                    <h3 class="panel-title">Layout inspiration & visual references</h3>
+                    <p class="panel-sub">Select example live funnels for section pacing and device composition</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="inspo-header-row">
+                <div class="inspo-meta">
+                  <span class="status-dot" id="inspoDot"></span>
+                  <span id="inspoCount">None selected (optional)</span>
+                </div>
+                <div style="display: flex; gap: 8px;">
+                  <button type="button" class="btn btn-secondary btn-sm" id="btnOpenGalleryPreview">Preview Devices</button>
+                  <button type="button" class="btn btn-ghost btn-sm" id="btnClearInspo" style="display: none;">Clear Selected</button>
+                </div>
+              </div>
+
+              <div class="inspo-grid" id="inspoGrid"></div>
+
+              <div class="info-callout">
+                <p>
+                  <strong>Structural reference only:</strong> Selected pages guide visual hierarchy, card proportions, and mobile stacking.
+                  Brand identity, color tokens, typography, and venue details always come exclusively from your client's assets.
+                </p>
+              </div>
+            </div>
+
+            <!-- Section 06: Extra Developer Instructions -->
+            <div class="panel">
+              <div class="panel-header">
+                <div class="panel-title-wrap">
+                  <div>
+                    <h3 class="panel-title">Extra developer instructions</h3>
+                    <p class="panel-sub">Custom tracking, analytics, domains, or layout constraints</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="field-group">
+                <label class="field-label" for="extraNotes">Special requirements & notes</label>
+                <textarea id="extraNotes" class="input-textarea" rows="3" placeholder="e.g. Include Facebook Pixel ID, connect webhook to Zapier, highlight 2026 calendar availability..."></textarea>
+              </div>
+            </div>
+
+          </form>
+        </div>
+
+        <!-- Right Column: Output Console (Sticky) -->
+        <div class="console-column">
+          <div class="console-card">
+            <div class="console-bar">
+              <div class="console-title-group">
+                <div class="console-dots">
+                  <div class="console-dot red"></div>
+                  <div class="console-dot amber"></div>
+                  <div class="console-dot green"></div>
+                </div>
+                <span class="console-heading">prompt-brief.md</span>
+              </div>
+              <div class="console-status">
+                <span class="status-pill pending" id="statusPill">Missing inputs</span>
+                <span class="console-counter" id="consoleStats">0 words · 0 chars</span>
+              </div>
+            </div>
+
+            <textarea id="promptOutput" class="prompt-viewer" readonly spellcheck="false"></textarea>
+
+            <div class="console-footer">
+              <div class="console-footer-note" id="saveNote">Ready to build</div>
+              <div class="console-footer-actions">
+                <button type="button" class="btn btn-secondary btn-sm" id="btnDownload">Download .md</button>
+                <button type="button" class="btn btn-primary btn-sm" id="btnCopy">Copy Prompt</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
   </main>
 
-  <div class="toast" id="toast">
-    <span>✓ Copied to clipboard!</span>
-  </div>
-
-  <!-- LIVE MULTI-DEVICE PREVIEW MODAL -->
-  <div class="modal-backdrop" id="previewModal" role="dialog" aria-modal="true" aria-label="Layout inspiration live preview">
-    <div class="modal-shell">
-      <div class="modal-head">
+  <!-- Live Multi-Device Preview Modal -->
+  <div class="modal-backdrop" id="previewModal" role="dialog" aria-modal="true" aria-label="Device viewport preview">
+    <div class="modal-window">
+      <div class="modal-top">
         <div class="modal-nav-group">
-          <button type="button" class="btn btn-console-dark btn-sm" id="btnPrevInspo" title="Previous (Left arrow)">←</button>
-          <select id="modalInspoSelect" class="modal-select" aria-label="Choose example funnel"></select>
-          <button type="button" class="btn btn-console-dark btn-sm" id="btnNextInspo" title="Next (Right arrow)">→</button>
+          <button type="button" class="btn btn-secondary btn-sm" id="btnPrevInspo">‹</button>
+          <select id="modalInspoSelect" class="modal-select"></select>
+          <button type="button" class="btn btn-secondary btn-sm" id="btnNextInspo">›</button>
+          <span class="modal-url-chip" id="modalUrlText">https://...</span>
+          <a id="modalExternalLink" class="btn btn-ghost btn-sm" href="#" target="_blank" rel="noopener noreferrer">Open ↗</a>
         </div>
 
-        <div class="device-tabs" id="deviceTabs" role="tablist" aria-label="Preview device size">
-          <button type="button" class="device-tab active" data-device="desktop">🖥️ Desktop</button>
-          <button type="button" class="device-tab" data-device="tablet">📱 Tablet</button>
-          <button type="button" class="device-tab" data-device="mobile">📱 Mobile</button>
-          <button type="button" class="device-tab" data-device="all">⚡ Compare All 3</button>
+        <div class="device-switcher" id="deviceTabs">
+          <button type="button" class="device-tab active" data-device="desktop">Desktop</button>
+          <button type="button" class="device-tab" data-device="tablet">Tablet</button>
+          <button type="button" class="device-tab" data-device="mobile">Mobile</button>
+          <button type="button" class="device-tab" data-device="all">Compare All 3</button>
         </div>
 
-        <div class="modal-right-actions">
-          <button type="button" class="btn btn-console-gold btn-sm" id="btnModalSelect">Select as Inspiration</button>
-          <button type="button" class="btn btn-console-dark btn-sm" id="btnCloseModal" aria-label="Close preview">✕ Close</button>
+        <div class="modal-controls">
+          <button type="button" class="btn btn-primary btn-sm" id="btnModalSelect">+ Select Inspiration</button>
+          <button type="button" class="btn btn-ghost btn-sm" id="btnCloseModal">✕ Close</button>
         </div>
       </div>
 
       <div class="modal-stage" id="modalStage"></div>
-
-      <div class="modal-foot">
-        <span>Viewing <strong id="modalUrlText"></strong> — Structure &amp; layout inspiration only; client branding always takes priority.</span>
-        <a id="modalExternalLink" href="#" target="_blank" rel="noopener noreferrer">Open in New Tab ↗</a>
-      </div>
     </div>
   </div>
 
+  <!-- Toast Notification -->
+  <div class="toast-box" id="toast"></div>
+
+  <!-- Studio Footer -->
+  <footer class="studio-footer">
+    <div class="wrap">
+      <div>Venue Funnel Studio · GoHighLevel 3-Page System Generator</div>
+      <div>Lead capture brief architecture · Version 2.5</div>
+    </div>
+  </footer>
+
   <script>
     (function () {
-      const STORAGE_KEY = "venue_brief_urls_v2";
+      "use strict";
+
+      const STORAGE_KEY = "venue_funnel_studio_v2";
+
       const FIELD_IDS = [
         "venueName", "venueLocation",
         "websiteUrl", "brochureUrl", "privacyPolicyUrl",
@@ -1431,7 +1456,7 @@
 
       function showToast(msg) {
         const t = $("toast");
-        t.innerHTML = `<span>${msg}</span>`;
+        t.textContent = msg;
         t.classList.add("show");
         clearTimeout(showToast._t);
         showToast._t = setTimeout(() => t.classList.remove("show"), 2200);
@@ -1446,6 +1471,7 @@
 
           const labelIn = document.createElement("input");
           labelIn.type = "text";
+          labelIn.className = "input-text";
           labelIn.placeholder = "Label (e.g. Instagram)";
           labelIn.value = row.label;
           labelIn.addEventListener("input", () => {
@@ -1455,6 +1481,7 @@
 
           const urlIn = document.createElement("input");
           urlIn.type = "url";
+          urlIn.className = "input-text input-mono";
           urlIn.placeholder = "https://...";
           urlIn.value = row.url;
           urlIn.addEventListener("input", () => {
@@ -1566,7 +1593,6 @@ Build a 3-page lead-capture funnel for a wedding/event venue. No site header/nav
 Before building, visit and analyze all provided client URLs below to extract the venue's real brand identity, colors, fonts, spaces, amenities, guest capacity, contact details, and imagery. Do not invent facts or copy details from any other venue.
 
 ${sourceLines.join("\n")}${inspirationBlock}
-
 ---
 
 ## 1) Brand identity (extract from Website / Brochure)
@@ -1734,21 +1760,20 @@ Follow these rules when choosing and placing imagery across the funnel:
 
       function updateStatus() {
         const missing = [];
-        if (!val("venueName")) missing.push("Venue Name");
-        if (!val("websiteUrl") && !val("brochureUrl")) missing.push("Website or Brochure URL");
-        if (!val("p1Iframe")) missing.push("Page 1 Iframe");
-        if (!val("p2Iframe")) missing.push("Page 2 Iframe");
+        if (!val("venueName")) missing.push("Venue name");
+        if (!val("websiteUrl") && !val("brochureUrl")) missing.push("Website or brochure URL");
+        if (!val("p1Iframe")) missing.push("Page 1 iframe");
+        if (!val("p2Iframe")) missing.push("Page 2 iframe");
 
         const pill = $("statusPill");
         if (missing.length === 0) {
           pill.className = "status-pill ready";
-          pill.textContent = "✓ Ready to Build";
+          pill.textContent = "Ready to build";
         } else {
           pill.className = "status-pill pending";
           pill.textContent = `Missing: ${missing.join(", ")}`;
         }
 
-        // Update stats
         const text = $("promptOutput").value || "";
         const words = text ? text.trim().split(/\s+/).length : 0;
         const chars = text.length;
@@ -1842,13 +1867,13 @@ Follow these rules when choosing and placing imagery across the funnel:
 
           const prevBtn = document.createElement("button");
           prevBtn.type = "button";
-          prevBtn.className = "btn btn-secondary";
-          prevBtn.innerHTML = "<span>📱 Preview Devices</span>";
+          prevBtn.className = "btn btn-secondary btn-sm";
+          prevBtn.textContent = "Preview Devices";
           prevBtn.addEventListener("click", () => openPreviewModal(idx));
 
           const selBtn = document.createElement("button");
           selBtn.type = "button";
-          selBtn.className = isSelected ? "btn btn-primary" : "btn btn-ghost";
+          selBtn.className = isSelected ? "btn btn-primary btn-sm" : "btn btn-ghost btn-sm";
           selBtn.textContent = isSelected ? "Selected" : "Select";
           selBtn.addEventListener("click", () => toggleInspiration(site.url));
 
@@ -1884,8 +1909,8 @@ Follow these rules when choosing and placing imagery across the funnel:
         if (!site) return;
         const btn = $("btnModalSelect");
         const isSelected = selectedInspirations.has(site.url);
-        btn.textContent = isSelected ? "✓ Selected for Prompt" : "+ Select as Inspiration";
-        btn.className = isSelected ? "btn btn-console-dark btn-sm" : "btn btn-console-gold btn-sm";
+        btn.textContent = isSelected ? "Selected for prompt" : "+ Select as inspiration";
+        btn.className = isSelected ? "btn btn-secondary btn-sm" : "btn btn-primary btn-sm";
       }
 
       function buildDeviceFrame(url, label, vpWidth, vpHeight, maxBoxWidth, maxBoxHeight, frameClass) {
@@ -1950,13 +1975,12 @@ Follow these rules when choosing and placing imagery across the funnel:
         const availH = Math.max(420, stage.clientHeight - 80);
 
         if (activeDeviceMode === "desktop") {
-          stage.appendChild(buildDeviceFrame(site.url, "Desktop Display", 1440, 900, availW, availH, "frame-desktop"));
+          stage.appendChild(buildDeviceFrame(site.url, "Desktop display", 1440, 900, availW, availH, "frame-desktop"));
         } else if (activeDeviceMode === "tablet") {
-          stage.appendChild(buildDeviceFrame(site.url, "iPad Pro", 768, 1024, availW, availH, "frame-tablet"));
+          stage.appendChild(buildDeviceFrame(site.url, "iPad tablet", 768, 1024, availW, availH, "frame-tablet"));
         } else if (activeDeviceMode === "mobile") {
-          stage.appendChild(buildDeviceFrame(site.url, "iPhone 16 Pro", 393, 852, availW, availH, "frame-mobile"));
+          stage.appendChild(buildDeviceFrame(site.url, "iPhone mobile", 393, 852, availW, availH, "frame-mobile"));
         } else {
-          // Compare all 3 side-by-side
           const deskW = Math.min(620, Math.max(360, availW * 0.48));
           const tabW = Math.min(340, Math.max(240, availW * 0.27));
           const mobW = Math.min(220, Math.max(190, availW * 0.19));
@@ -1989,11 +2013,11 @@ Follow these rules when choosing and placing imagery across the funnel:
         const text = $("promptOutput").value;
         try {
           await navigator.clipboard.writeText(text);
-          showToast("Build brief copied to clipboard!");
+          showToast("Build brief copied to clipboard.");
         } catch (e) {
           $("promptOutput").select();
           document.execCommand("copy");
-          showToast("Build brief copied to clipboard!");
+          showToast("Build brief copied to clipboard.");
         }
       }
 
@@ -2012,7 +2036,7 @@ Follow these rules when choosing and placing imagery across the funnel:
         a.click();
         a.remove();
         URL.revokeObjectURL(url);
-        showToast(`Downloaded ${slug}-build-brief.md`);
+        showToast(`Downloaded ${slug}-build-brief.md.`);
       }
 
       function fillExample() {
@@ -2041,7 +2065,7 @@ Follow these rules when choosing and placing imagery across the funnel:
         $("extraNotes").value = "";
         renderExtraUrls();
         onUpdate();
-        showToast("Example venue loaded");
+        showToast("Example venue loaded.");
       }
 
       // Wire events
@@ -2067,7 +2091,7 @@ Follow these rules when choosing and placing imagery across the funnel:
         renderExtraUrls();
         renderInspirationGrid();
         onUpdate();
-        showToast("Form cleared");
+        showToast("Form cleared.");
       });
 
       $("btnClearInspo").addEventListener("click", () => {

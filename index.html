@@ -1116,6 +1116,117 @@
     .studio-footer a:hover {
       color: #ffffff;
     }
+
+    /* --- Modern Web Guidance Enhancements --- */
+    :root {
+      color-scheme: dark;
+      accent-color: var(--p-accent);
+    }
+
+    /* Content-aware field sizing (Modern Web Guidance: form-fields-automatically-fit-contents) */
+    .input-text {
+      field-sizing: content;
+      min-inline-size: 100%;
+      max-inline-size: 100%;
+    }
+
+    .prompt-textarea {
+      field-sizing: content;
+      min-block-size: 16lh;
+      max-block-size: 38lh;
+      inline-size: 100%;
+    }
+
+    /* Deferred validation after user interaction (Modern Web Guidance: validate-input-after-interaction) */
+    .input-text:user-invalid {
+      border-color: #ef4444 !important;
+      background-color: rgba(239, 68, 68, 0.09) !important;
+      box-shadow: 0 0 0 1px #ef4444;
+    }
+
+    .input-text:user-valid:not(:placeholder-shown) {
+      border-color: rgba(16, 185, 129, 0.6) !important;
+    }
+
+    /* Native HTML5 Dialog (Modern Web Guidance: ui-components/dialog & ui-behaviors/prevent-page-scroll) */
+    dialog#previewModal {
+      position: fixed;
+      inset: 0;
+      margin: auto;
+      border: 1px solid var(--p-border-strong);
+      border-radius: 16px;
+      background: var(--p-surface);
+      color: var(--p-ink);
+      max-width: min(1520px, 96vw);
+      width: 96vw;
+      height: 92vh;
+      max-height: 92vh;
+      padding: 0;
+      overflow: hidden;
+      box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(255, 255, 255, 0.1);
+      z-index: 100;
+    }
+
+    dialog#previewModal:modal {
+      overscroll-behavior: contain;
+    }
+
+    dialog#previewModal[open] {
+      display: flex;
+      flex-direction: column;
+    }
+
+    dialog#previewModal::backdrop {
+      overflow: hidden;
+      overscroll-behavior: contain;
+      background: rgba(5, 8, 14, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+
+    /* Copy Button & Live Accessible Status (Modern Web Guidance: ui-components/copy-button) */
+    .copy-wrap {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      position: relative;
+    }
+
+    .copy-status {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--p-accent);
+      min-height: 16px;
+      transition: opacity 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .copy-status:empty {
+      opacity: 0;
+    }
+
+    /* Content Visibility for Rendering Performance */
+    .inspo-card {
+      content-visibility: auto;
+      contain-intrinsic-size: auto 160px;
+    }
+
+    /* Accessibility: Reduced Motion (Modern Web Guidance) */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .inspo-card:hover {
+        transform: none !important;
+      }
+      .btn:hover, .btn:active {
+        transform: none !important;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -1398,7 +1509,10 @@
               <div class="console-footer-note" id="saveNote">Ready to build</div>
               <div class="console-footer-actions">
                 <button type="button" class="btn btn-secondary btn-sm" id="btnDownload">Download .md</button>
-                <button type="button" class="btn btn-primary btn-sm" id="btnCopy">Copy Prompt</button>
+                <span class="copy-wrap">
+                <button type="button" class="btn btn-primary btn-sm" id="btnCopy" aria-label="Copy prompt brief to clipboard">Copy Prompt</button>
+                <span class="copy-status" id="copyStatus" role="status" aria-live="polite"></span>
+              </span>
               </div>
             </div>
           </div>
@@ -1408,34 +1522,32 @@
     </div>
   </main>
 
-  <!-- Live Multi-Device Preview Modal -->
-  <div class="modal-backdrop" id="previewModal" role="dialog" aria-modal="true" aria-label="Device viewport preview">
-    <div class="modal-window">
-      <div class="modal-top">
-        <div class="modal-nav-group">
-          <button type="button" class="btn btn-secondary btn-sm" id="btnPrevInspo">‹</button>
-          <select id="modalInspoSelect" class="modal-select"></select>
-          <button type="button" class="btn btn-secondary btn-sm" id="btnNextInspo">›</button>
-          <span class="modal-url-chip" id="modalUrlText">https://...</span>
-          <a id="modalExternalLink" class="btn btn-ghost btn-sm" href="#" target="_blank" rel="noopener noreferrer">Open ↗</a>
-        </div>
-
-        <div class="device-switcher" id="deviceTabs">
-          <button type="button" class="device-tab active" data-device="desktop">Desktop</button>
-          <button type="button" class="device-tab" data-device="tablet">Tablet</button>
-          <button type="button" class="device-tab" data-device="mobile">Mobile</button>
-          <button type="button" class="device-tab" data-device="all">Compare All 3</button>
-        </div>
-
-        <div class="modal-controls">
-          <button type="button" class="btn btn-primary btn-sm" id="btnModalSelect">+ Select Inspiration</button>
-          <button type="button" class="btn btn-ghost btn-sm" id="btnCloseModal">✕ Close</button>
-        </div>
+  <!-- Live Multi-Device Preview Modal (Native HTML5 <dialog> via Modern Web Guidance) -->
+  <dialog id="previewModal" closedby="any" aria-label="Device Viewport Live Preview">
+    <div class="modal-top">
+      <div class="modal-nav-group">
+        <button type="button" class="btn btn-secondary btn-sm" id="btnPrevInspo" aria-label="Previous preview">‹</button>
+        <select id="modalInspoSelect" class="modal-select" aria-label="Select inspiration preview"></select>
+        <button type="button" class="btn btn-secondary btn-sm" id="btnNextInspo" aria-label="Next preview">›</button>
+        <span class="modal-url-chip" id="modalUrlText">https://...</span>
+        <a id="modalExternalLink" class="btn btn-ghost btn-sm" href="#" target="_blank" rel="noopener noreferrer">Open ↗</a>
       </div>
 
-      <div class="modal-stage" id="modalStage"></div>
+      <div class="device-switcher" id="deviceTabs" role="tablist" aria-label="Device Viewport Modes">
+        <button type="button" class="device-tab active" data-device="desktop" role="tab" aria-selected="true">Desktop</button>
+        <button type="button" class="device-tab" data-device="tablet" role="tab" aria-selected="false">Tablet</button>
+        <button type="button" class="device-tab" data-device="mobile" role="tab" aria-selected="false">Mobile</button>
+        <button type="button" class="device-tab" data-device="all" role="tab" aria-selected="false">Compare All 3</button>
+      </div>
+
+      <div class="modal-controls">
+        <button type="button" class="btn btn-primary btn-sm" id="btnModalSelect">+ Select Inspiration</button>
+        <button type="button" class="btn btn-ghost btn-sm" id="btnCloseModal" aria-label="Close dialog">✕ Close</button>
+      </div>
     </div>
-  </div>
+
+    <div class="modal-stage" id="modalStage"></div>
+  </dialog>
 
   <!-- Toast Notification -->
   <div class="toast-box" id="toast"></div>
@@ -2024,15 +2136,23 @@ Follow these rules when choosing and placing imagery across the funnel:
 
       function openPreviewModal(index) {
         activePreviewIdx = ((index % INSPIRATION_SITES.length) + INSPIRATION_SITES.length) % INSPIRATION_SITES.length;
-        $("previewModal").classList.add("open");
-        document.body.style.overflow = "hidden";
+        const modal = $("previewModal");
+        if (typeof modal.showModal === "function") {
+          if (!modal.open) modal.showModal();
+        } else {
+          modal.setAttribute("open", "");
+        }
         requestAnimationFrame(renderModalStage);
       }
 
       function closePreviewModal() {
-        $("previewModal").classList.remove("open");
+        const modal = $("previewModal");
+        if (typeof modal.close === "function") {
+          if (modal.open) modal.close();
+        } else {
+          modal.removeAttribute("open");
+        }
         $("modalStage").innerHTML = "";
-        document.body.style.overflow = "";
       }
 
       function onUpdate() {
@@ -2041,15 +2161,41 @@ Follow these rules when choosing and placing imagery across the funnel:
         save();
       }
 
-      async function copyPrompt() {
+      const copyTimers = new WeakMap();
+      function reportCopy(btn, ok) {
+        const tip = $("copyStatus") || btn.parentElement.querySelector(".copy-status");
+        clearTimeout(copyTimers.get(btn));
+        btn.removeAttribute("data-copied");
+        btn.removeAttribute("data-failed");
+        const msg = ok ? "✓ Copied to clipboard" : "✕ Copy failed";
+        if (tip) tip.textContent = "";
+        void btn.offsetWidth;
+        btn.setAttribute(ok ? "data-copied" : "data-failed", "");
+        if (tip) {
+          requestAnimationFrame(() => (tip.textContent = msg));
+          copyTimers.set(btn, setTimeout(() => {
+            btn.removeAttribute("data-copied");
+            btn.removeAttribute("data-failed");
+            tip.textContent = "";
+          }, 2400));
+        }
+        showToast(msg);
+      }
+
+      async function copyPrompt(e) {
+        const btn = e && e.currentTarget ? e.currentTarget : $("btnCopy");
         const text = $("promptOutput").value;
         try {
           await navigator.clipboard.writeText(text);
-          showToast("Build brief copied to clipboard.");
-        } catch (e) {
-          $("promptOutput").select();
-          document.execCommand("copy");
-          showToast("Build brief copied to clipboard.");
+          reportCopy(btn, true);
+        } catch (err) {
+          try {
+            $("promptOutput").select();
+            document.execCommand("copy");
+            reportCopy(btn, true);
+          } catch (e2) {
+            reportCopy(btn, false);
+          }
         }
       }
 
@@ -2135,9 +2281,30 @@ Follow these rules when choosing and placing imagery across the funnel:
 
       $("btnOpenGalleryPreview").addEventListener("click", () => openPreviewModal(activePreviewIdx));
       $("btnCloseModal").addEventListener("click", closePreviewModal);
-      $("previewModal").addEventListener("click", (e) => {
-        if (e.target === $("previewModal")) closePreviewModal();
+      
+      // Native <dialog> cancel / close event handling
+      $("previewModal").addEventListener("cancel", (e) => {
+        $("modalStage").innerHTML = "";
       });
+      $("previewModal").addEventListener("close", () => {
+        $("modalStage").innerHTML = "";
+      });
+
+      // Modern Web Guidance: closedby fallback for browsers without native dialog closedby
+      if (!('closedBy' in HTMLDialogElement.prototype)) {
+        const outside = (e, dialog) => {
+          const r = dialog.getBoundingClientRect();
+          return e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom;
+        };
+        const modal = $("previewModal");
+        let pressedOutside = false;
+        modal.addEventListener("pointerdown", (e) => {
+          pressedOutside = outside(e, modal);
+        });
+        modal.addEventListener("pointerup", (e) => {
+          if (pressedOutside && outside(e, modal)) closePreviewModal();
+        });
+      }
 
       $("btnPrevInspo").addEventListener("click", () => openPreviewModal(activePreviewIdx - 1));
       $("btnNextInspo").addEventListener("click", () => openPreviewModal(activePreviewIdx + 1));
@@ -2156,7 +2323,7 @@ Follow these rules when choosing and placing imagery across the funnel:
       });
 
       document.addEventListener("keydown", (e) => {
-        if (!$("previewModal").classList.contains("open")) return;
+        if (!$("previewModal").open) return;
         if (e.key === "Escape") closePreviewModal();
         else if (e.key === "ArrowLeft") openPreviewModal(activePreviewIdx - 1);
         else if (e.key === "ArrowRight") openPreviewModal(activePreviewIdx + 1);
@@ -2164,7 +2331,7 @@ Follow these rules when choosing and placing imagery across the funnel:
 
       let resizeTimer = null;
       window.addEventListener("resize", () => {
-        if (!$("previewModal").classList.contains("open")) return;
+        if (!$("previewModal").open) return;
         clearTimeout(resizeTimer);
         resizeTimer = setTimeout(renderModalStage, 150);
       });

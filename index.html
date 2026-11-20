@@ -3,35 +3,59 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Venue Funnel Brief Builder</title>
+  <title>Venue Funnel Studio — AI Build Brief Builder</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
     rel="stylesheet"
   />
   <style>
     :root {
-      --bg: #f6f5f2;
+      --bg: #f8f7f4;
+      --bg-subtle: #f3f0e9;
       --surface: #ffffff;
-      --surface-subtle: #faf9f6;
-      --border: #e5e2da;
-      --border-strong: #cfc9bc;
-      --text: #1c1f26;
-      --text-muted: #5d6472;
-      --text-soft: #858c99;
-      --accent: #1d3557;
-      --accent-hover: #142640;
-      --accent-soft: #eef2f8;
-      --success: #1f7a4c;
-      --success-soft: #eaf7f0;
+      --surface-raised: #faf9f6;
+      --border: #e6e2d8;
+      --border-strong: #d2ccbf;
+      --border-focus: #c5a059;
+
+      --text: #131722;
+      --text-muted: #5e6676;
+      --text-soft: #88909f;
+
+      --navy-950: #0a111e;
+      --navy-900: #0f1a2e;
+      --navy-800: #162642;
+      --navy-soft: #eaf0fa;
+
+      --gold-600: #a77c2b;
+      --gold-500: #c59b43;
+      --gold-400: #e2ba64;
+      --gold-soft: #fcf8ee;
+      --gold-border: #ebd9b4;
+
+      --success: #15803d;
+      --success-soft: #ecfdf3;
+      --success-border: #bbf7d0;
+
       --warning: #b45309;
-      --warning-soft: #fef5e7;
-      --radius-sm: 8px;
-      --radius-md: 12px;
-      --radius-lg: 16px;
-      --shadow-sm: 0 1px 2px rgba(20, 26, 38, 0.04);
-      --shadow-md: 0 8px 24px rgba(20, 26, 38, 0.08);
+      --warning-soft: #fef8ee;
+      --warning-border: #fed7aa;
+
+      --danger: #b91c1c;
+
+      --radius-xs: 6px;
+      --radius-sm: 9px;
+      --radius-md: 14px;
+      --radius-lg: 18px;
+      --radius-xl: 24px;
+
+      --shadow-xs: 0 1px 2px rgba(15, 23, 42, 0.04);
+      --shadow-sm: 0 2px 6px rgba(15, 23, 42, 0.04), 0 1px 2px rgba(15, 23, 42, 0.02);
+      --shadow-md: 0 8px 24px -4px rgba(15, 23, 42, 0.06), 0 2px 6px -1px rgba(15, 23, 42, 0.03);
+      --shadow-lg: 0 18px 40px -8px rgba(15, 23, 42, 0.10), 0 4px 12px -2px rgba(15, 23, 42, 0.04);
+      --shadow-modal: 0 28px 70px -12px rgba(10, 17, 30, 0.45);
     }
 
     * {
@@ -44,61 +68,102 @@
       background: var(--bg);
       color: var(--text);
       font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      font-size: 14.5px;
+      font-size: 14px;
       line-height: 1.55;
       -webkit-font-smoothing: antialiased;
     }
 
-    /* Header */
+    /* Subtle background ambient sheen */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background: radial-gradient(circle at 18% 12%, rgba(197, 155, 67, 0.035) 0%, transparent 45%),
+                  radial-gradient(circle at 85% 75%, rgba(15, 26, 46, 0.03) 0%, transparent 50%);
+      z-index: 0;
+    }
+
+    /* Top Navigation */
     .topbar {
       position: sticky;
       top: 0;
-      z-index: 30;
-      background: rgba(255, 255, 255, 0.94);
-      backdrop-filter: blur(10px);
+      z-index: 40;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border);
-      padding: 13px 24px;
+      padding: 12px 28px;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
     }
 
     .topbar-inner {
-      max-width: 1320px;
+      max-width: 1400px;
       margin: 0 auto;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
+      gap: 18px;
       flex-wrap: wrap;
     }
 
     .brand {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 13px;
     }
 
     .brand-mark {
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
-      background: var(--accent);
+      width: 40px;
+      height: 40px;
+      border-radius: 11px;
+      background: linear-gradient(135deg, var(--navy-950) 0%, var(--navy-800) 100%);
       color: #fff;
       display: grid;
       place-items: center;
-      font-family: "Cormorant Garamond", Georgia, serif;
-      font-size: 21px;
+      font-family: "Cinzel", Georgia, serif;
+      font-size: 20px;
       font-weight: 700;
       flex-shrink: 0;
+      box-shadow: 0 4px 12px rgba(10, 17, 30, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+      position: relative;
+      border: 1px solid rgba(197, 155, 67, 0.35);
     }
 
-    .brand h1 {
+    .brand-mark::after {
+      content: "";
+      position: absolute;
+      inset: 2px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      pointer-events: none;
+    }
+
+    .brand-text h1 {
       margin: 0;
       font-size: 16.5px;
       font-weight: 700;
-      letter-spacing: -0.01em;
+      letter-spacing: -0.015em;
+      color: var(--navy-950);
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
-    .brand p {
-      margin: 0;
+    .brand-pill {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 2px 7px;
+      border-radius: 999px;
+      background: var(--gold-soft);
+      color: var(--gold-600);
+      border: 1px solid var(--gold-border);
+    }
+
+    .brand-text p {
+      margin: 2px 0 0;
       font-size: 12.5px;
       color: var(--text-muted);
     }
@@ -106,7 +171,7 @@
     .topbar-actions {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 9px;
       flex-wrap: wrap;
     }
 
@@ -115,7 +180,7 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
+      gap: 7px;
       padding: 8px 14px;
       border-radius: var(--radius-sm);
       font-family: inherit;
@@ -123,28 +188,40 @@
       font-weight: 600;
       border: 1px solid transparent;
       cursor: pointer;
-      transition: all 0.15s ease;
+      transition: all 0.16s cubic-bezier(0.16, 1, 0.3, 1);
       white-space: nowrap;
+      user-select: none;
+    }
+
+    .btn:active {
+      transform: scale(0.98);
     }
 
     .btn-primary {
-      background: var(--accent);
-      color: #fff;
+      background: linear-gradient(135deg, var(--navy-900) 0%, var(--navy-800) 100%);
+      color: #ffffff;
+      box-shadow: 0 2px 8px rgba(15, 26, 46, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+      border-color: rgba(0, 0, 0, 0.1);
     }
 
     .btn-primary:hover {
-      background: var(--accent-hover);
+      background: linear-gradient(135deg, var(--navy-950) 0%, var(--navy-900) 100%);
+      box-shadow: 0 4px 14px rgba(15, 26, 46, 0.22);
+      transform: translateY(-1px);
     }
 
     .btn-secondary {
       background: var(--surface);
       color: var(--text);
       border-color: var(--border-strong);
+      box-shadow: var(--shadow-xs);
     }
 
     .btn-secondary:hover {
-      background: var(--surface-subtle);
-      border-color: var(--text-soft);
+      background: var(--surface-raised);
+      border-color: #beb7a8;
+      box-shadow: var(--shadow-sm);
+      transform: translateY(-1px);
     }
 
     .btn-ghost {
@@ -153,18 +230,38 @@
     }
 
     .btn-ghost:hover {
-      background: rgba(0, 0, 0, 0.04);
+      background: rgba(15, 26, 46, 0.05);
       color: var(--text);
     }
 
-    /* Main 2-column layout */
+    .btn-gold {
+      background: linear-gradient(135deg, #d3ab55 0%, #b88b32 100%);
+      color: #ffffff;
+      box-shadow: 0 3px 10px rgba(184, 139, 50, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    }
+
+    .btn-gold:hover {
+      background: linear-gradient(135deg, #dfb75f 0%, #aa7e27 100%);
+      transform: translateY(-1px);
+      box-shadow: 0 5px 14px rgba(184, 139, 50, 0.3);
+    }
+
+    .btn-sm {
+      padding: 6px 11px;
+      font-size: 12px;
+      border-radius: var(--radius-xs);
+    }
+
+    /* Main 2-Column Responsive Layout */
     .layout {
-      max-width: 1320px;
+      position: relative;
+      z-index: 1;
+      max-width: 1400px;
       margin: 0 auto;
-      padding: 24px 24px 64px;
+      padding: 26px 28px 72px;
       display: grid;
-      grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
-      gap: 24px;
+      grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+      gap: 26px;
       align-items: start;
     }
 
@@ -173,49 +270,60 @@
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
       box-shadow: var(--shadow-sm);
-      padding: 22px 24px;
+      padding: 22px 26px;
+      transition: box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .card:hover {
+      box-shadow: var(--shadow-md);
+      border-color: #dad5c7;
     }
 
     .form-stack {
       display: flex;
       flex-direction: column;
-      gap: 18px;
+      gap: 20px;
     }
 
     .card-head {
       display: flex;
-      align-items: baseline;
+      align-items: center;
       justify-content: space-between;
-      gap: 10px;
-      margin-bottom: 14px;
+      gap: 12px;
+      margin-bottom: 12px;
     }
 
     .card-head h2 {
       margin: 0;
-      font-size: 16px;
+      font-size: 15.5px;
       font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--navy-950);
       display: flex;
       align-items: center;
-      gap: 9px;
+      gap: 10px;
     }
 
     .step-badge {
-      width: 24px;
-      height: 24px;
-      border-radius: 50%;
-      background: var(--accent-soft);
-      color: var(--accent);
+      width: 26px;
+      height: 26px;
+      border-radius: 8px;
+      background: var(--navy-soft);
+      color: var(--navy-900);
       font-size: 12px;
       font-weight: 700;
       display: inline-grid;
       place-items: center;
       flex-shrink: 0;
+      border: 1px solid #d4e0f4;
+      font-family: "JetBrains Mono", monospace;
     }
 
     .card-sub {
-      margin: -8px 0 16px;
-      font-size: 13px;
+      margin: -4px 0 16px;
+      font-size: 12.8px;
       color: var(--text-muted);
+      line-height: 1.5;
     }
 
     .grid-2 {
@@ -236,303 +344,219 @@
     .field label {
       display: flex;
       align-items: center;
+      justify-content: space-between;
       gap: 6px;
-      font-size: 13px;
+      font-size: 12.8px;
       font-weight: 600;
-      margin-bottom: 5px;
+      margin-bottom: 6px;
       color: var(--text);
     }
 
+    .label-left {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
     .tag-opt {
-      font-size: 11px;
+      font-size: 10.5px;
       font-weight: 600;
       color: var(--text-soft);
-      background: #f1efe9;
-      padding: 1px 7px;
+      background: #f1ede3;
+      padding: 1.5px 7px;
       border-radius: 999px;
+      letter-spacing: 0.02em;
     }
 
     .help {
       display: block;
-      font-size: 12px;
+      font-size: 11.8px;
       color: var(--text-muted);
-      margin-top: 4px;
+      margin-top: 5px;
+      line-height: 1.45;
+    }
+
+    /* Input styling */
+    .input-wrap {
+      position: relative;
     }
 
     input[type="text"],
     input[type="url"],
-    textarea {
+    textarea,
+    select {
       width: 100%;
-      padding: 9px 12px;
+      padding: 10px 13px;
       border: 1px solid var(--border-strong);
       border-radius: var(--radius-sm);
       font-family: inherit;
       font-size: 13.5px;
       color: var(--text);
-      background: #fff;
-      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+      background: #ffffff;
+      transition: all 0.16s ease;
+      box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.02);
     }
 
     textarea {
       resize: vertical;
       min-height: 76px;
-      line-height: 1.48;
+      line-height: 1.5;
     }
 
     textarea.code-input {
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-family: "JetBrains Mono", SFMono-Regular, Menlo, Monaco, monospace;
       font-size: 12px;
-      background: #fbfbfa;
+      background: #fbfaf8;
       min-height: 86px;
+      line-height: 1.45;
     }
 
     input:focus,
-    textarea:focus {
+    textarea:focus,
+    select:focus {
       outline: none;
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(29, 53, 87, 0.12);
+      border-color: var(--navy-900);
+      background: #ffffff;
+      box-shadow: 0 0 0 3px rgba(15, 26, 46, 0.09), inset 0 1px 2px rgba(0, 0, 0, 0.02);
     }
 
-    /* Dynamic URL rows */
+    input::placeholder,
+    textarea::placeholder {
+      color: #9aa2b1;
+    }
+
+    /* Dynamic URL Rows */
     .url-list {
       display: flex;
       flex-direction: column;
-      gap: 8px;
-      margin-bottom: 10px;
+      gap: 9px;
+      margin-bottom: 12px;
     }
 
     .url-row {
       display: grid;
       grid-template-columns: 145px minmax(0, 1fr) auto;
-      gap: 8px;
+      gap: 9px;
       align-items: center;
     }
 
     .icon-btn {
-      width: 34px;
-      height: 34px;
+      width: 36px;
+      height: 36px;
       border-radius: var(--radius-sm);
       border: 1px solid var(--border-strong);
-      background: #fff;
+      background: #ffffff;
       color: var(--text-muted);
-      font-size: 16px;
+      font-size: 18px;
       cursor: pointer;
       display: grid;
       place-items: center;
+      transition: all 0.15s ease;
+      line-height: 1;
     }
 
     .icon-btn:hover {
       background: #fef2f2;
-      border-color: #f5c2c2;
-      color: #b91c1c;
+      border-color: #fecaca;
+      color: var(--danger);
     }
 
-    /* Optional details accordion */
-    details.optional-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-sm);
-      padding: 16px 24px;
-    }
-
-    details.optional-card summary {
-      cursor: pointer;
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--text);
-      list-style: none;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    details.optional-card summary::-webkit-details-marker {
-      display: none;
-    }
-
-    details.optional-card summary::after {
-      content: "+";
-      font-size: 18px;
-      color: var(--text-muted);
-      font-weight: 500;
-    }
-
-    details.optional-card[open] summary::after {
-      content: "−";
-    }
-
-    .details-body {
-      margin-top: 14px;
-      padding-top: 14px;
-      border-top: 1px solid var(--border);
-    }
-
-    /* Sticky Preview Column */
-    .preview-col {
-      position: sticky;
-      top: 78px;
-    }
-
-    .preview-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-bottom: 12px;
-    }
-
-    .preview-header h2 {
-      margin: 0;
-      font-size: 15.5px;
-      font-weight: 700;
-    }
-
-    .status-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-bottom: 12px;
-    }
-
-    .status-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 4px 10px;
-      border-radius: 999px;
-      font-size: 12px;
-      font-weight: 600;
-    }
-
-    .status-pill.ready {
-      background: var(--success-soft);
-      color: var(--success);
-    }
-
-    .status-pill.pending {
-      background: var(--warning-soft);
-      color: var(--warning);
-    }
-
-    .save-note {
-      font-size: 12px;
-      color: var(--text-soft);
-    }
-
-    .prompt-output {
-      width: 100%;
-      height: calc(100vh - 225px);
-      min-height: 440px;
-      max-height: 760px;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-      font-size: 12.2px;
-      line-height: 1.58;
-      padding: 16px 18px;
-      border-radius: var(--radius-md);
-      border: 1px solid var(--border-strong);
-      background: #141820;
-      color: #edf1f7;
-      white-space: pre-wrap;
-      word-break: break-word;
-      resize: vertical;
-    }
-
-    /* Toast */
-    .toast {
-      position: fixed;
-      bottom: 22px;
-      right: 22px;
-      background: #18202c;
-      color: #fff;
-      padding: 10px 16px;
-      border-radius: 10px;
-      font-size: 13px;
-      font-weight: 600;
-      box-shadow: var(--shadow-md);
-      opacity: 0;
-      transform: translateY(10px);
-      pointer-events: none;
-      transition: all 0.2s ease;
-      z-index: 60;
-    }
-
-    .toast.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Inspiration Section */
+    /* Inspiration Gallery */
     .inspo-bar {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 10px;
+      gap: 12px;
       flex-wrap: wrap;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
+      padding: 9px 13px;
+      background: var(--surface-raised);
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+    }
+
+    .inspo-count-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .inspo-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #cbd5e1;
+      transition: background 0.2s ease;
+    }
+
+    .inspo-dot.active {
+      background: var(--gold-500);
+      box-shadow: 0 0 0 3px rgba(197, 155, 67, 0.2);
     }
 
     .inspo-count {
       font-size: 12.5px;
       font-weight: 600;
-      color: var(--accent);
+      color: var(--navy-900);
     }
 
     .inspo-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 10px;
+      gap: 12px;
     }
 
     .inspo-card {
+      position: relative;
       border: 1px solid var(--border);
       border-radius: var(--radius-md);
-      background: var(--surface-subtle);
-      padding: 12px 13px;
+      background: #ffffff;
+      padding: 13px 14px;
       display: flex;
       flex-direction: column;
-      gap: 9px;
-      transition: border-color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+      gap: 10px;
+      transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: var(--shadow-xs);
     }
 
     .inspo-card:hover {
-      border-color: var(--border-strong);
-      background: #fff;
+      border-color: #cdc7b9;
+      transform: translateY(-1.5px);
+      box-shadow: var(--shadow-md);
     }
 
     .inspo-card.selected {
-      border-color: var(--accent);
-      background: var(--accent-soft);
-      box-shadow: 0 0 0 2px rgba(29, 53, 87, 0.12);
+      border-color: var(--gold-500);
+      background: linear-gradient(180deg, #fffcf6 0%, #faf6ec 100%);
+      box-shadow: 0 0 0 2px var(--gold-border), var(--shadow-sm);
     }
 
     .inspo-card-top {
       display: flex;
       align-items: flex-start;
       justify-content: space-between;
-      gap: 8px;
+      gap: 10px;
     }
 
     .inspo-name {
       font-size: 13.5px;
       font-weight: 700;
-      color: var(--text);
-      line-height: 1.3;
+      color: var(--navy-950);
+      line-height: 1.35;
+      letter-spacing: -0.01em;
     }
 
     .inspo-host {
       font-size: 11.5px;
       color: var(--text-soft);
       word-break: break-all;
-      margin-top: 2px;
+      margin-top: 3px;
+      font-family: "JetBrains Mono", monospace;
     }
 
     .inspo-check {
-      width: 20px;
-      height: 20px;
+      width: 22px;
+      height: 22px;
       border-radius: 6px;
       border: 1.5px solid var(--border-strong);
       background: #fff;
@@ -543,35 +567,245 @@
       color: #fff;
       flex-shrink: 0;
       cursor: pointer;
+      transition: all 0.14s ease;
     }
 
     .inspo-card.selected .inspo-check {
-      background: var(--accent);
-      border-color: var(--accent);
+      background: var(--navy-900);
+      border-color: var(--navy-900);
+      box-shadow: 0 2px 5px rgba(15, 26, 46, 0.2);
     }
 
     .inspo-actions {
       display: flex;
-      gap: 6px;
+      gap: 7px;
     }
 
     .inspo-actions .btn {
       flex: 1;
       padding: 6px 9px;
+      font-size: 11.8px;
+    }
+
+    /* Optional details accordion */
+    details.optional-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      padding: 16px 24px;
+      transition: border-color 0.18s ease;
+    }
+
+    details.optional-card[open] {
+      border-color: #d8d3c5;
+    }
+
+    details.optional-card summary {
+      cursor: pointer;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--navy-950);
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      user-select: none;
+    }
+
+    details.optional-card summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .summary-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .summary-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--bg-subtle);
+      display: grid;
+      place-items: center;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+      transition: transform 0.2s ease;
+    }
+
+    details.optional-card[open] .summary-icon {
+      transform: rotate(45deg);
+    }
+
+    .details-body {
+      margin-top: 14px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+
+    /* Sticky Prompt Console Column */
+    .preview-col {
+      position: sticky;
+      top: 80px;
+    }
+
+    .console-card {
+      background: #0f1623;
+      border: 1px solid #222d3f;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg), 0 0 0 1px rgba(255, 255, 255, 0.04);
+      padding: 18px 20px;
+      color: #edf2f9;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .console-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #1e293b;
+    }
+
+    .console-title {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .console-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 10px rgba(34, 197, 94, 0.6);
+    }
+
+    .console-title h2 {
+      margin: 0;
+      font-size: 14.5px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: #f8fafc;
+    }
+
+    .console-actions {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .console-actions .btn {
+      padding: 6px 12px;
       font-size: 12px;
     }
 
-    /* Live Multi-Device Preview Modal */
+    .btn-console-dark {
+      background: #1e283b;
+      color: #e2e8f0;
+      border-color: #334155;
+    }
+
+    .btn-console-dark:hover {
+      background: #2b3952;
+      border-color: #475569;
+      color: #fff;
+    }
+
+    .btn-console-gold {
+      background: linear-gradient(135deg, #d4af37 0%, #aa8425 100%);
+      color: #0b111c;
+      font-weight: 700;
+      border-color: transparent;
+      box-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
+    }
+
+    .btn-console-gold:hover {
+      background: linear-gradient(135deg, #e4be45 0%, #bd942d 100%);
+      transform: translateY(-1px);
+    }
+
+    .console-meta-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+      font-size: 11.5px;
+      color: #8b99ae;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 3px 9px;
+      border-radius: 999px;
+      font-size: 11.5px;
+      font-weight: 600;
+    }
+
+    .status-pill.ready {
+      background: rgba(34, 197, 94, 0.14);
+      color: #4ade80;
+      border: 1px solid rgba(34, 197, 94, 0.3);
+    }
+
+    .status-pill.pending {
+      background: rgba(245, 158, 11, 0.14);
+      color: #fbbf24;
+      border: 1px solid rgba(245, 158, 11, 0.3);
+    }
+
+    .console-stats {
+      font-family: "JetBrains Mono", monospace;
+      color: #718096;
+    }
+
+    .prompt-output {
+      width: 100%;
+      height: calc(100vh - 245px);
+      min-height: 480px;
+      max-height: 800px;
+      font-family: "JetBrains Mono", SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 12px;
+      line-height: 1.62;
+      padding: 16px 18px;
+      border-radius: var(--radius-sm);
+      border: 1px solid #1e293d;
+      background: #080c14;
+      color: #e2e8f0;
+      white-space: pre-wrap;
+      word-break: break-word;
+      resize: vertical;
+    }
+
+    .prompt-output:focus {
+      outline: none;
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+    }
+
+    /* Modal Backdrop & Realistic Device Frames */
     .modal-backdrop {
       position: fixed;
       inset: 0;
-      background: rgba(15, 20, 30, 0.72);
-      backdrop-filter: blur(4px);
+      background: rgba(8, 12, 20, 0.82);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
       z-index: 100;
       display: none;
       align-items: center;
       justify-content: center;
-      padding: 16px;
+      padding: 18px;
     }
 
     .modal-backdrop.open {
@@ -579,102 +813,110 @@
     }
 
     .modal-shell {
-      width: min(1400px, 98vw);
-      height: min(92vh, 920px);
-      background: #f3f2ee;
-      border-radius: 16px;
+      width: min(1440px, 98vw);
+      height: min(94vh, 940px);
+      background: #111723;
+      border-radius: 20px;
       overflow: hidden;
       display: flex;
       flex-direction: column;
-      box-shadow: 0 24px 64px rgba(0, 0, 0, 0.35);
-      border: 1px solid rgba(255, 255, 255, 0.14);
+      box-shadow: var(--shadow-modal);
+      border: 1px solid rgba(255, 255, 255, 0.12);
     }
 
     .modal-head {
-      background: #fff;
-      border-bottom: 1px solid var(--border);
-      padding: 12px 18px;
+      background: #172132;
+      border-bottom: 1px solid #233147;
+      padding: 12px 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
+      gap: 14px;
       flex-wrap: wrap;
+      color: #fff;
     }
 
     .modal-nav-group {
       display: flex;
       align-items: center;
       gap: 8px;
-      min-width: 0;
     }
 
     .modal-select {
-      padding: 7px 10px;
+      padding: 7px 12px;
       border-radius: var(--radius-sm);
-      border: 1px solid var(--border-strong);
+      border: 1px solid #2d3e58;
       font-family: inherit;
       font-size: 13.5px;
       font-weight: 600;
-      color: var(--text);
-      background: #fff;
-      max-width: 260px;
+      color: #f1f5f9;
+      background: #0d1522;
+      max-width: 280px;
+    }
+
+    .modal-select:focus {
+      outline: none;
+      border-color: var(--gold-400);
     }
 
     .device-tabs {
       display: inline-flex;
-      background: #efede8;
+      background: #0d1522;
       padding: 3px;
-      border-radius: 10px;
-      gap: 2px;
+      border-radius: 11px;
+      gap: 3px;
+      border: 1px solid #24334a;
     }
 
     .device-tab {
       border: none;
       background: transparent;
-      padding: 6px 11px;
-      border-radius: 7px;
+      padding: 6px 13px;
+      border-radius: 8px;
       font-family: inherit;
       font-size: 12.5px;
       font-weight: 600;
-      color: var(--text-muted);
+      color: #94a3b8;
       cursor: pointer;
-      transition: all 0.12s ease;
+      transition: all 0.14s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
     }
 
     .device-tab.active {
-      background: #fff;
-      color: var(--accent);
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+      background: #1e2d44;
+      color: #ffffff;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
     }
 
     .modal-right-actions {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 9px;
       flex-wrap: wrap;
     }
 
     .modal-stage {
       flex: 1;
       overflow: auto;
-      padding: 20px;
+      padding: 24px;
       display: flex;
       align-items: flex-start;
       justify-content: center;
-      gap: 20px;
-      background: radial-gradient(circle at top, #eae8e1 0%, #dedcd3 100%);
+      gap: 24px;
+      background: radial-gradient(circle at top, #1a2332 0%, #0c111a 100%);
     }
 
     .modal-stage.mode-all {
       flex-wrap: wrap;
-      align-items: flex-start;
     }
 
     .device-shell {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
       max-width: 100%;
     }
 
@@ -682,44 +924,80 @@
       font-size: 11.5px;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: #4b5260;
-      background: rgba(255, 255, 255, 0.85);
-      padding: 3px 10px;
+      letter-spacing: 0.08em;
+      color: #94a3b8;
+      background: rgba(15, 23, 42, 0.7);
+      padding: 3px 12px;
       border-radius: 999px;
-      border: 1px solid var(--border);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      font-family: "JetBrains Mono", monospace;
     }
 
+    /* Realistic Apple Device Frames */
     .device-frame {
       position: relative;
-      background: #fff;
-      border-radius: 14px;
+      background: #000;
       overflow: hidden;
-      border: 6px solid #1f242e;
-      box-shadow: 0 16px 36px rgba(15, 23, 42, 0.18);
+      box-shadow: 0 25px 60px -10px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.1);
     }
 
-    .device-frame.frame-mobile {
-      border-radius: 28px;
-      border-width: 9px;
+    /* Desktop - Studio Display */
+    .frame-desktop {
+      border-radius: 12px;
+      border: 10px solid #1e2634;
+      border-bottom: 22px solid #1a212d;
     }
 
-    .device-frame.frame-tablet {
+    .frame-desktop::before {
+      content: "";
+      position: absolute;
+      top: -7px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #0d131c;
+      z-index: 10;
+    }
+
+    /* Tablet - iPad Pro */
+    .frame-tablet {
+      border-radius: 22px;
+      border: 10px solid #1a2230;
+    }
+
+    /* Mobile - iPhone 16 Pro with Dynamic Island */
+    .frame-mobile {
+      border-radius: 38px;
+      border: 10px solid #1e2532;
+    }
+
+    .frame-mobile::before {
+      content: "";
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 76px;
+      height: 20px;
+      background: #000;
       border-radius: 20px;
-      border-width: 8px;
+      z-index: 15;
+      box-shadow: 0 0 1px rgba(255, 255, 255, 0.2);
     }
 
     .device-viewport {
       position: relative;
       overflow: hidden;
-      background: #fff;
+      background: #ffffff;
     }
 
     .device-viewport iframe {
       border: 0;
       transform-origin: top left;
       display: block;
-      background: #fff;
+      background: #ffffff;
     }
 
     .frame-loader {
@@ -729,34 +1007,53 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      background: rgba(250, 249, 246, 0.92);
-      color: var(--text-muted);
+      gap: 10px;
+      background: #0c111a;
+      color: #94a3b8;
       font-size: 13px;
       font-weight: 500;
       pointer-events: none;
-      transition: opacity 0.2s ease;
+      transition: opacity 0.25s ease;
+      z-index: 5;
     }
 
     .frame-loader.hidden {
       opacity: 0;
     }
 
+    .spinner {
+      width: 28px;
+      height: 28px;
+      border: 3px solid rgba(255, 255, 255, 0.1);
+      border-top-color: var(--gold-400);
+      border-radius: 50%;
+      animation: spin 0.75s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
     .modal-foot {
-      background: #fff;
-      border-top: 1px solid var(--border);
-      padding: 9px 18px;
+      background: #172132;
+      border-top: 1px solid #233147;
+      padding: 10px 22px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
+      gap: 14px;
       flex-wrap: wrap;
       font-size: 12px;
-      color: var(--text-muted);
+      color: #94a3b8;
+    }
+
+    .modal-foot strong {
+      color: #e2e8f0;
+      font-family: "JetBrains Mono", monospace;
     }
 
     .modal-foot a {
-      color: var(--accent);
+      color: var(--gold-400);
       font-weight: 600;
       text-decoration: none;
     }
@@ -765,10 +1062,39 @@
       text-decoration: underline;
     }
 
-    @media (max-width: 980px) {
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #0d1522;
+      color: #ffffff;
+      padding: 11px 18px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-weight: 600;
+      box-shadow: var(--shadow-lg);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      opacity: 0;
+      transform: translateY(12px);
+      pointer-events: none;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 120;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
       .layout {
         grid-template-columns: 1fr;
-        padding: 18px 14px 56px;
+        padding: 20px 18px 60px;
       }
 
       .preview-col {
@@ -780,7 +1106,11 @@
       }
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 640px) {
+      .topbar {
+        padding: 12px 16px;
+      }
+
       .card {
         padding: 18px 16px;
       }
@@ -801,37 +1131,46 @@
   <header class="topbar">
     <div class="topbar-inner">
       <div class="brand">
-        <div class="brand-mark">B</div>
-        <div>
-          <h1>Venue Funnel Brief Builder</h1>
-          <p>Paste the client's resource URLs &amp; form embeds — the prompt instructs the AI to extract everything automatically.</p>
+        <div class="brand-mark">V</div>
+        <div class="brand-text">
+          <h1>Venue Funnel Studio <span class="brand-pill">3-Page Spec</span></h1>
+          <p>Generate high-converting lead funnel build briefs from client URLs &amp; assets</p>
         </div>
       </div>
       <div class="topbar-actions">
-        <button type="button" class="btn btn-secondary" id="btnExample">Fill Example</button>
+        <button type="button" class="btn btn-secondary" id="btnExample">
+          <span>✨ Fill Example</span>
+        </button>
         <button type="button" class="btn btn-ghost" id="btnClear">Clear</button>
-        <button type="button" class="btn btn-primary" id="btnTopCopy">Copy Prompt</button>
+        <button type="button" class="btn btn-gold" id="btnTopCopy">
+          <span>Copy Build Prompt</span>
+        </button>
       </div>
     </div>
   </header>
 
   <main class="layout">
-    <!-- LEFT COLUMN: SHORT ASSET-URL FORM -->
+    <!-- LEFT COLUMN: STREAMLINED ASSET-URL FORM -->
     <form id="briefForm" class="form-stack" autocomplete="off">
 
-      <!-- 1. Venue Name -->
+      <!-- 1. Venue Basics -->
       <section class="card">
         <div class="card-head">
-          <h2><span class="step-badge">1</span> Venue Basics</h2>
+          <h2><span class="step-badge">01</span> Venue Identity</h2>
         </div>
         <div class="grid-2">
           <div class="field">
-            <label for="venueName">Venue Name</label>
+            <label for="venueName">
+              <span class="label-left">Venue Name</span>
+            </label>
             <input type="text" id="venueName" placeholder="e.g. Doko Manor" />
           </div>
           <div class="field">
-            <label for="venueLocation">City, State <span class="tag-opt">Optional</span></label>
-            <input type="text" id="venueLocation" placeholder="Leave blank to extract from website" />
+            <label for="venueLocation">
+              <span class="label-left">City, State</span>
+              <span class="tag-opt">Optional</span>
+            </label>
+            <input type="text" id="venueLocation" placeholder="Leave blank to extract from site" />
           </div>
         </div>
       </section>
@@ -839,77 +1178,101 @@
       <!-- 2. Client Resource URLs -->
       <section class="card">
         <div class="card-head">
-          <h2><span class="step-badge">2</span> Client Resource URLs</h2>
+          <h2><span class="step-badge">02</span> Client Resource URLs</h2>
         </div>
-        <p class="card-sub">Share links to the venue's website and brochure. The AI will read these to pull brand colors, fonts, spaces, amenities, capacity, contact info, and SEO metadata.</p>
+        <p class="card-sub">Share links to the venue's live website, brochure, and privacy policy. The AI analyzes these to pull brand colors, fonts, spaces, amenities, capacity, and contact info.</p>
 
         <div class="field">
-          <label for="websiteUrl">Venue Website URL</label>
+          <label for="websiteUrl">
+            <span class="label-left">Venue Website URL</span>
+          </label>
           <input type="url" id="websiteUrl" placeholder="https://www.venuewebsite.com" />
-          <span class="help">Used to extract the official logo, brand identity, palette, typography, location, and contact details.</span>
+          <span class="help">Used to extract the official logo, palette, typography, location, and contact details.</span>
         </div>
 
         <div class="field">
-          <label for="brochureUrl">Brochure / Packages URL <span class="tag-opt">PDF or Webpage</span></label>
+          <label for="brochureUrl">
+            <span class="label-left">Brochure / Packages URL</span>
+            <span class="tag-opt">PDF or Webpage</span>
+          </label>
           <input type="url" id="brochureUrl" placeholder="https://www.venuewebsite.com/wedding-brochure.pdf" />
-          <span class="help">Used to extract ceremony &amp; reception spaces, kitchen/suites, capacity, and package inclusions (no pricing will be shown).</span>
+          <span class="help">Used to extract spaces, kitchen/suites, guest capacity, and inclusions (no pricing shown).</span>
         </div>
 
         <div class="field">
-          <label for="privacyPolicyUrl">Privacy Policy Page URL <span class="tag-opt">Optional</span></label>
+          <label for="privacyPolicyUrl">
+            <span class="label-left">Privacy Policy Page URL</span>
+            <span class="tag-opt">Optional</span>
+          </label>
           <input type="url" id="privacyPolicyUrl" placeholder="https://www.venuewebsite.com/privacy-policy" />
-          <span class="help">If provided, the funnel will also include a dedicated <code>/privacy-policy</code> page built from the policy at this URL and linked in the footer.</span>
+          <span class="help">If provided, the AI generates a brand-matched <code>/privacy-policy</code> page linked in the footer.</span>
         </div>
 
         <div class="field">
-          <label>Other Reference Links <span class="tag-opt">Optional</span></label>
+          <label>
+            <span class="label-left">Additional Reference Links</span>
+            <span class="tag-opt">Optional</span>
+          </label>
           <div class="url-list" id="extraUrlsList"></div>
-          <button type="button" class="btn btn-secondary" id="btnAddExtraUrl">+ Add Another Link</button>
-          <span class="help">e.g. Instagram, The Knot / WeddingWire, About page, FAQ page, or a Google Drive / Dropbox asset folder.</span>
+          <button type="button" class="btn btn-secondary btn-sm" id="btnAddExtraUrl">+ Add Another Link</button>
+          <span class="help">e.g. Instagram, The Knot / WeddingWire, About page, FAQ page, or Drive folder.</span>
         </div>
       </section>
 
       <!-- 3. Venue Logo & Media URLs -->
       <section class="card">
         <div class="card-head">
-          <h2><span class="step-badge">3</span> Venue Logo &amp; Media URLs</h2>
+          <h2><span class="step-badge">03</span> Venue Logo &amp; Photography</h2>
         </div>
-        <p class="card-sub">Share the venue's logo, photo gallery page, or any direct image links. The AI will select the best photos for each section (or adapt with meaningful venue highlights if photos are limited).</p>
+        <p class="card-sub">Share the venue's official logo, photo gallery, or direct image links. The AI picks the strongest shots for each section or adapts with meaningful spec highlights.</p>
 
         <div class="grid-2" style="margin-bottom: 14px;">
           <div class="field">
-            <label for="logoImageUrl">Venue Logo Image URL <span class="tag-opt">Optional</span></label>
+            <label for="logoImageUrl">
+              <span class="label-left">Venue Logo Image URL</span>
+              <span class="tag-opt">Optional</span>
+            </label>
             <input type="url" id="logoImageUrl" placeholder="https://.../logo.png or .svg" />
-            <span class="help">Direct link to the actual venue logo. Leave blank to extract it from the website.</span>
+            <span class="help">Direct link to logo. Leave blank to extract from site.</span>
           </div>
           <div class="field">
-            <label for="mediaFolderUrl">Photo Gallery / Media Folder URL <span class="tag-opt">Optional</span></label>
+            <label for="mediaFolderUrl">
+              <span class="label-left">Photo Gallery / Media Folder URL</span>
+              <span class="tag-opt">Optional</span>
+            </label>
             <input type="url" id="mediaFolderUrl" placeholder="https://www.venuewebsite.com/gallery" />
-            <span class="help">Paste a gallery page or Drive folder if all photos live in one place.</span>
+            <span class="help">Paste a gallery or Drive folder link.</span>
           </div>
         </div>
 
         <div class="field">
-          <label for="galleryUrls">Direct Venue Photo URLs <span class="tag-opt">Optional — one per line</span></label>
-          <textarea id="galleryUrls" rows="4" placeholder="https://.../photo-1.jpg&#10;https://.../photo-2.jpg&#10;https://.../photo-3.jpg"></textarea>
-          <span class="help">Paste any direct image links from the venue's media library (one per line). The AI will pick the strongest shots for the hero, spaces, and gallery automatically.</span>
+          <label for="galleryUrls">
+            <span class="label-left">Direct Venue Photo URLs</span>
+            <span class="tag-opt">Optional — one per line</span>
+          </label>
+          <textarea id="galleryUrls" rows="3" placeholder="https://.../photo-1.jpg&#10;https://.../photo-2.jpg&#10;https://.../photo-3.jpg"></textarea>
+          <span class="help">Paste any direct image links. The AI will distribute the best shots across hero, spaces, and gallery automatically.</span>
         </div>
       </section>
 
       <!-- 4. Embedded Forms (GHL Iframes) -->
       <section class="card">
         <div class="card-head">
-          <h2><span class="step-badge">4</span> Embedded Form Codes (Iframes)</h2>
+          <h2><span class="step-badge">04</span> Form Embed Codes (Iframes)</h2>
         </div>
-        <p class="card-sub">Paste the iframe embed snippets from GoHighLevel (or your form builder) for Page 1 and Page 2.</p>
+        <p class="card-sub">Paste the iframe embed snippets from GoHighLevel (or your CRM) for Page 1 and Page 2.</p>
 
         <div class="field">
-          <label for="p1Iframe">Page 1 Form Embed Code (Brochure Opt-in)</label>
+          <label for="p1Iframe">
+            <span class="label-left">Page 1 Form Embed Code (Brochure Opt-in)</span>
+          </label>
           <textarea id="p1Iframe" class="code-input" placeholder='<iframe src="https://..." id="inline-..." data-form-name="..." data-height="540"></iframe>&#10;<script src="https://..."></script>'></textarea>
         </div>
 
         <div class="field">
-          <label for="p2Iframe">Page 2 Form Embed Code (Tour Request)</label>
+          <label for="p2Iframe">
+            <span class="label-left">Page 2 Form Embed Code (Tour Request)</span>
+          </label>
           <textarea id="p2Iframe" class="code-input" placeholder='<iframe src="https://..." id="inline-..." data-form-name="..." data-height="680"></iframe>&#10;<script src="https://..."></script>'></textarea>
         </div>
       </section>
@@ -917,14 +1280,19 @@
       <!-- 5. Optional Layout Inspiration -->
       <section class="card">
         <div class="card-head">
-          <h2><span class="step-badge">5</span> Layout Inspiration <span class="tag-opt">Optional</span></h2>
-          <button type="button" class="btn btn-secondary" id="btnOpenGalleryPreview">Live Device Preview</button>
+          <h2><span class="step-badge">05</span> Layout &amp; Visual Inspiration</h2>
+          <button type="button" class="btn btn-secondary btn-sm" id="btnOpenGalleryPreview">
+            <span>📱 Live Device Preview</span>
+          </button>
         </div>
-        <p class="card-sub">Pick one or more example funnels for visual and layout inspiration. All branding, logos, colors, and copy will still come exclusively from the client's website and brochure.</p>
+        <p class="card-sub">Select one or more example funnels to guide layout hierarchy, pacing, and mobile composition. All branding, logo, colors, and content will still come exclusively from the client's assets.</p>
 
         <div class="inspo-bar">
-          <span class="inspo-count" id="inspoCount">None selected (optional)</span>
-          <button type="button" class="btn btn-ghost" id="btnClearInspo" style="display: none; padding: 4px 8px; font-size: 12px;">Clear selection</button>
+          <div class="inspo-count-wrap">
+            <span class="inspo-dot" id="inspoDot"></span>
+            <span class="inspo-count" id="inspoCount">None selected (optional)</span>
+          </div>
+          <button type="button" class="btn btn-ghost btn-sm" id="btnClearInspo" style="display: none;">Clear selection</button>
         </div>
 
         <div class="inspo-grid" id="inspoGrid"></div>
@@ -932,20 +1300,32 @@
 
       <!-- 6. Optional Overrides -->
       <details class="optional-card">
-        <summary>Optional: Custom CTA Labels or Special Notes</summary>
+        <summary>
+          <span class="summary-badge">
+            <span class="summary-icon">+</span>
+            <span>Optional: Custom CTA Labels or Special Notes</span>
+          </span>
+        </summary>
         <div class="details-body">
           <div class="grid-2" style="margin-bottom: 14px;">
             <div class="field">
-              <label for="p1Cta">Page 1 Primary CTA Label</label>
+              <label for="p1Cta">
+                <span class="label-left">Page 1 Primary CTA Label</span>
+              </label>
               <input type="text" id="p1Cta" value="Download Pricing Brochure" />
             </div>
             <div class="field">
-              <label for="p2Cta">Page 2 Tour CTA Label</label>
+              <label for="p2Cta">
+                <span class="label-left">Page 2 Tour CTA Label</span>
+              </label>
               <input type="text" id="p2Cta" value="Request a Tour" />
             </div>
           </div>
           <div class="field">
-            <label for="extraNotes">Special Instructions for the AI <span class="tag-opt">Optional</span></label>
+            <label for="extraNotes">
+              <span class="label-left">Special Instructions for the AI</span>
+              <span class="tag-opt">Optional</span>
+            </label>
             <textarea id="extraNotes" rows="2" placeholder="e.g. Match the deep navy &amp; gold palette from their logo; highlight the lakeside pergola; ignore corporate pricing."></textarea>
           </div>
         </div>
@@ -953,20 +1333,24 @@
 
     </form>
 
-    <!-- RIGHT COLUMN: LIVE GENERATED PROMPT -->
+    <!-- RIGHT COLUMN: AI BUILD BRIEF CONSOLE -->
     <aside class="preview-col">
-      <div class="card">
-        <div class="preview-header">
-          <h2>Generated Build Brief Prompt</h2>
-          <div style="display: flex; gap: 8px;">
-            <button type="button" class="btn btn-secondary" id="btnDownload">Download .md</button>
-            <button type="button" class="btn btn-primary" id="btnCopy">Copy Prompt</button>
+      <div class="console-card">
+        <div class="console-head">
+          <div class="console-title">
+            <span class="console-dot"></span>
+            <h2>Generated Build Brief Prompt</h2>
+          </div>
+          <div class="console-actions">
+            <button type="button" class="btn btn-console-dark" id="btnDownload">Download .md</button>
+            <button type="button" class="btn btn-console-gold" id="btnCopy">Copy Brief</button>
           </div>
         </div>
 
-        <div class="status-row">
+        <div class="console-meta-bar">
           <span class="status-pill pending" id="statusPill">Paste venue URLs &amp; iframes</span>
-          <span class="save-note" id="saveNote">Auto-saved in browser</span>
+          <span class="console-stats" id="consoleStats">0 words · 0 chars</span>
+          <span id="saveNote">Auto-saved</span>
         </div>
 
         <textarea id="promptOutput" class="prompt-output" readonly aria-label="Generated prompt"></textarea>
@@ -974,35 +1358,37 @@
     </aside>
   </main>
 
-  <div class="toast" id="toast">Copied to clipboard!</div>
+  <div class="toast" id="toast">
+    <span>✓ Copied to clipboard!</span>
+  </div>
 
   <!-- LIVE MULTI-DEVICE PREVIEW MODAL -->
   <div class="modal-backdrop" id="previewModal" role="dialog" aria-modal="true" aria-label="Layout inspiration live preview">
     <div class="modal-shell">
       <div class="modal-head">
         <div class="modal-nav-group">
-          <button type="button" class="btn btn-secondary" id="btnPrevInspo" title="Previous example (Left arrow)">←</button>
+          <button type="button" class="btn btn-console-dark btn-sm" id="btnPrevInspo" title="Previous (Left arrow)">←</button>
           <select id="modalInspoSelect" class="modal-select" aria-label="Choose example funnel"></select>
-          <button type="button" class="btn btn-secondary" id="btnNextInspo" title="Next example (Right arrow)">→</button>
+          <button type="button" class="btn btn-console-dark btn-sm" id="btnNextInspo" title="Next (Right arrow)">→</button>
         </div>
 
         <div class="device-tabs" id="deviceTabs" role="tablist" aria-label="Preview device size">
-          <button type="button" class="device-tab active" data-device="desktop">Desktop</button>
-          <button type="button" class="device-tab" data-device="tablet">Tablet</button>
-          <button type="button" class="device-tab" data-device="mobile">Mobile</button>
-          <button type="button" class="device-tab" data-device="all">Compare All 3</button>
+          <button type="button" class="device-tab active" data-device="desktop">🖥️ Desktop</button>
+          <button type="button" class="device-tab" data-device="tablet">📱 Tablet</button>
+          <button type="button" class="device-tab" data-device="mobile">📱 Mobile</button>
+          <button type="button" class="device-tab" data-device="all">⚡ Compare All 3</button>
         </div>
 
         <div class="modal-right-actions">
-          <button type="button" class="btn btn-primary" id="btnModalSelect">Select as Inspiration</button>
-          <button type="button" class="btn btn-ghost" id="btnCloseModal" aria-label="Close preview">✕ Close</button>
+          <button type="button" class="btn btn-console-gold btn-sm" id="btnModalSelect">Select as Inspiration</button>
+          <button type="button" class="btn btn-console-dark btn-sm" id="btnCloseModal" aria-label="Close preview">✕ Close</button>
         </div>
       </div>
 
       <div class="modal-stage" id="modalStage"></div>
 
       <div class="modal-foot">
-        <span>Viewing <strong id="modalUrlText"></strong> — Reference for layout &amp; visual hierarchy only; client branding &amp; colors always take priority.</span>
+        <span>Viewing <strong id="modalUrlText"></strong> — Structure &amp; layout inspiration only; client branding always takes priority.</span>
         <a id="modalExternalLink" href="#" target="_blank" rel="noopener noreferrer">Open in New Tab ↗</a>
       </div>
     </div>
@@ -1045,7 +1431,7 @@
 
       function showToast(msg) {
         const t = $("toast");
-        t.textContent = msg;
+        t.innerHTML = `<span>${msg}</span>`;
         t.classList.add("show");
         clearTimeout(showToast._t);
         showToast._t = setTimeout(() => t.classList.remove("show"), 2200);
@@ -1356,11 +1742,17 @@ Follow these rules when choosing and placing imagery across the funnel:
         const pill = $("statusPill");
         if (missing.length === 0) {
           pill.className = "status-pill ready";
-          pill.textContent = "Ready to copy & build";
+          pill.textContent = "✓ Ready to Build";
         } else {
           pill.className = "status-pill pending";
           pill.textContent = `Missing: ${missing.join(", ")}`;
         }
+
+        // Update stats
+        const text = $("promptOutput").value || "";
+        const words = text ? text.trim().split(/\s+/).length : 0;
+        const chars = text.length;
+        $("consoleStats").textContent = `${words} words · ${chars.toLocaleString()} chars`;
       }
 
       function save() {
@@ -1451,7 +1843,7 @@ Follow these rules when choosing and placing imagery across the funnel:
           const prevBtn = document.createElement("button");
           prevBtn.type = "button";
           prevBtn.className = "btn btn-secondary";
-          prevBtn.textContent = "Preview Devices";
+          prevBtn.innerHTML = "<span>📱 Preview Devices</span>";
           prevBtn.addEventListener("click", () => openPreviewModal(idx));
 
           const selBtn = document.createElement("button");
@@ -1472,6 +1864,7 @@ Follow these rules when choosing and placing imagery across the funnel:
         $("inspoCount").textContent = count
           ? `${count} layout reference${count === 1 ? "" : "s"} selected`
           : "None selected (optional)";
+        $("inspoDot").classList.toggle("active", count > 0);
         $("btnClearInspo").style.display = count ? "inline-flex" : "none";
       }
 
@@ -1491,8 +1884,8 @@ Follow these rules when choosing and placing imagery across the funnel:
         if (!site) return;
         const btn = $("btnModalSelect");
         const isSelected = selectedInspirations.has(site.url);
-        btn.textContent = isSelected ? "✓ Selected for Prompt" : "Select as Inspiration";
-        btn.className = isSelected ? "btn btn-secondary" : "btn btn-primary";
+        btn.textContent = isSelected ? "✓ Selected for Prompt" : "+ Select as Inspiration";
+        btn.className = isSelected ? "btn btn-console-dark btn-sm" : "btn btn-console-gold btn-sm";
       }
 
       function buildDeviceFrame(url, label, vpWidth, vpHeight, maxBoxWidth, maxBoxHeight, frameClass) {
@@ -1505,7 +1898,7 @@ Follow these rules when choosing and placing imagery across the funnel:
 
         const badge = document.createElement("span");
         badge.className = "device-label";
-        badge.textContent = `${label} (${vpWidth}×${vpHeight})`;
+        badge.textContent = `${label} · ${vpWidth}×${vpHeight}`;
 
         const frame = document.createElement("div");
         frame.className = `device-frame ${frameClass}`;
@@ -1517,7 +1910,7 @@ Follow these rules when choosing and placing imagery across the funnel:
 
         const loader = document.createElement("div");
         loader.className = "frame-loader";
-        loader.textContent = `Loading ${label.toLowerCase()} preview...`;
+        loader.innerHTML = `<div class="spinner"></div><div>Loading ${label.toLowerCase()} preview...</div>`;
 
         const iframe = document.createElement("iframe");
         iframe.src = url;
@@ -1553,23 +1946,23 @@ Follow these rules when choosing and placing imagery across the funnel:
         stage.innerHTML = "";
         stage.classList.toggle("mode-all", activeDeviceMode === "all");
 
-        const availW = Math.max(320, stage.clientWidth - 48);
-        const availH = Math.max(420, stage.clientHeight - 72);
+        const availW = Math.max(320, stage.clientWidth - 56);
+        const availH = Math.max(420, stage.clientHeight - 80);
 
         if (activeDeviceMode === "desktop") {
-          stage.appendChild(buildDeviceFrame(site.url, "Desktop", 1440, 900, availW, availH, "frame-desktop"));
+          stage.appendChild(buildDeviceFrame(site.url, "Desktop Display", 1440, 900, availW, availH, "frame-desktop"));
         } else if (activeDeviceMode === "tablet") {
-          stage.appendChild(buildDeviceFrame(site.url, "Tablet", 768, 1024, availW, availH, "frame-tablet"));
+          stage.appendChild(buildDeviceFrame(site.url, "iPad Pro", 768, 1024, availW, availH, "frame-tablet"));
         } else if (activeDeviceMode === "mobile") {
-          stage.appendChild(buildDeviceFrame(site.url, "Mobile", 390, 844, availW, availH, "frame-mobile"));
+          stage.appendChild(buildDeviceFrame(site.url, "iPhone 16 Pro", 393, 852, availW, availH, "frame-mobile"));
         } else {
-          // Compare all 3 side-by-side / responsive wrap
+          // Compare all 3 side-by-side
           const deskW = Math.min(620, Math.max(360, availW * 0.48));
           const tabW = Math.min(340, Math.max(240, availW * 0.27));
           const mobW = Math.min(220, Math.max(190, availW * 0.19));
           stage.appendChild(buildDeviceFrame(site.url, "Desktop", 1440, 900, deskW, availH, "frame-desktop"));
           stage.appendChild(buildDeviceFrame(site.url, "Tablet", 768, 1024, tabW, availH, "frame-tablet"));
-          stage.appendChild(buildDeviceFrame(site.url, "Mobile", 390, 844, mobW, availH, "frame-mobile"));
+          stage.appendChild(buildDeviceFrame(site.url, "Mobile", 393, 852, mobW, availH, "frame-mobile"));
         }
       }
 
@@ -1596,11 +1989,11 @@ Follow these rules when choosing and placing imagery across the funnel:
         const text = $("promptOutput").value;
         try {
           await navigator.clipboard.writeText(text);
-          showToast("Prompt copied to clipboard!");
+          showToast("Build brief copied to clipboard!");
         } catch (e) {
           $("promptOutput").select();
           document.execCommand("copy");
-          showToast("Prompt copied to clipboard!");
+          showToast("Build brief copied to clipboard!");
         }
       }
 

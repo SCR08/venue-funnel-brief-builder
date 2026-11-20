@@ -1416,6 +1416,88 @@
       }
     }
 
+
+    /* Feature Modules Grid // LP Sections & Experiences */
+    .feature-modules-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 12px;
+    }
+
+    .module-card {
+      background: var(--cl-surface);
+      border: 1px solid var(--cl-border);
+      border-radius: 6px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      cursor: pointer;
+      user-select: none;
+      box-shadow: 0 1px 3px rgba(0, 0, 22, 0.02);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+    }
+
+    .module-card:hover {
+      border-color: var(--cl-border-hover);
+      background: var(--cl-surface-elevated);
+      transform: translateY(-1px);
+    }
+
+    .module-card.selected {
+      border-color: var(--cl-red);
+      background: rgba(228, 3, 46, 0.025);
+      box-shadow: 0 2px 10px rgba(228, 3, 46, 0.08);
+    }
+
+    .module-check {
+      width: 20px;
+      height: 20px;
+      border: 1px solid var(--cl-border);
+      border-radius: 3px;
+      background: #ffffff;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 800;
+      flex-shrink: 0;
+      margin-top: 2px;
+      transition: all 0.15s ease;
+    }
+
+    .module-card.selected .module-check {
+      background: var(--cl-red);
+      border-color: var(--cl-red);
+      color: #ffffff;
+      box-shadow: 0 0 8px var(--cl-red-glow);
+    }
+
+    .module-info {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .module-name {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--cl-ink);
+      line-height: 1.15;
+    }
+
+    .module-desc {
+      font-family: var(--font-body);
+      font-size: 12px;
+      color: var(--cl-muted);
+      line-height: 1.4;
+    }
+
   </style>
 </head>
 <body>
@@ -1617,11 +1699,32 @@
               </div>
             </div>
 
-            <!-- Panel 04: Layout & Visual Inspiration -->
+            <!-- Panel 04: Landing Page Sections & Experiences -->
             <div class="card-panel">
               <div class="panel-header">
                 <div class="panel-title-group">
                   <span class="panel-index">04 //</span>
+                  <h2 class="panel-title">LP SECTIONS & INTERACTIVE EXPERIENCES</h2>
+                </div>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <button type="button" class="btn btn-ghost btn-sm" id="btnSectionsRecommended">Recommended</button>
+                  <button type="button" class="btn btn-ghost btn-sm" id="btnSectionsClear">Clear</button>
+                  <span class="panel-tag" id="sectionsCountBadge">5 SELECTED</span>
+                </div>
+              </div>
+              <div class="panel-body">
+                <p style="font-size: 13px; color: var(--cl-muted); margin-bottom: 16px;">
+                  Select which custom content sections and interactive modules to compile into the funnel pages apart from core lead capture:
+                </p>
+                <div class="feature-modules-grid" id="featureModulesGrid"></div>
+              </div>
+            </div>
+
+            <!-- Panel 05: Layout & Visual Inspiration -->
+            <div class="card-panel">
+              <div class="panel-header">
+                <div class="panel-title-group">
+                  <span class="panel-index">05 //</span>
                   <h2 class="panel-title">LAYOUT INSPIRATION REFERENCES</h2>
                 </div>
                 <span class="panel-tag">13 LIVE PREVIEWS</span>
@@ -1642,11 +1745,11 @@
               </div>
             </div>
 
-            <!-- Panel 05: Studio Custom Constraints -->
+            <!-- Panel 06: Studio Custom Constraints -->
             <div class="card-panel">
               <div class="panel-header">
                 <div class="panel-title-group">
-                  <span class="panel-index">05 //</span>
+                  <span class="panel-index">06 //</span>
                   <h2 class="panel-title">STUDIO CONSTRAINTS & NOTES</h2>
                 </div>
                 <span class="panel-tag">CUSTOM RULES</span>
@@ -1760,6 +1863,93 @@
         "p1Cta", "p2Cta", "extraNotes"
       ];
 
+      const FEATURE_MODULES = [
+        {
+          id: "gallery",
+          name: "Interactive Photo Gallery",
+          desc: "Categorized ceremony, ballroom, suite, and grounds masonry grid with lightbox.",
+          defaultSelected: true,
+          rules: "- **Interactive Photo Gallery**: Add a high-resolution photo gallery section with category tabs (Ceremonies, Reception Ballroom, Bridal Suites, Estate Grounds). Include subtle 1.02x image hover zoom and an accessible modal lightbox."
+        },
+        {
+          id: "spaces",
+          name: "Spaces & Capacity Cards",
+          desc: "Architectural spec cards for Grand Ballroom, Pergola, and Lakeside Lawn with guest counts.",
+          defaultSelected: true,
+          rules: "- **Venue Spaces & Capacity Cards**: 3-4 structured architectural cards highlighting specific venue areas (e.g. Grand Ballroom, Waterfront Lawn, Covered Pergola). List seated/cocktail capacities, square footage, and unique highlights."
+        },
+        {
+          id: "faq",
+          name: "Frequently Asked Questions (FAQ)",
+          desc: "Accessible accordion covering catering, curfews, deposits, bar policies, and weather plans.",
+          defaultSelected: true,
+          rules: "- **Accordion FAQ Section**: High-converting FAQ using accessible native `<details>` and `<summary>` elements answering critical buyer questions: outside vendor policies, alcohol/bar flexibility, curfew, deposit schedules, and rain plan spaces."
+        },
+        {
+          id: "testimonials",
+          name: "Couple Testimonials & Reviews",
+          desc: "Real bride & groom quotes with wedding seasons, dates, photo avatars, and 5-star badges.",
+          defaultSelected: true,
+          rules: "- **Couple Testimonials & Social Proof**: Editorial quote cards from real couples who celebrated weddings at the venue. Include couple names, wedding season/year, authentic quotes extracted from client assets, and 5-star badges."
+        },
+        {
+          id: "amenities",
+          name: "Amenities & Inclusions Checklist",
+          desc: "Visual grid of tables, chairs, dressing suites, setup/takedown, and 12-hr grounds access.",
+          defaultSelected: true,
+          rules: "- **Included Amenities Checklist**: Two-column visual checklist of venue inclusions (e.g., private bridal & groom suites, Chiavari chairs, round tables, setup/breakdown, 12-hour exclusive grounds access, on-site coordinator)."
+        },
+        {
+          id: "parallax",
+          name: "Parallax Image Break",
+          desc: "Full-bleed landscape scrolling moments between key content sections.",
+          defaultSelected: false,
+          rules: "- **Parallax Landscape Break**: A dramatic, full-width visual break between sections featuring a stunning landscape photograph of the estate grounds at golden hour, utilizing smooth CSS parallax scrolling."
+        },
+        {
+          id: "pricing_cards",
+          name: "Tiered Package Cards",
+          desc: "Visual comparison tiers (Signature Saturday, Friday Classic, Intimate Gathering).",
+          defaultSelected: false,
+          rules: "- **Tiered Package Comparison Cards**: 3 structured cards (e.g. Signature Weekend, Classic Celebration, Intimate Gathering) summarizing pricing guidelines, included hours, and highlights extracted from the brochure."
+        },
+        {
+          id: "timeline",
+          name: "Booking Journey Timeline",
+          desc: "Numbered 4-step roadmap: Inquiry → Tour → Lock In Date → Wedding Day.",
+          defaultSelected: false,
+          rules: "- **Step-by-Step Experience Timeline**: A clean 4-step horizontal or vertical roadmap outlining the couple's journey: 1. Download Pricing Guide, 2. Private Tour Walkthrough, 3. Lock In Date, 4. The Celebration."
+        },
+        {
+          id: "virtual_tour",
+          name: "Virtual 360° / Video Player",
+          desc: "Cinematic drone or walkthrough video spotlight player with custom play trigger.",
+          defaultSelected: false,
+          rules: "- **Video / Virtual Tour Spotlight**: A cinematic video player embed area (YouTube/Vimeo/Wistia) or 360 walkthrough spotlight with a custom luxury play button and title overlay."
+        },
+        {
+          id: "map_lodging",
+          name: "Location Map & Lodging Guide",
+          desc: "Interactive map, airport distance, and partner boutique hotel recommendations for guests.",
+          defaultSelected: false,
+          rules: "- **Location Map & Nearby Accommodations**: A stylized map section showing airport distance, driving directions, and recommended partner hotel accommodations for traveling guests."
+        },
+        {
+          id: "urgency_badge",
+          name: "Seasonal Availability Callout",
+          desc: "Tasteful availability notice: 'Now Booking 2026/2027 · Limited Prime Saturdays Remaining'.",
+          defaultSelected: false,
+          rules: "- **Seasonal Availability / Urgency Banner**: A subtle, tasteful notification ribbon or card indicating: 'Currently Accepting Dates for 2026 & 2027 · Limited Prime Saturdays Available'."
+        },
+        {
+          id: "social_wall",
+          name: "Instagram / Real Weddings Wall",
+          desc: "Editorial photo mosaic tagged with the venue's official Instagram handle.",
+          defaultSelected: false,
+          rules: "- **Real Weddings Social Wall**: A 6-image mosaic or carousel tagged with the venue's social handle, showcasing authentic ceremony and reception moments."
+        }
+      ];
+
       const INSPIRATION_SITES = [
         { name: "Wilson Creek Wedding", url: "https://wilson-creek-wedding.vibepreview.app/" },
         { name: "Classic Venue Preview", url: "https://preview-1793768853923533337.vibepreview.app/" },
@@ -1778,6 +1968,7 @@
 
       let extraUrls = [{ label: "", url: "" }];
       let selectedInspirations = new Set();
+      let selectedModules = new Set(["gallery", "spaces", "faq", "testimonials", "amenities"]);
       let activePreviewIdx = 0;
       let activeDeviceMode = "desktop";
 
@@ -1790,6 +1981,56 @@
         t.classList.add("show");
         clearTimeout(showToast._t);
         showToast._t = setTimeout(() => t.classList.remove("show"), 2200);
+      }
+
+      function toggleModule(id) {
+        if (selectedModules.has(id)) {
+          selectedModules.delete(id);
+        } else {
+          selectedModules.add(id);
+        }
+        renderModulesGrid();
+        onUpdate();
+      }
+
+      function renderModulesGrid() {
+        const grid = $("featureModulesGrid");
+        if (!grid) return;
+        grid.innerHTML = "";
+        FEATURE_MODULES.forEach((mod) => {
+          const isSelected = selectedModules.has(mod.id);
+          const card = document.createElement("div");
+          card.className = "module-card" + (isSelected ? " selected" : "");
+          card.addEventListener("click", () => toggleModule(mod.id));
+
+          const chk = document.createElement("div");
+          chk.className = "module-check";
+          chk.textContent = isSelected ? "✓" : "";
+
+          const info = document.createElement("div");
+          info.className = "module-info";
+
+          const nameEl = document.createElement("div");
+          nameEl.className = "module-name";
+          nameEl.textContent = mod.name;
+
+          const descEl = document.createElement("div");
+          descEl.className = "module-desc";
+          descEl.textContent = mod.desc;
+
+          info.appendChild(nameEl);
+          info.appendChild(descEl);
+
+          card.appendChild(chk);
+          card.appendChild(info);
+          grid.appendChild(card);
+        });
+
+        const badge = $("sectionsCountBadge");
+        if (badge) {
+          const count = selectedModules.size;
+          badge.textContent = `${count} SELECTED`;
+        }
       }
 
       function renderExtraUrls() {
@@ -1892,6 +2133,11 @@
           ? `\n---\n\n## Layout & Visual Inspiration (Structure & Composition Only)\n\nReference the following live example page(s) for **layout structure, section pacing, visual hierarchy, spacing, card design, and responsive desktop/mobile composition**:\n${selectedInspoList.map((s) => `- ${s.name}: ${s.url}`).join("\n")}\n\n- **CRITICAL BRANDING RULE:** Use these page(s) ONLY as layout and visual-structure inspiration. Do **NOT** copy their venue name, logo, colors, typography, photography, or copy. All **branding, logo, color palette (semantic tokens), fonts, imagery, and content** MUST come exclusively from the client's original Website, Brochure, and Media URLs in Section 0.\n`
           : "";
 
+        const selectedModList = FEATURE_MODULES.filter((m) => selectedModules.has(m.id));
+        const modulesBlock = selectedModList.length
+          ? `\n---\n\n## 4b) SELECTED LANDING PAGE SECTIONS & EXPERIENCE MODULES\n\nThe client has explicitly selected the following content sections and interactive experiences to be engineered into the funnel pages (integrate across Page 1 & Page 2):\n\n${selectedModList.map((m) => m.rules).join("\n")}\n\n### Module Layout & Integration Directives:\n1. **Pacing & Rhythm**: Alternate between visual image moments (gallery, spaces, parallax) and informational cards (amenities, pricing, FAQ).\n2. **Mobile Layout Flow**: On small screens, cards and grids must collapse cleanly into a 1-column responsive layout without horizontal scrolling or clipping.\n3. **Token Consistency**: All selected modules must inherit the venue's exact color tokens, fonts, and 2px hover micro-interactions.\n`
+          : "";
+
         const notesBlock = extraNotes
           ? `\n---\n\n## Additional Client Notes\n\n${extraNotes}\n`
           : "";
@@ -1977,10 +2223,17 @@ ${photoBlock}
 \`\`\`html
 ${p1Iframe}
 \`\`\`
+  - **CRITICAL GHL MOBILE IFRAME RESILIENCE RULES (NEVER COLLAPSE TO 0PX)**:
+    1. **Prevent 0px Height Collapse**: In CSS, never apply \`height: 100%\` on the iframe without an explicit container \`min-height: 560px\`. Wrap the form: \`.ghl-form-wrap { width: 100%; min-height: 560px; position: relative; }\` and \`.ghl-form-wrap iframe { width: 100% !important; min-height: 560px; border: none; }\`.
+    2. **Render Inline on Mobile**: Keep the form visible directly in the section on both desktop and mobile; do not hide it behind \`display: none\` or an unlinked mobile popup.
+    3. **Preserve Dynamic Resizer Script**: Ensure \`<script src="https://link.msgsndr.com/js/form_embed.js"><\/script>\` is included directly after the iframe for postMessage height synchronization.
+    4. **No Overflow Clipping**: Avoid \`overflow: hidden\` on the immediate parent container to prevent iOS Safari WebKit cross-origin iframe rendering bugs.
+
 - **Key Highlights Section**:
   - 3-4 feature cards: Capacity & Spaces, Catering / Bar Flexibility, Scenic Ceremony Sites, Exclusive Grounds Access.
 - **Social Proof**:
   - Authentic bride & groom quotes extracted from website / brochure.
+${modulesBlock}
 - **Footer**:
   - Venue name, location (${venueLocation}), copyright.${footerPrivacyNote}
 
@@ -1996,6 +2249,8 @@ ${p1Iframe}
 \`\`\`html
 ${p2Iframe}
 \`\`\`
+  - **CRITICAL GHL MOBILE IFRAME RULES**: Wrap in \`.ghl-form-wrap\` with \`min-height: 680px; width: 100%;\`. Ensure \`<script src="https://link.msgsndr.com/js/form_embed.js"><\/script>\` is present.
+
 - **What to Expect Section**:
   - Step-by-step walkthrough details (1-on-1 venue coordinator, complimentary champagne, package walkthrough).
 - **Secondary Gallery**:
@@ -2077,7 +2332,8 @@ ${p2Iframe}
             JSON.stringify({
               fields,
               extraUrls,
-              selectedInspirations: Array.from(selectedInspirations)
+              selectedInspirations: Array.from(selectedInspirations),
+              selectedModules: Array.from(selectedModules)
             })
           );
           const t = new Date().toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
@@ -2100,6 +2356,9 @@ ${p2Iframe}
           }
           if (Array.isArray(data.selectedInspirations)) {
             selectedInspirations = new Set(data.selectedInspirations);
+          }
+          if (Array.isArray(data.selectedModules) && data.selectedModules.length) {
+            selectedModules = new Set(data.selectedModules);
           }
         } catch (e) {}
       }
@@ -2424,6 +2683,20 @@ ${p2Iframe}
         showToast("Form cleared");
       });
 
+            $("btnSectionsRecommended").addEventListener("click", () => {
+        selectedModules = new Set(FEATURE_MODULES.filter((m) => m.defaultSelected).map((m) => m.id));
+        renderModulesGrid();
+        onUpdate();
+        showToast("Loaded recommended sections");
+      });
+
+      $("btnSectionsClear").addEventListener("click", () => {
+        selectedModules = new Set();
+        renderModulesGrid();
+        onUpdate();
+        showToast("Cleared section selections");
+      });
+
       $("btnClearInspo").addEventListener("click", () => {
         selectedInspirations = new Set();
         renderInspirationGrid();
@@ -2534,6 +2807,7 @@ ${p2Iframe}
       load();
       populateModalSelect();
       renderExtraUrls();
+      renderModulesGrid();
       renderInspirationGrid();
       onUpdate();
     })();

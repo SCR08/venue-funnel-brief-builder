@@ -418,15 +418,11 @@
 
     .workbench-grid {
       display: grid;
-      grid-template-columns: 1fr 520px;
+      grid-template-columns: minmax(0, 1fr) 520px;
       gap: 36px;
       align-items: start;
-    }
-
-    @media (max-width: 1200px) {
-      .workbench-grid {
-        grid-template-columns: 1fr;
-      }
+      width: 100%;
+      min-width: 0;
     }
 
     /* -------------------------------------------------------------
@@ -436,6 +432,18 @@
       display: flex;
       flex-direction: column;
       gap: 24px;
+      min-width: 0;
+      max-width: 100%;
+      width: 100%;
+    }
+
+    #briefForm {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      min-width: 0;
+      max-width: 100%;
+      width: 100%;
     }
 
     .card-panel {
@@ -445,6 +453,9 @@
       overflow: hidden;
       box-shadow: 0 2px 6px rgba(0, 0, 22, 0.02);
       transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      min-width: 0;
+      max-width: 100%;
+      width: 100%;
     }
 
     .card-panel:hover {
@@ -500,17 +511,22 @@
 
     .panel-body {
       padding: 24px;
+      min-width: 0;
+      max-width: 100%;
     }
 
     .form-row-2 {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
       gap: 18px;
+      min-width: 0;
+      max-width: 100%;
+      width: 100%;
     }
 
     @media (max-width: 680px) {
       .form-row-2 {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
       }
     }
 
@@ -519,6 +535,9 @@
       flex-direction: column;
       gap: 6px;
       margin-bottom: 18px;
+      min-width: 0;
+      max-width: 100%;
+      width: 100%;
     }
 
     .form-group:last-child {
@@ -547,6 +566,9 @@
 
     .form-control {
       width: 100%;
+      min-width: 0;
+      max-width: 100%;
+      box-sizing: border-box;
       background: #ffffff;
       border: 1px solid var(--cl-border);
       border-radius: 4px;
@@ -555,9 +577,8 @@
       font-size: 14px;
       padding: 12px 14px;
       transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-      field-sizing: content;
-      min-inline-size: 100%;
-      max-inline-size: 100%;
+      overflow-wrap: anywhere;
+      word-break: break-word;
     }
 
     .form-control::placeholder {
@@ -590,19 +611,28 @@
       resize: vertical;
       min-height: 80px;
       line-height: 1.5;
+      width: 100%;
+      min-width: 0;
+      max-width: 100%;
+      box-sizing: border-box;
+      overflow-wrap: anywhere;
+      word-break: break-word;
     }
 
     .dynamic-url-row {
       display: grid;
-      grid-template-columns: 180px 1fr 38px;
+      grid-template-columns: minmax(110px, 160px) minmax(0, 1fr) 38px;
       gap: 10px;
       align-items: center;
       margin-bottom: 10px;
+      width: 100%;
+      min-width: 0;
+      max-width: 100%;
     }
 
     @media (max-width: 600px) {
       .dynamic-url-row {
-        grid-template-columns: 1fr 38px;
+        grid-template-columns: minmax(0, 1fr) 38px;
       }
       .dynamic-url-row input:first-child {
         grid-column: 1 / -1;
@@ -665,8 +695,10 @@
 
     .inspo-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(min(240px, 100%), 1fr));
       gap: 14px;
+      width: 100%;
+      min-width: 0;
     }
 
     .inspo-card {
@@ -756,8 +788,9 @@
 
     .inspo-card-actions {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
       gap: 8px;
+      min-width: 0;
     }
 
     /* -------------------------------------------------------------
@@ -773,6 +806,9 @@
       border-radius: 8px;
       overflow: hidden;
       box-shadow: 0 12px 32px -6px rgba(0, 0, 22, 0.07);
+      width: 100%;
+      min-width: 0;
+      max-width: 100%;
     }
 
     .cockpit-header {
@@ -825,10 +861,17 @@
       background: #f7f8fb;
       padding: 0;
       border-bottom: 1px solid var(--cl-border);
+      width: 100%;
+      min-width: 0;
+      max-width: 100%;
+      overflow: hidden;
     }
 
     .prompt-textarea {
       width: 100%;
+      min-width: 0;
+      max-width: 100%;
+      box-sizing: border-box;
       height: 520px;
       background: transparent;
       border: none;
@@ -840,10 +883,8 @@
       resize: vertical;
       outline: none;
       white-space: pre-wrap;
+      overflow-wrap: anywhere;
       word-break: break-word;
-      field-sizing: content;
-      min-block-size: 16lh;
-      max-block-size: 40lh;
     }
 
     .cockpit-footer {
@@ -1236,8 +1277,10 @@
     /* Prompt Console & General Mobile Responsiveness */
     @media (max-width: 1200px) {
       .workbench-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
         gap: 28px;
+        width: 100%;
+        min-width: 0;
       }
 
       .cockpit-console {
@@ -1245,6 +1288,9 @@
         top: 0;
         margin-top: 10px;
         box-shadow: 0 4px 16px rgba(0, 0, 22, 0.05);
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
       }
     }
 
@@ -1420,8 +1466,10 @@
     /* Feature Modules Grid // LP Sections & Experiences */
     .feature-modules-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(min(260px, 100%), 1fr));
       gap: 12px;
+      width: 100%;
+      min-width: 0;
     }
 
     .module-card {
